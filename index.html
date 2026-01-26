@@ -223,6 +223,27 @@
             width: 100%;
         }
 
+        .quest-mode {
+            margin-top: 20px;
+            padding: 25px;
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 4px solid var(--warning);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .quest-mode h3 {
+            color: var(--warning);
+            margin-bottom: 15px;
+        }
+
+        .quest-description {
+            font-size: 0.8rem;
+            color: #ccc;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
         @media (max-width: 768px) {
             .start-content {
                 grid-template-columns: 1fr;
@@ -387,6 +408,16 @@
                 </div>
             </div>
 
+            <div class="quest-mode">
+                <h3>Режим заданий</h3>
+                <p class="quest-description">
+                    Получите случайное задание с определенным бюджетом и сроком. Система гарантирует, что хотя бы одна комбинация выборов будет успешной!
+                </p>
+                <button class="game-button" id="quest-btn">
+                    <i class="fas fa-scroll"></i> Случайное задание
+                </button>
+            </div>
+
             <button class="game-button" id="start-btn" style="margin-top: 25px;">
                 Начать строительство
             </button>
@@ -404,8 +435,69 @@
         const budgetMessage = document.getElementById('budget-message');
         const timeMessage = document.getElementById('time-message');
         const startBtn = document.getElementById('start-btn');
+        const questBtn = document.getElementById('quest-btn');
         const budgetPresetButtons = document.querySelectorAll('.budget-preset');
         const timePresetButtons = document.querySelectorAll('.time-preset');
+
+        // Данные о вариантах строительства (такие же как в game.html)
+        const gameStepsData = [
+            {
+                options: [
+                    { money: -100000, time: 14 },
+                    { money: -150000, time: 21 },
+                    { money: -70000, time: 10 }
+                ]
+            },
+            {
+                options: [
+                    { money: -180000, time: 28 },
+                    { money: -120000, time: 18 },
+                    { money: -90000, time: 12 }
+                ]
+            },
+            {
+                options: [
+                    { money: -90000, time: 10 },
+                    { money: -120000, time: 15 },
+                    { money: -50000, time: 7 }
+                ]
+            },
+            {
+                options: [
+                    { money: -80000, time: 12 },
+                    { money: -60000, time: 8 },
+                    { money: -100000, time: 14 }
+                ]
+            },
+            {
+                options: [
+                    { money: -50000, time: 5 },
+                    { money: -90000, time: 3 },
+                    { money: -70000, time: 6 }
+                ]
+            },
+            {
+                options: [
+                    { money: -60000, time: 14 },
+                    { money: -120000, time: 25 },
+                    { money: -90000, time: 12 }
+                ]
+            },
+            {
+                options: [
+                    { money: -80000, time: 18 },
+                    { money: -120000, time: 22 },
+                    { money: -50000, time: 12 }
+                ]
+            },
+            {
+                options: [
+                    { money: -50000, time: 7 },
+                    { money: -100000, time: 14 },
+                    { money: -180000, time: 21 }
+                ]
+            }
+        ];
 
         // Обновление значений ползунка бюджета
         budgetSlider.addEventListener('input', function() {
@@ -426,6 +518,9 @@
 
         // Кнопка случайного времени
         randomTimeBtn.addEventListener('click', generateRandomTime);
+
+        // Кнопка случайного задания
+        questBtn.addEventListener('click', generateRandomQuest);
 
         // Пресеты бюджета
         budgetPresetButtons.forEach(button => {
@@ -534,6 +629,108 @@
             timeMessage.innerHTML = `<i class="fas fa-clock"></i> ${message} (Сложность: ${difficulty})`;
         }
 
+        // Генерация случайного задания с гарантированно выполнимой комбинацией
+        function generateRandomQuest() {
+            // 1. Сначала выберем случайную успешную комбинацию (самые дешевые варианты на каждом этапе)
+            let minBudget = 0;
+            let minTime = 0;
+            let maxBudget = 0;
+            let maxTime = 0;
+
+            // Собираем данные о минимальных и максимальных затратах
+            gameStepsData.forEach(step => {
+                const moneyOptions = step.options.map(opt => Math.abs(opt.money));
+                const timeOptions = step.options.map(opt => opt.time);
+
+                minBudget += Math.min(...moneyOptions);
+                minTime += Math.min(...timeOptions);
+                maxBudget += Math.max(...moneyOptions);
+                maxTime += Math.max(...timeOptions);
+            });
+
+            // 2. Выбираем случайный бюджет в диапазоне от минимального до максимального
+            const budget = minBudget + Math.floor(Math.random() * (maxBudget - minBudget));
+
+            // 3. Выбираем случайное время в диапазоне от минимального до максимального
+            const time = minTime + Math.floor(Math.random() * (maxTime - minTime));
+
+            // 4. Округляем до шагов
+            const roundedBudget = Math.max(200000, Math.min(1500000, Math.round(budget / 50000) * 50000));
+            const roundedTime = Math.max(30, Math.min(180, Math.round(time / 5) * 5));
+
+            // 5. Устанавливаем значения
+            budgetSlider.value = roundedBudget;
+            budgetValue.textContent = formatNumber(roundedBudget);
+            timeSlider.value = roundedTime;
+            timeValue.textContent = roundedTime;
+
+            // 6. Сбрасываем выделение пресетов
+            budgetPresetButtons.forEach(btn => {
+                btn.style.opacity = "0.8";
+                btn.style.transform = "scale(0.98)";
+            });
+            timePresetButtons.forEach(btn => {
+                btn.style.opacity = "0.8";
+                btn.style.transform = "scale(0.98)";
+            });
+
+            // 7. Показываем сообщение
+            budgetMessage.innerHTML = `<i class="fas fa-scroll"></i> Случайное задание: бюджет ${formatNumber(roundedBudget)}₽. Есть как минимум одна успешная ветка строительства!`;
+            timeMessage.innerHTML = `<i class="fas fa-clock"></i> Срок строительства: ${roundedTime} дней. Управляйте временем разумно!`;
+
+            // 8. Сохраняем информацию о задании
+            localStorage.setItem('questGenerated', 'true');
+            localStorage.setItem('questBudget', roundedBudget);
+            localStorage.setItem('questTime', roundedTime);
+
+            // 9. Проверяем и находим гарантированно успешную комбинацию
+            const successfulPath = findGuaranteedPath(roundedBudget, roundedTime);
+            localStorage.setItem('successfulPath', JSON.stringify(successfulPath));
+        }
+
+        // Функция для поиска гарантированно успешной комбинации
+        function findGuaranteedPath(budget, time) {
+            // Начинаем с самых дешевых вариантов
+            let path = [];
+            let currentBudget = 0;
+            let currentTime = 0;
+
+            gameStepsData.forEach(step => {
+                // Находим самый дешевый вариант в рамках ограничений
+                let bestOption = null;
+
+                for (let i = 0; i < step.options.length; i++) {
+                    const option = step.options[i];
+                    const optionCost = Math.abs(option.money);
+                    const optionTime = option.time;
+
+                    // Проверяем, вписывается ли вариант в оставшийся бюджет и время
+                    if (currentBudget + optionCost <= budget &&
+                        currentTime + optionTime <= time) {
+
+                        // Если это первый подходящий вариант или он дешевле предыдущего
+                        if (bestOption === null || optionCost < Math.abs(step.options[bestOption].money)) {
+                            bestOption = i;
+                        }
+                    }
+                }
+
+                // Если нашли подходящий вариант
+                if (bestOption !== null) {
+                    path.push(bestOption);
+                    currentBudget += Math.abs(gameStepsData[path.length-1].options[bestOption].money);
+                    currentTime += gameStepsData[path.length-1].options[bestOption].time;
+                } else {
+                    // Если не нашли, берем самый дешевый
+                    const cheapestOption = step.options.reduce((minIndex, option, index) =>
+                        Math.abs(option.money) < Math.abs(step.options[minIndex].money) ? index : minIndex, 0);
+                    path.push(cheapestOption);
+                }
+            });
+
+            return path;
+        }
+
         // Обновление сообщения о бюджете
         function updateBudgetMessage(value) {
             let message = "";
@@ -577,6 +774,14 @@
             // Сохраняем настройки в localStorage
             localStorage.setItem('budget', budgetSlider.value);
             localStorage.setItem('time', timeSlider.value);
+
+            // Если было сгенерировано задание, добавляем отметку
+            if (localStorage.getItem('questGenerated') === 'true') {
+                localStorage.setItem('isQuest', 'true');
+            } else {
+                localStorage.setItem('isQuest', 'false');
+            }
+
             // Переходим на игровую страницу
             window.location.href = 'game.html';
         });
@@ -587,6 +792,10 @@
             timeValue.textContent = timeSlider.value;
             updateBudgetMessage(parseInt(budgetSlider.value));
             updateTimeMessage(parseInt(timeSlider.value));
+
+            // Очищаем информацию о задании при загрузке
+            localStorage.removeItem('questGenerated');
+            localStorage.removeItem('successfulPath');
         });
     </script>
 </body>

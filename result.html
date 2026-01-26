@@ -97,6 +97,16 @@
             border-radius: 6px;
         }
 
+        .quest-badge {
+            background-color: rgba(255, 215, 0, 0.2);
+            border: 2px solid var(--warning);
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: 0.8rem;
+        }
+
         @media (max-width: 768px) {
             .end-content {
                 grid-template-columns: 1fr;
@@ -150,6 +160,10 @@
     <div class="game-container">
         <div class="end-screen">
             <h2 class="end-title" id="end-title">Строительство завершено!</h2>
+
+            <div id="quest-badge" class="quest-badge" style="display: none;">
+                <i class="fas fa-scroll"></i> Режим задания
+            </div>
 
             <div class="end-content">
                 <div class="final-house-container" id="final-house">
@@ -229,6 +243,9 @@
             <button class="game-button" id="play-again-btn" style="margin-top: 30px;">
                 Играть снова
             </button>
+            <button class="game-button" id="new-quest-btn" style="margin-top: 15px; margin-left: 15px; background-color: var(--warning); border-color: #FF8C00;">
+                <i class="fas fa-scroll"></i> Новое задание
+            </button>
         </div>
     </div>
 
@@ -248,6 +265,8 @@
         const timeRating = document.getElementById('time-rating');
         const finalHouse = document.getElementById('final-house');
         const playAgainBtn = document.getElementById('play-again-btn');
+        const newQuestBtn = document.getElementById('new-quest-btn');
+        const questBadge = document.getElementById('quest-badge');
 
         // Форматирование чисел с разделителями
         function formatNumber(num) {
@@ -263,6 +282,12 @@
             const title = localStorage.getItem('finalTitle') || "Строительство завершено!";
             const result = localStorage.getItem('finalResult') || "Результаты не найдены.";
             const maxTime = localStorage.getItem('maxTime') || 90;
+            const wasQuest = localStorage.getItem('wasQuest') === 'true';
+
+            // Показываем бейдж задания если был режим задания
+            if (wasQuest) {
+                questBadge.style.display = 'inline-block';
+            }
 
             // Отображаем данные
             endTitle.textContent = title;
@@ -328,11 +353,27 @@
                 finalHouse.style.filter = "brightness(1.2)";
                 finalHouse.style.borderColor = "#32CD32";
                 finalHouse.style.boxShadow = "0 0 30px rgba(50, 205, 50, 0.7)";
+
+                // Особый эффект для успешного задания
+                if (wasQuest) {
+                    finalHouse.style.boxShadow = "0 0 40px rgba(255, 215, 0, 0.8)";
+                }
             }
         }
 
         // Кнопка "Играть снова"
         playAgainBtn.addEventListener('click', function() {
+            window.location.href = 'index.html';
+        });
+
+        // Кнопка "Новое задание"
+        newQuestBtn.addEventListener('click', function() {
+            // Очищаем информацию о предыдущем задании
+            localStorage.removeItem('isQuest');
+            localStorage.removeItem('questGenerated');
+            localStorage.removeItem('successfulPath');
+
+            // Переходим на главную страницу
             window.location.href = 'index.html';
         });
 

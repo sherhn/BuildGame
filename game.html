@@ -72,6 +72,16 @@
             border-radius: 8px;
         }
 
+        .quest-indicator {
+            background-color: rgba(255, 215, 0, 0.2);
+            border: 3px solid var(--warning);
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
         @keyframes pulse {
             0% { transform: scale(1); }
             100% { transform: scale(1.03); }
@@ -139,6 +149,10 @@
                 <h1>Стройка мечты</h1>
                 <p class="subtitle">Этап за этапом создавайте свой дом</p>
             </header>
+
+            <div id="quest-indicator" class="quest-indicator" style="display: none;">
+                <i class="fas fa-scroll"></i> Режим задания: используйте бюджет и сроки рационально!
+            </div>
 
             <div id="bonus-container"></div>
 
@@ -229,6 +243,9 @@
                 <button class="game-button" id="restart-btn">
                     <i class="fas fa-redo"></i> Начать заново
                 </button>
+                <button class="game-button" id="quest-help-btn" style="margin-left: 15px; display: none;">
+                    <i class="fas fa-question-circle"></i> Подсказка по заданию
+                </button>
             </div>
         </div>
     </div>
@@ -259,6 +276,29 @@
         </div>
     </div>
 
+    <!-- Модальное окно для подсказки задания -->
+    <div id="quest-help-modal" class="fact-modal-overlay" style="display: none;">
+        <div class="fact-modal">
+            <div class="fact-modal-header">
+                <div class="fact-modal-title">
+                    <i class="fas fa-scroll"></i>
+                    <span>Подсказка по заданию</span>
+                </div>
+                <div class="fact-modal-subtitle">Помощь в выполнении задания</div>
+            </div>
+            <div class="fact-content">
+                <div class="fact-text" id="quest-help-text">
+                    Загрузка подсказки...
+                </div>
+            </div>
+            <div class="fact-modal-actions">
+                <button class="fact-close-btn" id="quest-help-close-btn">
+                    <i class="fas fa-check-circle"></i> Понятно
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Игровые данные
         const gameData = {
@@ -274,6 +314,7 @@
             bonusChance: 0.3,
             stepSelections: new Array(8).fill(null),
             stepBonuses: new Array(8).fill({money: 0, time: 0}),
+            isQuestMode: localStorage.getItem('isQuest') === 'true',
             // УПРОЩЕННЫЕ И ИНТЕРЕСНЫЕ ФАКТЫ для школьников и студентов
             stepFacts: [
                 [ // Фундамент
@@ -651,6 +692,11 @@
         const constructionStatus = document.getElementById('construction-status');
         const bonusContainer = document.getElementById('bonus-container');
         const stepsTracker = document.getElementById('steps-tracker');
+        const questIndicator = document.getElementById('quest-indicator');
+        const questHelpBtn = document.getElementById('quest-help-btn');
+        const questHelpModal = document.getElementById('quest-help-modal');
+        const questHelpText = document.getElementById('quest-help-text');
+        const questHelpCloseBtn = document.getElementById('quest-help-close-btn');
 
         // Элементы модального окна фактов
         const factModalOverlay = document.getElementById('fact-modal-overlay');
@@ -688,6 +734,38 @@
         // Скрыть модальное окно с фактом
         function hideFactModal() {
             factModalOverlay.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Показать подсказку по заданию
+        function showQuestHelp() {
+            // Получаем сохраненную успешную комбинацию
+            const successfulPath = JSON.parse(localStorage.getItem('successfulPath') || '[]');
+
+            if (successfulPath.length === 0) {
+                questHelpText.textContent = "Нет сохраненной информации о гарантированно успешной комбинации. Попробуйте выбирать самые дешевые варианты на каждом этапе.";
+            } else {
+                let advice = "Гарантированно успешная комбинация (самые дешевые варианты):\n\n";
+
+                gameData.gameSteps.forEach((step, index) => {
+                    if (index < successfulPath.length) {
+                        const optionIndex = successfulPath[index];
+                        const option = step.options[optionIndex];
+                        advice += `${step.title}: ${option.title} (${Math.abs(option.money)}₽, ${option.time} дней)\n`;
+                    }
+                });
+
+                advice += "\nСовет: начните с этой комбинации, но при наличии бонусов можно улучшать варианты!";
+                questHelpText.textContent = advice;
+            }
+
+            questHelpModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Скрыть подсказку по заданию
+        function hideQuestHelp() {
+            questHelpModal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
 
@@ -857,10 +935,25 @@
 
         // Начало игры
         function startGame() {
-            gameData.money = parseInt(localStorage.getItem('budget')) || 500000;
-            gameData.maxMoney = gameData.money;
-            gameData.time = parseInt(localStorage.getItem('time')) || 90;
-            gameData.maxTime = gameData.time;
+            // Проверяем режим задания
+            if (gameData.isQuestMode) {
+                // Используем бюджет и время из задания
+                gameData.money = parseInt(localStorage.getItem('questBudget')) || 500000;
+                gameData.maxMoney = gameData.money;
+                gameData.time = parseInt(localStorage.getItem('questTime')) || 90;
+                gameData.maxTime = gameData.time;
+
+                // Показываем индикатор задания
+                questIndicator.style.display = 'block';
+                questHelpBtn.style.display = 'inline-block';
+            } else {
+                // Обычный режим
+                gameData.money = parseInt(localStorage.getItem('budget')) || 500000;
+                gameData.maxMoney = gameData.money;
+                gameData.time = parseInt(localStorage.getItem('time')) || 90;
+                gameData.maxTime = gameData.time;
+            }
+
             gameData.strength = 0;
             gameData.durability = 0;
             gameData.currentStep = 0;
@@ -1084,12 +1177,21 @@
             if (gameData.strength >= 50 && gameData.durability >= 50 && gameData.time >= 0) {
                 if (gameData.strength >= 80 && gameData.durability >= 80 && (gameData.time / gameData.maxTime) * 100 >= 50) {
                     result = "Поздравляем! Вы построили идеальный дом с отличными характеристиками и уложились в сроки!";
+                    if (gameData.isQuestMode) {
+                        result += " Отличное выполнение задания!";
+                    }
                 } else {
                     result = "Хорошая работа! Вы построили надежный дом с хорошими параметрами в установленные сроки.";
+                    if (gameData.isQuestMode) {
+                        result += " Задание выполнено успешно!";
+                    }
                 }
             } else {
                 result = "Дом построен, но с недостатками. Прочность, долговечность или сроки ниже минимальных требований.";
                 title = "Дом построен с недостатками";
+                if (gameData.isQuestMode) {
+                    result += " Задание выполнено частично.";
+                }
             }
 
             endGame(title, result);
@@ -1105,6 +1207,7 @@
             localStorage.setItem('finalTitle', title);
             localStorage.setItem('finalResult', result);
             localStorage.setItem('maxTime', gameData.maxTime);
+            localStorage.setItem('wasQuest', gameData.isQuestMode);
 
             // Переходим на страницу результата
             window.location.href = 'result.html';
@@ -1115,6 +1218,10 @@
             window.location.href = 'index.html';
         });
 
+        // Обработчик кнопки подсказки
+        questHelpBtn.addEventListener('click', showQuestHelp);
+        questHelpCloseBtn.addEventListener('click', hideQuestHelp);
+
         // Закрытие модального окна по клику на фон
         factModalOverlay.addEventListener('click', function(event) {
             if (event.target === factModalOverlay) {
@@ -1122,10 +1229,19 @@
             }
         });
 
+        questHelpModal.addEventListener('click', function(event) {
+            if (event.target === questHelpModal) {
+                hideQuestHelp();
+            }
+        });
+
         // Закрытие модального окна по Escape
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape' && factModalOverlay.style.display === 'flex') {
                 hideFactModal();
+            }
+            if (event.key === 'Escape' && questHelpModal.style.display === 'flex') {
+                hideQuestHelp();
             }
         });
 
