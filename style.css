@@ -1,4 +1,3 @@
-
 /* Общие стили для всех страниц - ОБЛЕГЧЕННАЯ ВЕРСИЯ */
 :root {
     --primary: #7B68EE;
@@ -206,27 +205,28 @@ body {
 /* Общие элементы интерфейса */
 header {
     text-align: center;
-    padding: 20px;
-    margin-bottom: 20px;
+    padding: 25px;
+    margin-bottom: 25px;
     background-color: var(--ui-bg);
     border: 4px solid var(--ui-border);
-    border-radius: 8px;
+    border-radius: 10px;
     width: 100%;
 }
 
 h1 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: var(--warning);
     text-shadow: 2px 2px 0 #000;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     letter-spacing: 1px;
 }
 
 .subtitle {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: #ddd;
     max-width: 90%;
     margin: 0 auto;
+    line-height: 1.5;
 }
 
 /* Кнопки */
@@ -234,25 +234,26 @@ h1 {
     background-color: var(--primary);
     border: 3px solid var(--primary-dark);
     color: #fff;
-    padding: 12px 25px;
-    font-size: 0.9rem;
+    padding: 15px 30px;
+    font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.2s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border-radius: 6px;
+    border-radius: 8px;
     margin-top: 10px;
     display: inline-block;
 }
 
 .game-button:hover {
     background-color: var(--primary-dark);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .game-controls {
-    margin-top: 20px;
-    padding-top: 15px;
+    margin-top: 25px;
+    padding-top: 20px;
     border-top: 3px solid var(--ui-border);
     display: flex;
     justify-content: center;
@@ -263,27 +264,27 @@ h1 {
 .hud-item {
     background-color: var(--ui-bg);
     border: 3px solid var(--ui-border);
-    padding: 12px;
-    border-radius: 6px;
-    min-height: 90px;
+    padding: 15px;
+    border-radius: 8px;
+    min-height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .hud-label {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     color: #aaa;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     text-transform: uppercase;
     text-align: center;
 }
 
 .hud-value {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     color: #fff;
     text-align: center;
-    margin: 5px 0;
+    margin: 8px 0;
 }
 
 .money .hud-value { color: var(--success); }
@@ -292,19 +293,19 @@ h1 {
 .time .hud-value { color: var(--time-color); }
 
 .hud-bar {
-    height: 12px;
+    height: 15px;
     background-color: #222;
     border: 1px solid #000;
-    margin-top: 8px;
+    margin-top: 10px;
     overflow: hidden;
     position: relative;
-    border-radius: 4px;
+    border-radius: 6px;
 }
 
 .hud-bar-fill {
     height: 100%;
     transition: width 0.3s ease;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 
 .money .hud-bar-fill { background-color: #32CD32; }
@@ -336,23 +337,23 @@ h1 {
 .steps-tracker {
     display: flex;
     justify-content: space-between;
-    margin: 15px 0;
-    padding: 8px;
+    margin: 20px 0;
+    padding: 10px;
     background-color: var(--ui-bg);
     border: 3px solid var(--ui-border);
-    border-radius: 6px;
+    border-radius: 8px;
 }
 
 .step-tracker-item {
     flex: 1;
     text-align: center;
-    padding: 6px 3px;
-    margin: 0 2px;
+    padding: 8px 4px;
+    margin: 0 3px;
     cursor: pointer;
     transition: all 0.2s ease;
-    border-radius: 4px;
-    font-size: 0.6rem;
-    min-height: 50px;
+    border-radius: 6px;
+    font-size: 0.65rem;
+    min-height: 60px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -369,7 +370,7 @@ h1 {
     background-color: rgba(255, 215, 0, 0.15);
     border: 1px solid var(--step-current);
     color: var(--step-current);
-    transform: scale(1.03);
+    transform: scale(1.05);
 }
 
 .step-tracker-item.future {
@@ -386,57 +387,57 @@ h1 {
 }
 
 .step-number {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: bold;
-    margin-bottom: 3px;
+    margin-bottom: 5px;
 }
 
 .step-name {
-    font-size: 0.5rem;
-    line-height: 1.1;
+    font-size: 0.55rem;
+    line-height: 1.2;
 }
 
 /* Стили для строительной области */
 .construction-area {
     background-color: var(--ui-bg);
     border: 3px solid var(--ui-border);
-    padding: 20px;
-    border-radius: 8px;
-    min-height: 480px;
+    padding: 25px;
+    border-radius: 10px;
+    min-height: 520px;
     display: flex;
     flex-direction: column;
 }
 
 .step-info {
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--ui-border);
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--ui-border);
 }
 
 .step-title {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--warning);
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .step-description {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: #ccc;
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 /* Дом в стиле Terraria */
 .terraria-house {
     width: 100%;
-    height: 350px;
+    height: 380px;
     position: relative;
     background-color: rgba(0, 0, 0, 0.3);
-    border: 2px solid #000;
-    margin-bottom: 15px;
-    border-radius: 5px;
+    border: 3px solid #000;
+    margin-bottom: 20px;
+    border-radius: 8px;
     flex-grow: 1;
 }
 
@@ -456,108 +457,108 @@ h1 {
     position: absolute;
     z-index: 2;
     transition: all 0.4s ease;
-    border-radius: 2px;
+    border-radius: 3px;
 }
 
 .foundation {
-    bottom: 90px;
+    bottom: 100px;
     left: 15%;
     width: 70%;
-    height: 25px;
+    height: 30px;
     background-color: var(--stone);
-    border: 1px solid #555;
+    border: 2px solid #555;
 }
 
 .walls {
-    bottom: 115px;
+    bottom: 130px;
     left: 15%;
     width: 70%;
-    height: 200px;
+    height: 220px;
     background-color: var(--brick);
-    border: 1px solid #8B0000;
+    border: 2px solid #8B0000;
 }
 
 .roof {
-    bottom: 315px;
+    bottom: 350px;
     left: 10%;
     width: 80%;
-    height: 100px;
+    height: 120px;
     background-color: #2F4F4F;
-    border: 1px solid #1C2F2F;
+    border: 2px solid #1C2F2F;
     clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
 }
 
 .window {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     background-color: #87CEEB;
-    border: 1px solid #4682B4;
+    border: 2px solid #4682B4;
 }
 
-.window-left { bottom: 200px; left: 25%; }
-.window-right { bottom: 200px; right: 25%; }
+.window-left { bottom: 220px; left: 25%; }
+.window-right { bottom: 220px; right: 25%; }
 
 .door {
-    bottom: 115px;
+    bottom: 130px;
     left: 45%;
-    width: 45px;
-    height: 130px;
+    width: 50px;
+    height: 140px;
     background-color: var(--wood);
-    border: 1px solid #654321;
+    border: 2px solid #654321;
 }
 
 .chimney {
-    bottom: 315px;
+    bottom: 350px;
     right: 15%;
-    width: 20px;
-    height: 60px;
+    width: 25px;
+    height: 70px;
     background-color: #696969;
-    border: 1px solid #363636;
+    border: 2px solid #363636;
 }
 
 .fence {
-    bottom: 90px;
+    bottom: 100px;
     left: 5%;
     width: 90%;
-    height: 20px;
+    height: 25px;
     background-color: var(--wood);
-    border: 1px solid #654321;
+    border: 2px solid #654321;
     display: flex;
     justify-content: space-around;
-    padding: 0 10px;
+    padding: 0 12px;
 }
 
 .fence-post {
-    width: 5px;
+    width: 6px;
     height: 100%;
     background-color: #654321;
 }
 
 .tree {
-    bottom: 90px;
+    bottom: 100px;
     left: 3%;
-    width: 45px;
-    height: 110px;
+    width: 50px;
+    height: 120px;
 }
 
 .tree-trunk {
     position: absolute;
     bottom: 0;
-    left: 18px;
-    width: 10px;
-    height: 60px;
+    left: 20px;
+    width: 12px;
+    height: 70px;
     background-color: #8B4513;
-    border: 1px solid #654321;
+    border: 2px solid #654321;
 }
 
 .tree-crown {
     position: absolute;
-    bottom: 60px;
+    bottom: 70px;
     left: 0;
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     background-color: #228B22;
-    border: 1px solid #006400;
+    border: 2px solid #006400;
     border-radius: 50%;
 }
 
@@ -573,40 +574,40 @@ h1 {
 
 .construction-status {
     text-align: center;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: #aaa;
-    margin-top: 10px;
+    margin-top: 15px;
     background-color: rgba(0, 0, 0, 0.2);
-    padding: 6px;
-    border-radius: 4px;
+    padding: 8px;
+    border-radius: 6px;
 }
 
 .step-counter {
     text-align: center;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     color: var(--warning);
-    margin-top: 10px;
+    margin-top: 15px;
     background-color: rgba(0, 0, 0, 0.2);
-    padding: 6px;
-    border-radius: 4px;
+    padding: 8px;
+    border-radius: 6px;
 }
 
 /* Область выбора */
 .choices-area {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 15px;
     width: 100%;
 }
 
 .choice-option {
     background-color: var(--ui-bg);
     border: 3px solid var(--ui-border);
-    padding: 15px;
+    padding: 20px;
     cursor: pointer;
     transition: all 0.2s ease;
-    border-radius: 6px;
-    min-height: 130px;
+    border-radius: 8px;
+    min-height: 150px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -614,48 +615,49 @@ h1 {
 
 .choice-option:hover {
     border-color: var(--primary);
-    transform: translateY(-3px);
+    transform: translateY(-4px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .choice-option.selected {
     border-color: var(--step-completed);
-    background-color: rgba(50, 205, 50, 0.1);
+    background-color: rgba(50, 205, 50, 0.15);
 }
 
 .choice-title {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     color: #fff;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
 .choice-icon {
     color: var(--primary);
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .choice-description {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     color: #ccc;
-    margin-bottom: 10px;
-    line-height: 1.3;
+    margin-bottom: 15px;
+    line-height: 1.4;
     flex-grow: 1;
 }
 
 .choice-stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-    font-size: 0.75rem;
+    gap: 10px;
+    font-size: 0.8rem;
 }
 
 .stat-change {
     font-weight: bold;
     display: block;
-    margin-top: 4px;
-    font-size: 0.8rem;
+    margin-top: 5px;
+    font-size: 0.85rem;
 }
 
 .positive { color: var(--success); }
@@ -670,7 +672,7 @@ h1 {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.85);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -680,84 +682,85 @@ h1 {
 
 .fact-modal {
     background-color: var(--ui-bg);
-    border: 4px solid var(--primary);
-    border-radius: 8px;
+    border: 5px solid var(--primary);
+    border-radius: 10px;
     width: 90%;
-    max-width: 550px;
-    padding: 25px;
+    max-width: 600px;
+    padding: 30px;
     animation: slideUp 0.3s ease-out;
 }
 
 .fact-modal-header {
     text-align: center;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--primary);
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid var(--primary);
 }
 
 .fact-modal-title {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--warning);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    margin-bottom: 8px;
+    gap: 12px;
+    margin-bottom: 10px;
 }
 
 .fact-modal-subtitle {
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     color: #aaa;
     text-transform: uppercase;
 }
 
 .fact-content {
     background-color: rgba(0, 0, 0, 0.3);
-    border: 2px solid var(--ui-border);
-    padding: 20px;
-    border-radius: 6px;
-    margin-bottom: 20px;
-    min-height: 120px;
+    border: 3px solid var(--ui-border);
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    min-height: 140px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .fact-text {
-    font-size: 0.85rem;
-    line-height: 1.5;
+    font-size: 0.9rem;
+    line-height: 1.6;
     color: #fff;
     text-align: center;
 }
 
 .fact-source {
-    font-size: 0.55rem;
+    font-size: 0.6rem;
     color: #888;
     text-align: center;
-    margin-top: 8px;
+    margin-top: 10px;
     font-style: italic;
 }
 
 .fact-modal-actions {
     display: flex;
     justify-content: center;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .fact-close-btn {
     background-color: var(--primary);
     border: 3px solid var(--primary-dark);
     color: white;
-    padding: 12px 30px;
-    font-size: 0.8rem;
+    padding: 15px 35px;
+    font-size: 0.85rem;
     cursor: pointer;
     transition: all 0.2s ease;
     text-transform: uppercase;
-    border-radius: 6px;
+    border-radius: 8px;
 }
 
 .fact-close-btn:hover {
     background-color: var(--primary-dark);
+    transform: translateY(-2px);
 }
 
 /* Анимации для модального окна */
@@ -769,7 +772,7 @@ h1 {
 @keyframes slideUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(40px);
     }
     to {
         opacity: 1;
@@ -785,9 +788,14 @@ h1 {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+    .start-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
     .game-container {
-        padding: 10px;
+        padding: 15px;
     }
 
     .game-hud, .end-stats {
@@ -799,35 +807,97 @@ h1 {
     }
 
     .terraria-house, .final-house-container {
-        height: 280px;
+        height: 320px;
     }
 
     h1 {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
     }
 
     .step-tracker-item {
-        min-width: 90px;
-        padding: 5px 2px;
+        min-width: 100px;
+        padding: 6px 3px;
     }
 
     .fact-modal {
         width: 95%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .game-container {
+        padding: 10px;
+    }
+
+    .preset-buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .terraria-house, .final-house-container {
+        height: 250px;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    .subtitle {
+        font-size: 0.8rem;
+    }
+
+    .hud-value {
+        font-size: 1.3rem;
+    }
+
+    .game-button {
+        padding: 12px 20px;
+        font-size: 0.85rem;
+    }
+
+    .choice-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .step-tracker-item {
+        min-width: 70px;
+        font-size: 0.6rem;
+    }
+
+    .step-number {
+        font-size: 0.8rem;
+    }
+
+    .step-name {
+        font-size: 0.45rem;
+    }
+
+    .fact-modal {
         padding: 15px;
+    }
+
+    .fact-content {
+        padding: 20px;
+        min-height: 120px;
+    }
+
+    .fact-text {
+        font-size: 0.8rem;
+    }
+
+    .fact-close-btn {
+        padding: 12px 25px;
+        font-size: 0.8rem;
     }
 }
 
 @media (max-width: 480px) {
     h1 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 
     .subtitle {
         font-size: 0.7rem;
-    }
-
-    .hud-value {
-        font-size: 1.1rem;
     }
 
     .terraria-house, .final-house-container {
@@ -839,38 +909,12 @@ h1 {
         font-size: 0.8rem;
     }
 
-    .choice-stats {
-        grid-template-columns: 1fr;
-    }
-
     .step-tracker-item {
         min-width: 60px;
         font-size: 0.5rem;
     }
 
-    .step-number {
-        font-size: 0.7rem;
-    }
-
-    .step-name {
-        font-size: 0.4rem;
-    }
-
     .fact-modal {
         padding: 12px;
-    }
-
-    .fact-content {
-        padding: 15px;
-        min-height: 100px;
-    }
-
-    .fact-text {
-        font-size: 0.75rem;
-    }
-
-    .fact-close-btn {
-        padding: 10px 20px;
-        font-size: 0.75rem;
     }
 }

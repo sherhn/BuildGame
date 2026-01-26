@@ -11,27 +11,27 @@
         /* Упрощенные стили для стартовой страницы */
         .game-container {
             position: relative;
-            max-width: 1000px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 15px;
+            padding: 20px;
             z-index: 10;
         }
 
         .start-screen {
             background-color: var(--ui-bg);
             border: 5px solid var(--ui-border);
-            padding: 25px;
+            padding: 30px;
             text-align: center;
             width: 100%;
             margin: 0 auto;
-            border-radius: 8px;
+            border-radius: 10px;
         }
 
         .start-content {
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 25px;
-            margin: 20px 0;
+            grid-template-columns: 1.2fr 1fr 1fr;
+            gap: 30px;
+            margin: 25px 0;
             text-align: left;
             width: 100%;
         }
@@ -39,54 +39,54 @@
         .instructions {
             background-color: rgba(0, 0, 0, 0.3);
             border: 3px solid var(--ui-border);
-            padding: 20px;
-            border-radius: 6px;
+            padding: 25px;
+            border-radius: 8px;
         }
 
         .instructions h3 {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--warning);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-align: center;
         }
 
         .instruction-item {
             display: flex;
             align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 12px;
+            gap: 15px;
+            margin-bottom: 15px;
         }
 
         .instruction-icon {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             background-color: var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
             border: 1px solid var(--primary-dark);
-            border-radius: 5px;
+            border-radius: 6px;
         }
 
         .instruction-text h4 {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: #fff;
             margin-bottom: 5px;
         }
 
         .instruction-text p {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: #ccc;
-            line-height: 1.3;
+            line-height: 1.4;
         }
 
         .budget-selector, .time-selector {
             background-color: rgba(0, 0, 0, 0.3);
             border: 3px solid var(--ui-border);
-            padding: 20px;
-            border-radius: 6px;
-            margin-bottom: 15px;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 0;
         }
 
         .time-selector {
@@ -94,8 +94,8 @@
         }
 
         #budget-value, #time-value {
-            font-size: 1.8rem;
-            margin: 12px 0;
+            font-size: 2rem;
+            margin: 15px 0;
             text-align: center;
         }
 
@@ -104,12 +104,12 @@
 
         #budget-slider, #time-slider {
             width: 100%;
-            height: 15px;
-            margin: 15px 0;
+            height: 20px;
+            margin: 20px 0;
             -webkit-appearance: none;
             outline: none;
-            border-radius: 8px;
-            border: 1px solid #000;
+            border-radius: 10px;
+            border: 2px solid #000;
         }
 
         #budget-slider {
@@ -123,38 +123,38 @@
         #budget-slider::-webkit-slider-thumb,
         #time-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 25px;
-            height: 25px;
+            width: 30px;
+            height: 30px;
             background: #fff;
             cursor: pointer;
             border-radius: 50%;
         }
 
         #budget-slider::-webkit-slider-thumb {
-            border: 2px solid var(--primary);
+            border: 3px solid var(--primary);
         }
 
         #time-slider::-webkit-slider-thumb {
-            border: 2px solid var(--time-color);
+            border: 3px solid var(--time-color);
         }
 
         .preset-buttons {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin: 15px 0;
+            gap: 15px;
+            margin: 20px 0;
         }
 
         .budget-preset, .time-preset {
-            padding: 12px;
-            border: 2px solid var(--ui-border);
+            padding: 15px;
+            border: 3px solid var(--ui-border);
             background-color: rgba(0, 0, 0, 0.2);
             color: #fff;
             cursor: pointer;
             transition: all 0.2s ease;
-            font-size: 0.75rem;
-            border-radius: 5px;
-            min-height: 70px;
+            font-size: 0.8rem;
+            border-radius: 6px;
+            min-height: 80px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -167,6 +167,7 @@
 
         .budget-preset:hover, .time-preset:hover {
             border-color: var(--primary);
+            transform: translateY(-3px);
         }
 
         .time-preset:hover {
@@ -175,60 +176,85 @@
 
         .difficulty-indicator {
             display: inline-block;
-            padding: 3px 6px;
-            font-size: 0.65rem;
-            margin-top: 5px;
+            padding: 4px 8px;
+            font-size: 0.7rem;
+            margin-top: 8px;
             background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 12px;
+            border-radius: 15px;
         }
 
         #budget-message, #time-message {
-            margin-top: 15px;
-            font-size: 0.75rem;
+            margin-top: 20px;
+            font-size: 0.8rem;
             color: #aaa;
             text-align: center;
-            padding: 10px;
+            padding: 12px;
             background-color: rgba(0,0,0,0.2);
-            border-radius: 5px;
+            border-radius: 6px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .game-controls {
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 3px solid var(--ui-border);
+        .random-controls {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--ui-border);
+            border-radius: 8px;
             display: flex;
             justify-content: center;
+            gap: 20px;
             width: 100%;
         }
 
         .quest-mode {
-            margin-top: 15px;
-            padding: 20px;
+            margin-top: 25px;
+            padding: 25px;
             background-color: rgba(0, 0, 0, 0.3);
             border: 3px solid var(--warning);
-            border-radius: 6px;
+            border-radius: 8px;
             text-align: center;
         }
 
         .quest-mode h3 {
             color: var(--warning);
-            margin-bottom: 12px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
         }
 
         .quest-description {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: #ccc;
-            margin-bottom: 15px;
-            line-height: 1.3;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 1200px) {
+            .start-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .game-container {
+                max-width: 95%;
+                padding: 15px;
+            }
         }
 
         @media (max-width: 768px) {
-            .start-content {
+            .preset-buttons {
                 grid-template-columns: 1fr;
             }
 
-            .preset-buttons {
-                grid-template-columns: 1fr;
+            .random-controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .start-screen {
+                padding: 20px;
             }
         }
     </style>
@@ -311,74 +337,72 @@
                     </div>
                 </div>
 
-                <div>
-                    <div class="budget-selector">
-                        <h3>Выберите начальный бюджет</h3>
-                        <div id="budget-value">500000</div>
-                        <input type="range" id="budget-slider" min="200000" max="1500000" step="50000" value="500000">
+                <div class="budget-selector">
+                    <h3>Выберите начальный бюджет</h3>
+                    <div id="budget-value">500000</div>
+                    <input type="range" id="budget-slider" min="200000" max="1500000" step="50000" value="500000">
 
-                        <div class="preset-buttons">
-                            <button class="budget-preset" id="preset-low" data-value="300000">
-                                <div>Экономный</div>
-                                <span class="difficulty-indicator">Сложный режим</span>
-                            </button>
-                            <button class="budget-preset" id="preset-medium" data-value="500000">
-                                <div>Стандартный</div>
-                                <span class="difficulty-indicator">Средняя сложность</span>
-                            </button>
-                            <button class="budget-preset" id="preset-high" data-value="800000">
-                                <div>Щедрый</div>
-                                <span class="difficulty-indicator">Легкий режим</span>
-                            </button>
-                            <button class="budget-preset" id="preset-expert" data-value="200000">
-                                <div>Экстрим</div>
-                                <span class="difficulty-indicator">Экспертный уровень</span>
-                            </button>
-                        </div>
-
-                        <div id="budget-message">
-                            Выберите бюджет или нажмите "Случайный бюджет"
-                        </div>
+                    <div class="preset-buttons">
+                        <button class="budget-preset" id="preset-low" data-value="300000">
+                            <div>Экономный</div>
+                            <span class="difficulty-indicator">Сложный режим</span>
+                        </button>
+                        <button class="budget-preset" id="preset-medium" data-value="500000">
+                            <div>Стандартный</div>
+                            <span class="difficulty-indicator">Средняя сложность</span>
+                        </button>
+                        <button class="budget-preset" id="preset-high" data-value="800000">
+                            <div>Щедрый</div>
+                            <span class="difficulty-indicator">Легкий режим</span>
+                        </button>
+                        <button class="budget-preset" id="preset-expert" data-value="200000">
+                            <div>Экстрим</div>
+                            <span class="difficulty-indicator">Экспертный уровень</span>
+                        </button>
                     </div>
 
-                    <div class="time-selector">
-                        <h3>Выберите срок строительства (дней)</h3>
-                        <div id="time-value">90</div>
-                        <input type="range" id="time-slider" min="30" max="180" step="5" value="90">
-
-                        <div class="preset-buttons">
-                            <button class="time-preset" id="time-short" data-value="45">
-                                <div>Короткий</div>
-                                <span class="difficulty-indicator">45 дней</span>
-                            </button>
-                            <button class="time-preset" id="time-medium" data-value="90">
-                                <div>Стандартный</div>
-                                <span class="difficulty-indicator">90 дней</span>
-                            </button>
-                            <button class="time-preset" id="time-long" data-value="120">
-                                <div>Длинный</div>
-                                <span class="difficulty-indicator">120 дней</span>
-                            </button>
-                            <button class="time-preset" id="time-extreme" data-value="30">
-                                <div>Экстрим</div>
-                                <span class="difficulty-indicator">30 дней</span>
-                            </button>
-                        </div>
-
-                        <div id="time-message">
-                            Каждый этап строительства требует времени
-                        </div>
-                    </div>
-
-                    <div class="game-controls" style="border-top: none; margin-top: 15px;">
-                        <button class="game-button" id="random-budget-btn">
-                            <i class="fas fa-dice"></i> Случайный бюджет
-                        </button>
-                        <button class="game-button" id="random-time-btn" style="margin-left: 10px;">
-                            <i class="fas fa-clock"></i> Случайное время
-                        </button>
+                    <div id="budget-message">
+                        Выберите бюджет или нажмите "Случайный бюджет"
                     </div>
                 </div>
+
+                <div class="time-selector">
+                    <h3>Выберите срок строительства (дней)</h3>
+                    <div id="time-value">90</div>
+                    <input type="range" id="time-slider" min="30" max="180" step="5" value="90">
+
+                    <div class="preset-buttons">
+                        <button class="time-preset" id="time-short" data-value="45">
+                            <div>Короткий</div>
+                            <span class="difficulty-indicator">45 дней</span>
+                        </button>
+                        <button class="time-preset" id="time-medium" data-value="90">
+                            <div>Стандартный</div>
+                            <span class="difficulty-indicator">90 дней</span>
+                        </button>
+                        <button class="time-preset" id="time-long" data-value="120">
+                            <div>Длинный</div>
+                            <span class="difficulty-indicator">120 дней</span>
+                        </button>
+                        <button class="time-preset" id="time-extreme" data-value="30">
+                            <div>Экстрим</div>
+                            <span class="difficulty-indicator">30 дней</span>
+                        </button>
+                    </div>
+
+                    <div id="time-message">
+                        Каждый этап строительства требует времени
+                    </div>
+                </div>
+            </div>
+
+            <div class="random-controls">
+                <button class="game-button" id="random-budget-btn">
+                    <i class="fas fa-dice"></i> Случайный бюджет
+                </button>
+                <button class="game-button" id="random-time-btn">
+                    <i class="fas fa-clock"></i> Случайное время
+                </button>
             </div>
 
             <div class="quest-mode">
@@ -391,7 +415,7 @@
                 </button>
             </div>
 
-            <button class="game-button" id="start-btn" style="margin-top: 20px;">
+            <button class="game-button" id="start-btn" style="margin-top: 30px; padding: 15px 40px; font-size: 1rem;">
                 Начать строительство
             </button>
         </div>
