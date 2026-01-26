@@ -1,4 +1,5 @@
-/* Общие стили для всех страниц */
+
+/* Общие стили для всех страниц - ОБЛЕГЧЕННАЯ ВЕРСИЯ */
 :root {
     --primary: #7B68EE;
     --primary-dark: #5D4EC2;
@@ -8,17 +9,13 @@
     --earth: #8B4513;
     --grass: #228B22;
     --sky-day: #87CEEB;
-    --sky-night: #0c1e3e;
     --cloud: #F0F8FF;
     --stone: #808080;
     --wood: #8B4513;
     --brick: #B22222;
     --dark-bg: #1a1a2e;
-    --ui-bg: rgba(20, 20, 35, 0.92);
+    --ui-bg: rgba(30, 30, 46, 0.95);
     --ui-border: #483D8B;
-    --ui-glow: rgba(123, 104, 238, 0.5);
-    --pixel-size: 4px;
-    --shadow-heavy: 0 8px 20px rgba(0, 0, 0, 0.7);
     --time-color: #FFA500;
     --step-current: #FFD700;
     --step-completed: #32CD32;
@@ -32,7 +29,6 @@
     padding: 0;
     font-family: 'Press Start 2P', cursive;
     image-rendering: pixelated;
-    image-rendering: crisp-edges;
 }
 
 body {
@@ -44,7 +40,7 @@ body {
     font-size: 14px;
 }
 
-/* Фон в стиле Terraria */
+/* Фон в стиле Terraria - упрощенный */
 .terraria-bg {
     position: fixed;
     top: 0;
@@ -52,7 +48,6 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1;
-    overflow: hidden;
 }
 
 .sky-bg {
@@ -62,9 +57,8 @@ body {
     width: 100%;
     height: 45%;
     background: linear-gradient(to bottom,
-        #0c1e3e 0%,
-        #1a3c78 30%,
-        #4a90e2 70%,
+        #1a3c78 0%,
+        #4a90e2 50%,
         #87CEEB 100%);
     z-index: 1;
 }
@@ -75,9 +69,9 @@ body {
     right: 15%;
     width: 50px;
     height: 50px;
-    background: radial-gradient(circle, #FFD700 40%, #FF8C00 100%);
+    background: #FFD700;
     border-radius: 50%;
-    box-shadow: 0 0 30px #FFA500, 0 0 60px rgba(255, 165, 0, 0.5);
+    box-shadow: 0 0 20px #FFA500;
     z-index: 2;
 }
 
@@ -93,8 +87,8 @@ body {
 .mountain {
     position: absolute;
     bottom: 0;
-    background: linear-gradient(to bottom, #2c3e50, #34495e);
-    border: 2px solid #1c2833;
+    background: #2c3e50;
+    border: 1px solid #1c2833;
 }
 
 .mountain-1 {
@@ -131,15 +125,8 @@ body {
     left: 0;
     width: 100%;
     height: 55%;
-    background:
-        linear-gradient(to bottom, var(--grass) 5%, var(--earth) 5%, var(--earth) 100%),
-        repeating-linear-gradient(90deg,
-            transparent,
-            transparent 12px,
-            rgba(139, 69, 19, 0.2) 12px,
-            rgba(139, 69, 19, 0.2) 24px);
+    background: var(--earth);
     z-index: 4;
-    overflow: hidden;
 }
 
 .bg-tree {
@@ -172,7 +159,6 @@ body {
     width: 8px;
     height: 40px;
     background-color: #8B4513;
-    border: 2px solid #654321;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -184,7 +170,6 @@ body {
     width: 100%;
     height: 50px;
     background-color: #228B22;
-    border: 2px solid #006400;
     border-radius: 50%;
 }
 
@@ -193,40 +178,15 @@ body {
     background-color: var(--cloud);
     border-radius: 6px;
     z-index: 2;
-    box-shadow:
-        0 0 0 2px rgba(255, 255, 255, 0.4),
-        inset 0 0 0 2px rgba(0, 0, 0, 0.1);
     animation: floatCloud 80s infinite linear;
 }
 
 .cloud-1 { top: 15%; left: -100px; width: 100px; height: 35px; animation-delay: 0s; }
 .cloud-2 { top: 25%; left: -150px; width: 140px; height: 45px; animation-delay: 20s; }
-.cloud-3 { top: 10%; left: -200px; width: 90px; height: 30px; animation-delay: 40s; }
-.cloud-4 { top: 30%; left: -250px; width: 120px; height: 40px; animation-delay: 60s; }
 
 @keyframes floatCloud {
     0% { transform: translateX(0); }
     100% { transform: translateX(calc(100vw + 300px)); }
-}
-
-.bird {
-    position: absolute;
-    color: #000;
-    font-size: 16px;
-    z-index: 2;
-    animation: flyBird 40s infinite linear;
-}
-
-.bird-1 { top: 20%; left: -50px; animation-delay: 0s; }
-.bird-2 { top: 25%; left: -80px; animation-delay: 10s; }
-.bird-3 { top: 15%; left: -120px; animation-delay: 30s; }
-
-@keyframes flyBird {
-    0% { transform: translateX(0) translateY(0); }
-    25% { transform: translateX(25vw) translateY(-10px); }
-    50% { transform: translateX(50vw) translateY(0); }
-    75% { transform: translateX(75vw) translateY(-10px); }
-    100% { transform: translateX(100vw) translateY(0); }
 }
 
 .pixel-grid {
@@ -236,9 +196,9 @@ body {
     width: 100%;
     height: 100%;
     background-image:
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 16px 16px;
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 20px 20px;
     z-index: 5;
     pointer-events: none;
 }
@@ -249,41 +209,22 @@ header {
     padding: 20px;
     margin-bottom: 20px;
     background-color: var(--ui-bg);
-    border: 5px solid var(--ui-border);
-    box-shadow:
-        0 0 0 2px var(--ui-glow),
-        inset 0 0 20px rgba(0, 0, 0, 0.6),
-        var(--shadow-heavy);
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
+    border: 4px solid var(--ui-border);
+    border-radius: 8px;
     width: 100%;
-}
-
-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--warning), var(--success), var(--primary));
 }
 
 h1 {
     font-size: 1.8rem;
     color: var(--warning);
-    text-shadow:
-        3px 3px 0 #000,
-        6px 6px 0 rgba(0, 0, 0, 0.4);
-    margin-bottom: 12px;
+    text-shadow: 2px 2px 0 #000;
+    margin-bottom: 10px;
     letter-spacing: 1px;
 }
 
 .subtitle {
     font-size: 0.8rem;
     color: #ddd;
-    text-shadow: 2px 2px 0 #000;
     max-width: 90%;
     margin: 0 auto;
 }
@@ -291,99 +232,58 @@ h1 {
 /* Кнопки */
 .game-button {
     background-color: var(--primary);
-    border: 4px solid var(--primary-dark);
+    border: 3px solid var(--primary-dark);
     color: #fff;
-    padding: 15px 30px;
+    padding: 12px 25px;
     font-size: 0.9rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 0 6px 0 rgba(93, 78, 194, 0.9);
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    margin-top: 15px;
-    width: auto;
+    border-radius: 6px;
+    margin-top: 10px;
     display: inline-block;
 }
 
 .game-button:hover {
     background-color: var(--primary-dark);
-    transform: translateY(-4px);
-    box-shadow: 0 10px 0 rgba(93, 78, 194, 0.9);
-}
-
-.game-button:active {
-    transform: translateY(0);
-    box-shadow: 0 3px 0 rgba(93, 78, 194, 0.9);
-}
-
-.game-button::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.7s;
-}
-
-.game-button:hover::after {
-    left: 100%;
+    transform: translateY(-2px);
 }
 
 .game-controls {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 4px solid var(--ui-border);
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 3px solid var(--ui-border);
     display: flex;
     justify-content: center;
     width: 100%;
 }
 
-/* Стили для HUD элементов (используются в game.html) */
+/* Стили для HUD элементов */
 .hud-item {
     background-color: var(--ui-bg);
-    border: 4px solid var(--ui-border);
-    padding: 15px;
-    position: relative;
-    box-shadow:
-        inset 0 0 10px rgba(0, 0, 0, 0.6),
-        0 4px 0 rgba(0, 0, 0, 0.4),
-        var(--shadow-heavy);
-    border-radius: 8px;
-    min-height: 110px;
+    border: 3px solid var(--ui-border);
+    padding: 12px;
+    border-radius: 6px;
+    min-height: 90px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.hud-item::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    height: 4px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-}
-
 .hud-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: #aaa;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     text-transform: uppercase;
     text-align: center;
 }
 
 .hud-value {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: #fff;
-    text-shadow: 2px 2px 0 #000;
     text-align: center;
-    margin: 8px 0;
+    margin: 5px 0;
 }
 
 .money .hud-value { color: var(--success); }
@@ -392,45 +292,30 @@ h1 {
 .time .hud-value { color: var(--time-color); }
 
 .hud-bar {
-    height: 14px;
+    height: 12px;
     background-color: #222;
-    border: 2px solid #000;
-    margin-top: 12px;
+    border: 1px solid #000;
+    margin-top: 8px;
     overflow: hidden;
     position: relative;
-    border-radius: 6px;
+    border-radius: 4px;
 }
 
 .hud-bar-fill {
     height: 100%;
-    transition: width 0.5s ease;
-    position: relative;
-    border-radius: 4px;
-    z-index: 1;
+    transition: width 0.3s ease;
+    border-radius: 3px;
 }
 
-.money .hud-bar-fill {
-    background: linear-gradient(90deg, #006400, #32CD32, #90EE90);
-    box-shadow: inset 0 0 8px rgba(0, 255, 0, 0.4);
-}
-.strength .hud-bar-fill {
-    background: linear-gradient(90deg, #8B0000, #FF4500, #FF7F50);
-    box-shadow: inset 0 0 8px rgba(255, 69, 0, 0.4);
-}
-.durability .hud-bar-fill {
-    background: linear-gradient(90deg, #191970, #7B68EE, #9370DB);
-    box-shadow: inset 0 0 8px rgba(123, 104, 238, 0.4);
-}
-.time .hud-bar-fill {
-    background: linear-gradient(90deg, #8B4513, #FFA500, #FFD700);
-    box-shadow: inset 0 0 8px rgba(255, 165, 0, 0.4);
-}
+.money .hud-bar-fill { background-color: #32CD32; }
+.strength .hud-bar-fill { background-color: #FF4500; }
+.durability .hud-bar-fill { background-color: #7B68EE; }
+.time .hud-bar-fill { background-color: #FFA500; }
 
-/* Пороги на прогресс-барах */
 .threshold {
     position: absolute;
     top: 0;
-    width: 3px;
+    width: 2px;
     height: 100%;
     z-index: 2;
     pointer-events: none;
@@ -439,186 +324,119 @@ h1 {
 
 .threshold-50 {
     left: 50%;
-    background-color: rgba(255, 255, 255, 0.7);
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .threshold-80 {
     left: 80%;
-    background-color: rgba(255, 215, 0, 0.8);
-    box-shadow: 0 0 5px rgba(255, 215, 0, 0.9);
-}
-
-/* Индикаторы порогов */
-.threshold::after {
-    content: '';
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-}
-
-.threshold-50::after {
-    border-top: 6px solid rgba(255, 255, 255, 0.7);
-}
-
-.threshold-80::after {
-    border-top: 6px solid rgba(255, 215, 0, 0.8);
-}
-
-/* Подписи порогов при наведении */
-.threshold:hover::before {
-    content: attr(title);
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 4px 8px;
-    font-size: 0.6rem;
-    border-radius: 3px;
-    white-space: nowrap;
-    z-index: 10;
-    pointer-events: none;
+    background-color: rgba(255, 215, 0, 0.6);
 }
 
 /* Шкала этапов */
 .steps-tracker {
     display: flex;
     justify-content: space-between;
-    margin: 20px 0;
-    padding: 10px;
+    margin: 15px 0;
+    padding: 8px;
     background-color: var(--ui-bg);
-    border: 4px solid var(--ui-border);
-    border-radius: 8px;
-    box-shadow: var(--shadow-heavy);
+    border: 3px solid var(--ui-border);
+    border-radius: 6px;
 }
 
 .step-tracker-item {
     flex: 1;
     text-align: center;
-    padding: 8px 4px;
+    padding: 6px 3px;
     margin: 0 2px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     border-radius: 4px;
-    position: relative;
-    font-size: 0.7rem;
-    min-height: 60px;
+    font-size: 0.6rem;
+    min-height: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.step-tracker-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-}
-
 .step-tracker-item.completed {
-    background-color: rgba(50, 205, 50, 0.2);
-    border: 2px solid var(--step-completed);
+    background-color: rgba(50, 205, 50, 0.15);
+    border: 1px solid var(--step-completed);
     color: var(--step-completed);
 }
 
 .step-tracker-item.current {
-    background-color: rgba(255, 215, 0, 0.2);
-    border: 2px solid var(--step-current);
+    background-color: rgba(255, 215, 0, 0.15);
+    border: 1px solid var(--step-current);
     color: var(--step-current);
-    transform: scale(1.05);
-    z-index: 2;
+    transform: scale(1.03);
 }
 
 .step-tracker-item.future {
-    background-color: rgba(123, 104, 238, 0.1);
-    border: 2px solid var(--step-future);
+    background-color: rgba(123, 104, 238, 0.08);
+    border: 1px solid var(--step-future);
     color: var(--step-future);
     opacity: 0.7;
 }
 
 .step-tracker-item.incomplete {
-    background-color: rgba(123, 104, 238, 0.2);
-    border: 2px solid var(--step-incomplete);
+    background-color: rgba(123, 104, 238, 0.15);
+    border: 1px solid var(--step-incomplete);
     color: var(--step-incomplete);
 }
 
 .step-number {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: bold;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
 }
 
 .step-name {
-    font-size: 0.6rem;
-    line-height: 1.2;
+    font-size: 0.5rem;
+    line-height: 1.1;
 }
 
 /* Стили для строительной области */
 .construction-area {
     background-color: var(--ui-bg);
-    border: 5px solid var(--ui-border);
-    padding: 25px;
-    position: relative;
-    box-shadow:
-        inset 0 0 20px rgba(0, 0, 0, 0.8),
-        0 6px 0 rgba(0, 0, 0, 0.4),
-        var(--shadow-heavy);
-    border-radius: 10px;
-    min-height: 520px;
+    border: 3px solid var(--ui-border);
+    padding: 20px;
+    border-radius: 8px;
+    min-height: 480px;
     display: flex;
     flex-direction: column;
 }
 
-.construction-area::after {
-    content: '';
-    position: absolute;
-    top: 6px;
-    right: 6px;
-    bottom: 6px;
-    left: 6px;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    pointer-events: none;
-    border-radius: 5px;
-}
-
 .step-info {
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid var(--ui-border);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--ui-border);
 }
 
 .step-title {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: var(--warning);
-    margin-bottom: 12px;
-    text-shadow: 2px 2px 0 #000;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
 .step-description {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #ccc;
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
 /* Дом в стиле Terraria */
 .terraria-house {
     width: 100%;
-    height: 400px;
+    height: 350px;
     position: relative;
-    background-color: rgba(0, 0, 0, 0.4);
-    border: 3px solid #000;
-    overflow: hidden;
-    margin-bottom: 20px;
-    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid #000;
+    margin-bottom: 15px;
+    border-radius: 5px;
     flex-grow: 1;
 }
 
@@ -628,16 +446,16 @@ h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    background:
-        linear-gradient(to bottom, rgba(135, 206, 235, 0.25) 40%,
-        rgba(139, 69, 19, 0.4) 40%, rgba(139, 69, 19, 0.4) 100%);
+    background: linear-gradient(to bottom,
+        rgba(135, 206, 235, 0.2) 40%,
+        rgba(139, 69, 19, 0.3) 40%);
     z-index: 1;
 }
 
 .pixel-block {
     position: absolute;
     z-index: 2;
-    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.4s ease;
     border-radius: 2px;
 }
 
@@ -645,78 +463,72 @@ h1 {
     bottom: 90px;
     left: 15%;
     width: 70%;
-    height: 30px;
+    height: 25px;
     background-color: var(--stone);
-    border: 2px solid #555;
-    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+    border: 1px solid #555;
 }
 
 .walls {
-    bottom: 120px;
+    bottom: 115px;
     left: 15%;
     width: 70%;
-    height: 220px;
+    height: 200px;
     background-color: var(--brick);
-    border: 2px solid #8B0000;
-    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.4);
+    border: 1px solid #8B0000;
 }
 
 .roof {
-    bottom: 340px;
+    bottom: 315px;
     left: 10%;
     width: 80%;
-    height: 110px;
+    height: 100px;
     background-color: #2F4F4F;
-    border: 2px solid #1C2F2F;
+    border: 1px solid #1C2F2F;
     clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
-    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
 }
 
 .window {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     background-color: #87CEEB;
-    border: 2px solid #4682B4;
-    box-shadow: inset 0 0 8px rgba(135, 206, 235, 0.5);
+    border: 1px solid #4682B4;
 }
 
-.window-left { bottom: 220px; left: 25%; }
-.window-right { bottom: 220px; right: 25%; }
+.window-left { bottom: 200px; left: 25%; }
+.window-right { bottom: 200px; right: 25%; }
 
 .door {
-    bottom: 120px;
+    bottom: 115px;
     left: 45%;
-    width: 50px;
-    height: 140px;
+    width: 45px;
+    height: 130px;
     background-color: var(--wood);
-    border: 2px solid #654321;
-    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.4);
+    border: 1px solid #654321;
 }
 
 .chimney {
-    bottom: 340px;
+    bottom: 315px;
     right: 15%;
-    width: 25px;
-    height: 70px;
+    width: 20px;
+    height: 60px;
     background-color: #696969;
-    border: 2px solid #363636;
+    border: 1px solid #363636;
 }
 
 .fence {
     bottom: 90px;
     left: 5%;
     width: 90%;
-    height: 25px;
+    height: 20px;
     background-color: var(--wood);
-    border: 2px solid #654321;
+    border: 1px solid #654321;
     display: flex;
     justify-content: space-around;
-    padding: 0 12px;
-    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+    padding: 0 10px;
 }
 
 .fence-post {
-    width: 6px;
+    width: 5px;
     height: 100%;
     background-color: #654321;
 }
@@ -724,142 +536,126 @@ h1 {
 .tree {
     bottom: 90px;
     left: 3%;
-    width: 50px;
-    height: 120px;
+    width: 45px;
+    height: 110px;
 }
 
 .tree-trunk {
     position: absolute;
     bottom: 0;
-    left: 20px;
-    width: 12px;
-    height: 70px;
+    left: 18px;
+    width: 10px;
+    height: 60px;
     background-color: #8B4513;
-    border: 2px solid #654321;
+    border: 1px solid #654321;
 }
 
 .tree-crown {
     position: absolute;
-    bottom: 70px;
+    bottom: 60px;
     left: 0;
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     background-color: #228B22;
-    border: 2px solid #006400;
+    border: 1px solid #006400;
     border-radius: 50%;
-    box-shadow: inset 0 0 8px rgba(0, 100, 0, 0.3);
 }
 
 .part-hidden {
     opacity: 0;
-    transform: translateY(25px) scale(0.9);
+    transform: translateY(20px);
 }
 
 .part-visible {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
 }
 
 .construction-status {
     text-align: center;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #aaa;
-    margin-top: 15px;
-    min-height: 20px;
-    background-color: rgba(0, 0, 0, 0.3);
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 6px;
+    border-radius: 4px;
 }
 
 .step-counter {
     text-align: center;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--warning);
-    margin-top: 15px;
-    background-color: rgba(0, 0, 0, 0.3);
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid rgba(255, 215, 0, 0.2);
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 6px;
+    border-radius: 4px;
 }
 
 /* Область выбора */
 .choices-area {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
     width: 100%;
 }
 
 .choice-option {
     background-color: var(--ui-bg);
-    border: 4px solid var(--ui-border);
-    padding: 18px;
+    border: 3px solid var(--ui-border);
+    padding: 15px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.4), var(--shadow-heavy);
-    border-radius: 8px;
-    min-height: 150px;
+    transition: all 0.2s ease;
+    border-radius: 6px;
+    min-height: 130px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .choice-option:hover {
-    transform: translateY(-6px);
     border-color: var(--primary);
-    box-shadow: 0 10px 0 rgba(123, 104, 238, 0.4), var(--shadow-heavy);
-}
-
-.choice-option:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
 }
 
 .choice-option.selected {
     border-color: var(--step-completed);
-    background: linear-gradient(
-        rgba(50, 205, 50, 0.25),
-        rgba(50, 205, 50, 0.12)
-    ), var(--ui-bg) !important;
-    box-shadow: 0 4px 0 rgba(50, 205, 50, 0.4), var(--shadow-heavy);
+    background-color: rgba(50, 205, 50, 0.1);
 }
 
 .choice-title {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: #fff;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .choice-icon {
     color: var(--primary);
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .choice-description {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: #ccc;
-    margin-bottom: 15px;
-    line-height: 1.4;
+    margin-bottom: 10px;
+    line-height: 1.3;
     flex-grow: 1;
 }
 
 .choice-stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    font-size: 0.8rem;
+    gap: 8px;
+    font-size: 0.75rem;
 }
 
 .stat-change {
     font-weight: bold;
     display: block;
-    margin-top: 6px;
-    font-size: 0.85rem;
+    margin-top: 4px;
+    font-size: 0.8rem;
 }
 
 .positive { color: var(--success); }
@@ -874,7 +670,7 @@ h1 {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -884,119 +680,84 @@ h1 {
 
 .fact-modal {
     background-color: var(--ui-bg);
-    border: 6px solid var(--primary);
-    border-radius: 12px;
+    border: 4px solid var(--primary);
+    border-radius: 8px;
     width: 90%;
-    max-width: 600px;
-    padding: 30px;
-    position: relative;
-    box-shadow:
-        0 0 0 4px var(--primary-dark),
-        0 0 40px rgba(123, 104, 238, 0.7),
-        var(--shadow-heavy);
-    animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    max-width: 550px;
+    padding: 25px;
+    animation: slideUp 0.3s ease-out;
 }
 
 .fact-modal-header {
     text-align: center;
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 3px solid var(--primary);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary);
 }
 
 .fact-modal-title {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: var(--warning);
-    text-shadow: 2px 2px 0 #000;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
-    margin-bottom: 10px;
+    gap: 10px;
+    margin-bottom: 8px;
 }
 
 .fact-modal-subtitle {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     color: #aaa;
     text-transform: uppercase;
 }
 
 .fact-content {
-    background-color: rgba(0, 0, 0, 0.4);
-    border: 3px solid var(--ui-border);
-    padding: 25px;
-    border-radius: 8px;
-    margin-bottom: 25px;
-    position: relative;
-    min-height: 150px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--ui-border);
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    min-height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.fact-content::before {
-    content: 'ℹ';
-    position: absolute;
-    top: -15px;
-    left: -15px;
-    width: 30px;
-    height: 30px;
-    background-color: var(--primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    color: white;
-    border: 3px solid var(--primary-dark);
 }
 
 .fact-text {
-    font-size: 0.9rem;
-    line-height: 1.6;
+    font-size: 0.85rem;
+    line-height: 1.5;
     color: #fff;
     text-align: center;
 }
 
 .fact-source {
-    font-size: 0.6rem;
+    font-size: 0.55rem;
     color: #888;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 8px;
     font-style: italic;
 }
 
 .fact-modal-actions {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .fact-close-btn {
     background-color: var(--primary);
-    border: 4px solid var(--primary-dark);
+    border: 3px solid var(--primary-dark);
     color: white;
-    padding: 15px 40px;
-    font-size: 0.9rem;
+    padding: 12px 30px;
+    font-size: 0.8rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 8px;
-    box-shadow: 0 6px 0 rgba(93, 78, 194, 0.9);
-    position: relative;
-    overflow: hidden;
+    border-radius: 6px;
 }
 
 .fact-close-btn:hover {
     background-color: var(--primary-dark);
-    transform: translateY(-3px);
-    box-shadow: 0 9px 0 rgba(93, 78, 194, 0.9);
-}
-
-.fact-close-btn:active {
-    transform: translateY(0);
-    box-shadow: 0 3px 0 rgba(93, 78, 194, 0.9);
 }
 
 /* Анимации для модального окна */
@@ -1008,11 +769,11 @@ h1 {
 @keyframes slideUp {
     from {
         opacity: 0;
-        transform: translateY(50px) scale(0.9);
+        transform: translateY(30px);
     }
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0);
     }
 }
 
@@ -1020,21 +781,13 @@ h1 {
 @media (max-width: 1200px) {
     .game-container {
         max-width: 95%;
-        padding: 20px;
-    }
-
-    .steps-tracker {
-        overflow-x: auto;
-    }
-
-    .step-tracker-item {
-        min-width: 100px;
+        padding: 15px;
     }
 }
 
 @media (max-width: 768px) {
     .game-container {
-        padding: 15px;
+        padding: 10px;
     }
 
     .game-hud, .end-stats {
@@ -1046,33 +799,21 @@ h1 {
     }
 
     .terraria-house, .final-house-container {
-        height: 320px;
+        height: 280px;
     }
 
     h1 {
         font-size: 1.5rem;
     }
 
-    .steps-tracker {
-        flex-wrap: wrap;
-    }
-
     .step-tracker-item {
-        min-width: 110px;
-        margin-bottom: 5px;
+        min-width: 90px;
+        padding: 5px 2px;
     }
 
     .fact-modal {
         width: 95%;
-        padding: 20px;
-    }
-
-    .fact-modal-title {
-        font-size: 0.9rem;
-    }
-
-    .fact-text {
-        font-size: 0.8rem;
+        padding: 15px;
     }
 }
 
@@ -1086,15 +827,15 @@ h1 {
     }
 
     .hud-value {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
     }
 
     .terraria-house, .final-house-container {
-        height: 220px;
+        height: 200px;
     }
 
     .game-button {
-        padding: 12px 20px;
+        padding: 10px 15px;
         font-size: 0.8rem;
     }
 
@@ -1103,8 +844,8 @@ h1 {
     }
 
     .step-tracker-item {
-        min-width: 70px;
-        padding: 5px 2px;
+        min-width: 60px;
+        font-size: 0.5rem;
     }
 
     .step-number {
@@ -1112,16 +853,16 @@ h1 {
     }
 
     .step-name {
-        font-size: 0.45rem;
+        font-size: 0.4rem;
     }
 
     .fact-modal {
-        padding: 15px;
+        padding: 12px;
     }
 
     .fact-content {
         padding: 15px;
-        min-height: 120px;
+        min-height: 100px;
     }
 
     .fact-text {
@@ -1129,26 +870,7 @@ h1 {
     }
 
     .fact-close-btn {
-        padding: 12px 30px;
-        font-size: 0.8rem;
-    }
-
-    /* Адаптация порогов для мобильных */
-    .threshold {
-        width: 2px;
-    }
-
-    .threshold::after {
-        top: -8px;
-        border-left: 3px solid transparent;
-        border-right: 3px solid transparent;
-    }
-
-    .threshold-50::after {
-        border-top: 4px solid rgba(255, 255, 255, 0.7);
-    }
-
-    .threshold-80::after {
-        border-top: 4px solid rgba(255, 215, 0, 0.8);
+        padding: 10px 20px;
+        font-size: 0.75rem;
     }
 }

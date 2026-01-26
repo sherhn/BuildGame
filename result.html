@@ -8,103 +8,98 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Стили для страницы результатов */
+        /* Упрощенные стили для страницы результатов */
         .game-container {
             position: relative;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 15px;
             z-index: 10;
         }
 
         .end-screen {
             background-color: var(--ui-bg);
-            border: 8px solid var(--ui-border);
-            padding: 40px;
+            border: 5px solid var(--ui-border);
+            padding: 25px;
             text-align: center;
             width: 100%;
             margin: 0 auto;
-            box-shadow:
-                inset 0 0 40px rgba(0, 0, 0, 0.8),
-                0 10px 0 rgba(0, 0, 0, 0.6),
-                var(--shadow-heavy);
-            border-radius: 12px;
+            border-radius: 8px;
         }
 
         .end-content {
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
-            gap: 40px;
+            gap: 25px;
             text-align: left;
-            margin: 30px 0;
+            margin: 20px 0;
             width: 100%;
         }
 
         .final-house-container {
-            height: 400px;
+            height: 350px;
             position: relative;
-            background-color: rgba(0, 0, 0, 0.4);
-            border: 3px solid #000;
-            overflow: hidden;
-            border-radius: 6px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 2px solid #000;
+            border-radius: 5px;
         }
 
         .end-stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin: 20px 0;
+            gap: 12px;
+            margin: 15px 0;
         }
 
         .end-stat {
-            background-color: rgba(0, 0, 0, 0.4);
-            border: 4px solid var(--ui-border);
-            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--ui-border);
+            padding: 12px;
             text-align: center;
-            border-radius: 8px;
-            min-height: 110px;
+            border-radius: 6px;
+            min-height: 90px;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
         .end-stat-value {
-            font-size: 1.8rem;
-            margin: 12px 0;
+            font-size: 1.5rem;
+            margin: 8px 0;
         }
 
         .end-stat-label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #aaa;
         }
 
         .parameter-rating {
-            background-color: rgba(0,0,0,0.4);
-            padding: 20px;
-            border: 4px solid var(--ui-border);
-            margin-top: 20px;
-            border-radius: 8px;
+            background-color: rgba(0,0,0,0.3);
+            padding: 15px;
+            border: 3px solid var(--ui-border);
+            margin-top: 15px;
+            border-radius: 6px;
         }
 
         .parameter-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 15px;
+            gap: 12px;
         }
 
         .parameter-item {
-            padding: 15px;
-            border-radius: 6px;
+            padding: 12px;
+            border-radius: 5px;
         }
 
         .quest-badge {
-            background-color: rgba(255, 215, 0, 0.2);
+            background-color: rgba(255, 215, 0, 0.15);
             border: 2px solid var(--warning);
-            padding: 8px 15px;
-            border-radius: 20px;
+            padding: 6px 12px;
+            border-radius: 15px;
             display: inline-block;
-            margin-bottom: 15px;
-            font-size: 0.8rem;
+            margin-bottom: 12px;
+            font-size: 0.75rem;
         }
 
         @media (max-width: 768px) {
@@ -123,17 +118,12 @@
     </style>
 </head>
 <body>
-    <!-- Фон -->
+    <!-- Упрощенный фон -->
     <div class="terraria-bg">
         <div class="sky-bg">
             <div class="sun"></div>
             <div class="pixel-cloud cloud-1"></div>
             <div class="pixel-cloud cloud-2"></div>
-            <div class="pixel-cloud cloud-3"></div>
-            <div class="pixel-cloud cloud-4"></div>
-            <div class="bird bird-1"><i class="fas fa-dove"></i></div>
-            <div class="bird bird-2"><i class="fas fa-dove"></i></div>
-            <div class="bird bird-3"><i class="fas fa-dove"></i></div>
         </div>
         <div class="mountain-range">
             <div class="mountain mountain-1"></div>
@@ -213,37 +203,37 @@
                     </div>
 
                     <div class="parameter-rating">
-                        <h3 style="color: var(--warning); margin-bottom: 15px; font-size: 1rem; text-align: center;">
+                        <h3 style="color: var(--warning); margin-bottom: 12px; font-size: 0.9rem; text-align: center;">
                             Оценка параметров:
                         </h3>
                         <div class="parameter-grid">
-                            <div class="parameter-item" style="background-color: rgba(255,69,0,0.15); border: 2px solid rgba(255,69,0,0.4);">
-                                <div style="color: #fff; margin-bottom: 8px; font-size: 0.9rem;">
+                            <div class="parameter-item" style="background-color: rgba(255,69,0,0.1); border: 1px solid rgba(255,69,0,0.3);">
+                                <div style="color: #fff; margin-bottom: 6px; font-size: 0.85rem;">
                                     <i class="fas fa-shield-alt"></i> Прочность: <span id="final-strength-text">0</span>%
                                 </div>
-                                <div style="color: #aaa; font-size: 0.8rem;" id="strength-rating"></div>
+                                <div style="color: #aaa; font-size: 0.75rem;" id="strength-rating"></div>
                             </div>
-                            <div class="parameter-item" style="background-color: rgba(123,104,238,0.15); border: 2px solid rgba(123,104,238,0.4);">
-                                <div style="color: #fff; margin-bottom: 8px; font-size: 0.9rem;">
+                            <div class="parameter-item" style="background-color: rgba(123,104,238,0.1); border: 1px solid rgba(123,104,238,0.3);">
+                                <div style="color: #fff; margin-bottom: 6px; font-size: 0.85rem;">
                                     <i class="fas fa-hourglass-half"></i> Долговечность: <span id="final-durability-text">0</span>%
                                 </div>
-                                <div style="color: #aaa; font-size: 0.8rem;" id="durability-rating"></div>
+                                <div style="color: #aaa; font-size: 0.75rem;" id="durability-rating"></div>
                             </div>
-                            <div class="parameter-item" style="background-color: rgba(255,165,0,0.15); border: 2px solid rgba(255,165,0,0.4);">
-                                <div style="color: #fff; margin-bottom: 8px; font-size: 0.9rem;">
+                            <div class="parameter-item" style="background-color: rgba(255,165,0,0.1); border: 1px solid rgba(255,165,0,0.3);">
+                                <div style="color: #fff; margin-bottom: 6px; font-size: 0.85rem;">
                                     <i class="fas fa-clock"></i> Сроки: <span id="final-time-text">0</span>%
                                 </div>
-                                <div style="color: #aaa; font-size: 0.8rem;" id="time-rating"></div>
+                                <div style="color: #aaa; font-size: 0.75rem;" id="time-rating"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <button class="game-button" id="play-again-btn" style="margin-top: 30px;">
+            <button class="game-button" id="play-again-btn" style="margin-top: 20px;">
                 Играть снова
             </button>
-            <button class="game-button" id="new-quest-btn" style="margin-top: 15px; margin-left: 15px; background-color: var(--warning); border-color: #FF8C00;">
+            <button class="game-button" id="new-quest-btn" style="margin-top: 10px; margin-left: 10px; background-color: var(--warning);">
                 <i class="fas fa-scroll"></i> Новое задание
             </button>
         </div>
@@ -312,29 +302,29 @@
             let timeRatingText = "";
 
             if (strengthPercent >= 80) {
-                strengthRatingText = "Отличная прочность! Дом простоит века.";
+                strengthRatingText = "Отличная прочность!";
             } else if (strengthPercent >= 50) {
-                strengthRatingText = "Хорошая прочность. Дом надежный и крепкий.";
+                strengthRatingText = "Хорошая прочность.";
             } else {
-                strengthRatingText = "Слабая прочность. Дом может не выдержать серьезных нагрузок.";
+                strengthRatingText = "Слабая прочность.";
             }
 
             if (durabilityPercent >= 80) {
-                durabilityRatingText = "Отличная долговечность! Материалы высшего качества.";
+                durabilityRatingText = "Отличная долговечность!";
             } else if (durabilityPercent >= 50) {
-                durabilityRatingText = "Хорошая долговечность. Дом прослужит долго.";
+                durabilityRatingText = "Хорошая долговечность.";
             } else {
-                durabilityRatingText = "Низкая долговечность. Скоро потребуется ремонт.";
+                durabilityRatingText = "Низкая долговечность.";
             }
 
             if (timePercent >= 50) {
-                timeRatingText = "Отличный результат! Вы уложились в срок с запасом.";
+                timeRatingText = "Отличный результат!";
             } else if (timePercent >= 20) {
-                timeRatingText = "Хороший результат. Сроки соблюдены.";
+                timeRatingText = "Хороший результат.";
             } else if (timePercent >= 0) {
-                timeRatingText = "Еле уложились в срок. Пришлось поторопиться.";
+                timeRatingText = "Еле уложились в срок.";
             } else {
-                timeRatingText = "Сроки сорваны. Придется платить штрафы.";
+                timeRatingText = "Сроки сорваны.";
             }
 
             strengthRating.textContent = strengthRatingText;
@@ -344,19 +334,14 @@
             // Визуальные эффекты для дома
             if (title.includes("Банкротство") || title.includes("Обрушение") || title.includes("Разрушение") || title.includes("Просрочка")) {
                 finalHouse.style.opacity = "0.5";
-                finalHouse.style.filter = "grayscale(100%)";
             } else if (strengthPercent < 50 || durabilityPercent < 50 || timePercent < 0) {
                 finalHouse.style.opacity = "0.7";
-                finalHouse.style.filter = "sepia(0.5)";
             } else if (strengthPercent >= 80 && durabilityPercent >= 80 && timePercent >= 50) {
                 finalHouse.style.opacity = "1";
-                finalHouse.style.filter = "brightness(1.2)";
                 finalHouse.style.borderColor = "#32CD32";
-                finalHouse.style.boxShadow = "0 0 30px rgba(50, 205, 50, 0.7)";
 
-                // Особый эффект для успешного задания
                 if (wasQuest) {
-                    finalHouse.style.boxShadow = "0 0 40px rgba(255, 215, 0, 0.8)";
+                    finalHouse.style.borderColor = "#FFD700";
                 }
             }
         }
@@ -368,12 +353,9 @@
 
         // Кнопка "Новое задание"
         newQuestBtn.addEventListener('click', function() {
-            // Очищаем информацию о предыдущем задании
             localStorage.removeItem('isQuest');
             localStorage.removeItem('questGenerated');
             localStorage.removeItem('successfulPath');
-
-            // Переходим на главную страницу
             window.location.href = 'index.html';
         });
 

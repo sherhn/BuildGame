@@ -8,102 +8,85 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Стили только для стартовой страницы */
+        /* Упрощенные стили для стартовой страницы */
         .game-container {
             position: relative;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 15px;
             z-index: 10;
         }
 
         .start-screen {
             background-color: var(--ui-bg);
-            border: 8px solid var(--ui-border);
-            padding: 40px;
+            border: 5px solid var(--ui-border);
+            padding: 25px;
             text-align: center;
             width: 100%;
             margin: 0 auto;
-            position: relative;
-            box-shadow:
-                inset 0 0 40px rgba(0, 0, 0, 0.8),
-                0 10px 0 rgba(0, 0, 0, 0.6),
-                var(--shadow-heavy);
-            border-radius: 12px;
-        }
-
-        .start-screen::before {
-            content: '';
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            bottom: 12px;
-            left: 12px;
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            pointer-events: none;
-            border-radius: 6px;
+            border-radius: 8px;
         }
 
         .start-content {
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
-            gap: 40px;
-            margin: 30px 0;
+            gap: 25px;
+            margin: 20px 0;
             text-align: left;
             width: 100%;
         }
 
         .instructions {
-            background-color: rgba(0, 0, 0, 0.4);
-            border: 4px solid var(--ui-border);
-            padding: 25px;
-            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--ui-border);
+            padding: 20px;
+            border-radius: 6px;
         }
 
         .instructions h3 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--warning);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: center;
         }
 
         .instruction-item {
             display: flex;
             align-items: flex-start;
-            gap: 15px;
-            margin-bottom: 15px;
+            gap: 12px;
+            margin-bottom: 12px;
         }
 
         .instruction-icon {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             background-color: var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            border: 2px solid var(--primary-dark);
-            border-radius: 6px;
+            border: 1px solid var(--primary-dark);
+            border-radius: 5px;
         }
 
         .instruction-text h4 {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #fff;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
         }
 
         .instruction-text p {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #ccc;
-            line-height: 1.4;
+            line-height: 1.3;
         }
 
         .budget-selector, .time-selector {
-            background-color: rgba(0, 0, 0, 0.4);
-            border: 4px solid var(--ui-border);
-            padding: 25px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--ui-border);
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 15px;
         }
 
         .time-selector {
@@ -111,9 +94,8 @@
         }
 
         #budget-value, #time-value {
-            font-size: 2rem;
-            margin: 15px 0;
-            text-shadow: 2px 2px 0 #000;
+            font-size: 1.8rem;
+            margin: 12px 0;
             text-align: center;
         }
 
@@ -122,12 +104,12 @@
 
         #budget-slider, #time-slider {
             width: 100%;
-            height: 20px;
-            margin: 20px 0;
+            height: 15px;
+            margin: 15px 0;
             -webkit-appearance: none;
             outline: none;
-            border-radius: 10px;
-            border: 2px solid #000;
+            border-radius: 8px;
+            border: 1px solid #000;
         }
 
         #budget-slider {
@@ -141,39 +123,38 @@
         #budget-slider::-webkit-slider-thumb,
         #time-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 28px;
-            height: 28px;
+            width: 25px;
+            height: 25px;
             background: #fff;
             cursor: pointer;
-            box-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
             border-radius: 50%;
         }
 
         #budget-slider::-webkit-slider-thumb {
-            border: 3px solid var(--primary);
+            border: 2px solid var(--primary);
         }
 
         #time-slider::-webkit-slider-thumb {
-            border: 3px solid var(--time-color);
+            border: 2px solid var(--time-color);
         }
 
         .preset-buttons {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin: 20px 0;
+            gap: 12px;
+            margin: 15px 0;
         }
 
         .budget-preset, .time-preset {
-            padding: 15px;
-            border: 3px solid var(--ui-border);
-            background-color: rgba(0, 0, 0, 0.3);
+            padding: 12px;
+            border: 2px solid var(--ui-border);
+            background-color: rgba(0, 0, 0, 0.2);
             color: #fff;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.8rem;
-            border-radius: 6px;
-            min-height: 85px;
+            transition: all 0.2s ease;
+            font-size: 0.75rem;
+            border-radius: 5px;
+            min-height: 70px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -185,63 +166,60 @@
         }
 
         .budget-preset:hover, .time-preset:hover {
-            transform: scale(1.03);
             border-color: var(--primary);
-            box-shadow: 0 0 15px rgba(123, 104, 238, 0.5);
         }
 
         .time-preset:hover {
             border-color: var(--time-color);
-            box-shadow: 0 0 15px rgba(255, 165, 0, 0.5);
         }
 
         .difficulty-indicator {
             display: inline-block;
-            padding: 4px 8px;
-            font-size: 0.7rem;
-            margin-top: 6px;
-            background-color: rgba(0, 0, 0, 0.6);
-            border-radius: 15px;
+            padding: 3px 6px;
+            font-size: 0.65rem;
+            margin-top: 5px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 12px;
         }
 
         #budget-message, #time-message {
-            margin-top: 20px;
-            font-size: 0.8rem;
+            margin-top: 15px;
+            font-size: 0.75rem;
             color: #aaa;
             text-align: center;
-            padding: 12px;
-            background-color: rgba(0,0,0,0.3);
-            border-radius: 6px;
+            padding: 10px;
+            background-color: rgba(0,0,0,0.2);
+            border-radius: 5px;
         }
 
         .game-controls {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 4px solid var(--ui-border);
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 3px solid var(--ui-border);
             display: flex;
             justify-content: center;
             width: 100%;
         }
 
         .quest-mode {
-            margin-top: 20px;
-            padding: 25px;
-            background-color: rgba(0, 0, 0, 0.4);
-            border: 4px solid var(--warning);
-            border-radius: 8px;
+            margin-top: 15px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--warning);
+            border-radius: 6px;
             text-align: center;
         }
 
         .quest-mode h3 {
             color: var(--warning);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .quest-description {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #ccc;
-            margin-bottom: 20px;
-            line-height: 1.4;
+            margin-bottom: 15px;
+            line-height: 1.3;
         }
 
         @media (max-width: 768px) {
@@ -256,17 +234,12 @@
     </style>
 </head>
 <body>
-    <!-- Фон -->
+    <!-- Упрощенный фон -->
     <div class="terraria-bg">
         <div class="sky-bg">
             <div class="sun"></div>
             <div class="pixel-cloud cloud-1"></div>
             <div class="pixel-cloud cloud-2"></div>
-            <div class="pixel-cloud cloud-3"></div>
-            <div class="pixel-cloud cloud-4"></div>
-            <div class="bird bird-1"><i class="fas fa-dove"></i></div>
-            <div class="bird bird-2"><i class="fas fa-dove"></i></div>
-            <div class="bird bird-3"><i class="fas fa-dove"></i></div>
         </div>
         <div class="mountain-range">
             <div class="mountain mountain-1"></div>
@@ -306,7 +279,7 @@
                         </div>
                         <div class="instruction-text">
                             <h4>8 этапов строительства</h4>
-                            <p>Пройдите все этапы от фундамента до благоустройства территории вокруг дома</p>
+                            <p>Пройдите все этапы от фундамента до благоустройства</p>
                         </div>
                     </div>
                     <div class="instruction-item">
@@ -315,7 +288,7 @@
                         </div>
                         <div class="instruction-text">
                             <h4>Управляйте временем</h4>
-                            <p>Следите за сроками строительства. Каждый этап требует времени на монтаж</p>
+                            <p>Следите за сроками строительства</p>
                         </div>
                     </div>
                     <div class="instruction-item">
@@ -324,7 +297,7 @@
                         </div>
                         <div class="instruction-text">
                             <h4>Стройте дом</h4>
-                            <p>Наблюдайте, как растет ваш пиксельный дом на каждом этапе строительства</p>
+                            <p>Наблюдайте, как растет ваш пиксельный дом</p>
                         </div>
                     </div>
                     <div class="instruction-item">
@@ -333,7 +306,7 @@
                         </div>
                         <div class="instruction-text">
                             <h4>Добейтесь успеха</h4>
-                            <p>Постройте дом с максимальными параметрами прочности, долговечности и уложитесь в сроки</p>
+                            <p>Постройте дом с максимальными параметрами</p>
                         </div>
                     </div>
                 </div>
@@ -364,7 +337,7 @@
                         </div>
 
                         <div id="budget-message">
-                            Выберите бюджет или нажмите "Случайный бюджет" для игры со случайной суммой
+                            Выберите бюджет или нажмите "Случайный бюджет"
                         </div>
                     </div>
 
@@ -393,15 +366,15 @@
                         </div>
 
                         <div id="time-message">
-                            Каждый этап строительства требует времени. Уложитесь в сроки!
+                            Каждый этап строительства требует времени
                         </div>
                     </div>
 
-                    <div class="game-controls" style="border-top: none; margin-top: 20px;">
+                    <div class="game-controls" style="border-top: none; margin-top: 15px;">
                         <button class="game-button" id="random-budget-btn">
                             <i class="fas fa-dice"></i> Случайный бюджет
                         </button>
-                        <button class="game-button" id="random-time-btn" style="margin-left: 15px;">
+                        <button class="game-button" id="random-time-btn" style="margin-left: 10px;">
                             <i class="fas fa-clock"></i> Случайное время
                         </button>
                     </div>
@@ -418,7 +391,7 @@
                 </button>
             </div>
 
-            <button class="game-button" id="start-btn" style="margin-top: 25px;">
+            <button class="game-button" id="start-btn" style="margin-top: 20px;">
                 Начать строительство
             </button>
         </div>
@@ -439,7 +412,7 @@
         const budgetPresetButtons = document.querySelectorAll('.budget-preset');
         const timePresetButtons = document.querySelectorAll('.time-preset');
 
-        // Данные о вариантах строительства (такие же как в game.html)
+        // Данные о вариантах строительства
         const gameStepsData = [
             {
                 options: [
@@ -532,10 +505,8 @@
 
                 budgetPresetButtons.forEach(btn => {
                     btn.style.opacity = "0.8";
-                    btn.style.transform = "scale(0.98)";
                 });
                 this.style.opacity = "1";
-                this.style.transform = "scale(1.02)";
             });
         });
 
@@ -549,10 +520,8 @@
 
                 timePresetButtons.forEach(btn => {
                     btn.style.opacity = "0.8";
-                    btn.style.transform = "scale(0.98)";
                 });
                 this.style.opacity = "1";
-                this.style.transform = "scale(1.02)";
             });
         });
 
@@ -577,22 +546,22 @@
 
             if (randomBudget < 350000) {
                 difficulty = "Эксперт";
-                message = "Случайный бюджет: очень сложный режим! Удачи!";
+                message = "Случайный бюджет: очень сложный режим!";
             } else if (randomBudget < 500000) {
                 difficulty = "Сложный";
-                message = "Случайный бюджет: непростой вызов для строителя!";
+                message = "Случайный бюджет: непростой вызов!";
             } else if (randomBudget < 700000) {
                 difficulty = "Средний";
                 message = "Случайный бюджет: сбалансированный вариант.";
             } else if (randomBudget < 900000) {
                 difficulty = "Легкий";
-                message = "Случайный бюджет: хороший бюджет для строительства.";
+                message = "Случайный бюджет: хороший бюджет.";
             } else {
                 difficulty = "Очень легкий";
-                message = "Случайный бюджет: щедрый бюджет! Можно не экономить.";
+                message = "Случайный бюджет: щедрый бюджет!";
             }
 
-            budgetMessage.innerHTML = `<i class="fas fa-dice"></i> ${message} (Сложность: ${difficulty})`;
+            budgetMessage.innerHTML = `<i class="fas fa-dice"></i> ${message}`;
         }
 
         // Генерация случайного времени
@@ -611,22 +580,22 @@
 
             if (randomTime < 45) {
                 difficulty = "Экстрим";
-                message = "Случайное время: экстремально сжатые сроки! Только быстрые варианты!";
+                message = "Случайное время: экстремально сжатые сроки!";
             } else if (randomTime < 75) {
                 difficulty = "Сложный";
-                message = "Случайное время: сжатые сроки! Придется торопиться.";
+                message = "Случайное время: сжатые сроки!";
             } else if (randomTime < 105) {
                 difficulty = "Средний";
-                message = "Случайное время: стандартные сроки. Хороший баланс.";
+                message = "Случайное время: стандартные сроки.";
             } else if (randomTime < 135) {
                 difficulty = "Легкий";
-                message = "Случайное время: щедрые сроки. Можно не торопиться.";
+                message = "Случайное время: щедрые сроки.";
             } else {
                 difficulty = "Очень легкий";
-                message = "Случайное время: очень много времени! Можно выбирать самые качественные варианты.";
+                message = "Случайное время: очень много времени!";
             }
 
-            timeMessage.innerHTML = `<i class="fas fa-clock"></i> ${message} (Сложность: ${difficulty})`;
+            timeMessage.innerHTML = `<i class="fas fa-clock"></i> ${message}`;
         }
 
         // Генерация случайного задания с гарантированно выполнимой комбинацией
@@ -667,16 +636,14 @@
             // 6. Сбрасываем выделение пресетов
             budgetPresetButtons.forEach(btn => {
                 btn.style.opacity = "0.8";
-                btn.style.transform = "scale(0.98)";
             });
             timePresetButtons.forEach(btn => {
                 btn.style.opacity = "0.8";
-                btn.style.transform = "scale(0.98)";
             });
 
             // 7. Показываем сообщение
-            budgetMessage.innerHTML = `<i class="fas fa-scroll"></i> Случайное задание: бюджет ${formatNumber(roundedBudget)}₽. Есть как минимум одна успешная ветка строительства!`;
-            timeMessage.innerHTML = `<i class="fas fa-clock"></i> Срок строительства: ${roundedTime} дней. Управляйте временем разумно!`;
+            budgetMessage.innerHTML = `<i class="fas fa-scroll"></i> Случайное задание: бюджет ${formatNumber(roundedBudget)}₽`;
+            timeMessage.innerHTML = `<i class="fas fa-clock"></i> Срок строительства: ${roundedTime} дней`;
 
             // 8. Сохраняем информацию о задании
             localStorage.setItem('questGenerated', 'true');
@@ -690,13 +657,11 @@
 
         // Функция для поиска гарантированно успешной комбинации
         function findGuaranteedPath(budget, time) {
-            // Начинаем с самых дешевых вариантов
             let path = [];
             let currentBudget = 0;
             let currentTime = 0;
 
             gameStepsData.forEach(step => {
-                // Находим самый дешевый вариант в рамках ограничений
                 let bestOption = null;
 
                 for (let i = 0; i < step.options.length; i++) {
@@ -704,24 +669,20 @@
                     const optionCost = Math.abs(option.money);
                     const optionTime = option.time;
 
-                    // Проверяем, вписывается ли вариант в оставшийся бюджет и время
                     if (currentBudget + optionCost <= budget &&
                         currentTime + optionTime <= time) {
 
-                        // Если это первый подходящий вариант или он дешевле предыдущего
                         if (bestOption === null || optionCost < Math.abs(step.options[bestOption].money)) {
                             bestOption = i;
                         }
                     }
                 }
 
-                // Если нашли подходящий вариант
                 if (bestOption !== null) {
                     path.push(bestOption);
                     currentBudget += Math.abs(gameStepsData[path.length-1].options[bestOption].money);
                     currentTime += gameStepsData[path.length-1].options[bestOption].time;
                 } else {
-                    // Если не нашли, берем самый дешевый
                     const cheapestOption = step.options.reduce((minIndex, option, index) =>
                         Math.abs(option.money) < Math.abs(step.options[minIndex].money) ? index : minIndex, 0);
                     path.push(cheapestOption);
