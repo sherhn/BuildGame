@@ -406,6 +406,7 @@ h1 {
     transition: width 0.5s ease;
     position: relative;
     border-radius: 4px;
+    z-index: 1;
 }
 
 .money .hud-bar-fill {
@@ -423,6 +424,67 @@ h1 {
 .time .hud-bar-fill {
     background: linear-gradient(90deg, #8B4513, #FFA500, #FFD700);
     box-shadow: inset 0 0 8px rgba(255, 165, 0, 0.4);
+}
+
+/* Пороги на прогресс-барах */
+.threshold {
+    position: absolute;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    transform: translateX(-1px);
+}
+
+.threshold-50 {
+    left: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+.threshold-80 {
+    left: 80%;
+    background-color: rgba(255, 215, 0, 0.8);
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.9);
+}
+
+/* Индикаторы порогов */
+.threshold::after {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+}
+
+.threshold-50::after {
+    border-top: 6px solid rgba(255, 255, 255, 0.7);
+}
+
+.threshold-80::after {
+    border-top: 6px solid rgba(255, 215, 0, 0.8);
+}
+
+/* Подписи порогов при наведении */
+.threshold:hover::before {
+    content: attr(title);
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    font-size: 0.6rem;
+    border-radius: 3px;
+    white-space: nowrap;
+    z-index: 10;
+    pointer-events: none;
 }
 
 /* Шкала этапов */
@@ -1069,5 +1131,24 @@ h1 {
     .fact-close-btn {
         padding: 12px 30px;
         font-size: 0.8rem;
+    }
+
+    /* Адаптация порогов для мобильных */
+    .threshold {
+        width: 2px;
+    }
+
+    .threshold::after {
+        top: -8px;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+    }
+
+    .threshold-50::after {
+        border-top: 4px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .threshold-80::after {
+        border-top: 4px solid rgba(255, 215, 0, 0.8);
     }
 }
