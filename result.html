@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стройка мечты - Результат</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Стили для страницы результатов */
+        .game-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            z-index: 10;
+        }
+
+        .end-screen {
+            background-color: var(--ui-bg);
+            border: 8px solid var(--ui-border);
+            padding: 40px;
+            text-align: center;
+            width: 100%;
+            margin: 0 auto;
+            box-shadow:
+                inset 0 0 40px rgba(0, 0, 0, 0.8),
+                0 10px 0 rgba(0, 0, 0, 0.6),
+                var(--shadow-heavy);
+            border-radius: 12px;
+        }
+
+        .end-content {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 40px;
+            text-align: left;
+            margin: 30px 0;
+            width: 100%;
+        }
+
+        .final-house-container {
+            height: 400px;
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 3px solid #000;
+            overflow: hidden;
+            border-radius: 6px;
+        }
+
+        .end-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .end-stat {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 4px solid var(--ui-border);
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            min-height: 110px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .end-stat-value {
+            font-size: 1.8rem;
+            margin: 12px 0;
+        }
+
+        .end-stat-label {
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+
+        .parameter-rating {
+            background-color: rgba(0,0,0,0.4);
+            padding: 20px;
+            border: 4px solid var(--ui-border);
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .parameter-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+
+        .parameter-item {
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        @media (max-width: 768px) {
+            .end-content {
+                grid-template-columns: 1fr;
+            }
+
+            .end-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .parameter-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Фон -->
+    <div class="terraria-bg">
+        <div class="sky-bg">
+            <div class="sun"></div>
+            <div class="pixel-cloud cloud-1"></div>
+            <div class="pixel-cloud cloud-2"></div>
+            <div class="pixel-cloud cloud-3"></div>
+            <div class="pixel-cloud cloud-4"></div>
+            <div class="bird bird-1"><i class="fas fa-dove"></i></div>
+            <div class="bird bird-2"><i class="fas fa-dove"></i></div>
+            <div class="bird bird-3"><i class="fas fa-dove"></i></div>
+        </div>
+        <div class="mountain-range">
+            <div class="mountain mountain-1"></div>
+            <div class="mountain mountain-2"></div>
+            <div class="mountain mountain-3"></div>
+            <div class="mountain mountain-4"></div>
+        </div>
+        <div class="bg-tree bg-tree-1">
+            <div class="bg-tree-trunk"></div>
+            <div class="bg-tree-crown"></div>
+        </div>
+        <div class="bg-tree bg-tree-2">
+            <div class="bg-tree-trunk"></div>
+            <div class="bg-tree-crown"></div>
+        </div>
+        <div class="bg-tree bg-tree-3">
+            <div class="bg-tree-trunk"></div>
+            <div class="bg-tree-crown"></div>
+        </div>
+        <div class="detailed-ground"></div>
+        <div class="pixel-grid"></div>
+    </div>
+
+    <div class="game-container">
+        <div class="end-screen">
+            <h2 class="end-title" id="end-title">СТРОИТЕЛЬСТВО ЗАВЕРШЕНО!</h2>
+
+            <div class="end-content">
+                <div class="final-house-container" id="final-house">
+                    <div class="house-bg"></div>
+                    <div class="pixel-block foundation"></div>
+                    <div class="pixel-block walls"></div>
+                    <div class="pixel-block roof"></div>
+                    <div class="pixel-block window window-left"></div>
+                    <div class="pixel-block window window-right"></div>
+                    <div class="pixel-block door"></div>
+                    <div class="pixel-block chimney"></div>
+                    <div class="pixel-block fence">
+                        <div class="fence-post"></div>
+                        <div class="fence-post"></div>
+                        <div class="fence-post"></div>
+                        <div class="fence-post"></div>
+                        <div class="fence-post"></div>
+                    </div>
+                    <div class="pixel-block tree">
+                        <div class="tree-trunk"></div>
+                        <div class="tree-crown"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="end-result" id="end-result">
+                        Поздравляем! Вы успешно построили дом, балансируя между бюджетом, прочностью, долговечностью и сроками.
+                    </div>
+
+                    <div class="end-stats">
+                        <div class="end-stat">
+                            <div class="end-stat-label">ОСТАТОК БЮДЖЕТА</div>
+                            <div class="end-stat-value" id="final-money" style="color: var(--success);">0</div>
+                        </div>
+                        <div class="end-stat">
+                            <div class="end-stat-label">ИТОГОВАЯ ПРОЧНОСТЬ</div>
+                            <div class="end-stat-value" id="final-strength" style="color: var(--danger);">0</div>
+                        </div>
+                        <div class="end-stat">
+                            <div class="end-stat-label">ИТОГОВАЯ ДОЛГОВЕЧНОСТЬ</div>
+                            <div class="end-stat-value" id="final-durability" style="color: var(--primary);">0</div>
+                        </div>
+                        <div class="end-stat">
+                            <div class="end-stat-label">ОСТАЛОСЬ ДНЕЙ</div>
+                            <div class="end-stat-value" id="final-time" style="color: var(--time-color);">0</div>
+                        </div>
+                    </div>
+
+                    <div class="parameter-rating">
+                        <h3 style="color: var(--warning); margin-bottom: 15px; font-size: 1rem; text-align: center;">
+                            ОЦЕНКА ПАРАМЕТРОВ:
+                        </h3>
+                        <div class="parameter-grid">
+                            <div class="parameter-item" style="background-color: rgba(255,69,0,0.15); border: 2px solid rgba(255,69,0,0.4);">
+                                <div style="color: #fff; margin-bottom: 8px; font-size: 0.9rem;">
+                                    <i class="fas fa-shield-alt"></i> ПРОЧНОСТЬ: <span id="final-strength-text">0</span>%
+                                </div>
+                                <div style="color: #aaa; font-size: 0.8rem;" id="strength-rating"></div>
+                            </div>
+                            <div class="parameter-item" style="background-color: rgba(123,104,238,0.15); border: 2px solid rgba(123,104,238,0.4);">
+                                <div style="color: #fff; margin-bottom: 8px; font-size: 0.9rem;">
+                                    <i class="fas fa-hourglass-half"></i> ДОЛГОВЕЧНОСТЬ: <span id="final-durability-text">0</span>%
+                                </div>
+                                <div style="color: #aaa; font-size: 0.8rem;" id="durability-rating"></div>
+                            </div>
+                            <div class="parameter-item" style="background-color: rgba(255,165,0,0.15); border: 2px solid rgba(255,165,0,0.4);">
+                                <div style="color: #fff; margin-bottom: 8px; font-size: 0.9rem;">
+                                    <i class="fas fa-clock"></i> СРОКИ: <span id="final-time-text">0</span>%
+                                </div>
+                                <div style="color: #aaa; font-size: 0.8rem;" id="time-rating"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="game-button" id="play-again-btn" style="margin-top: 30px;">
+                ИГРАТЬ СНОВА
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // DOM элементы
+        const endTitle = document.getElementById('end-title');
+        const endResult = document.getElementById('end-result');
+        const finalMoney = document.getElementById('final-money');
+        const finalStrength = document.getElementById('final-strength');
+        const finalDurability = document.getElementById('final-durability');
+        const finalTime = document.getElementById('final-time');
+        const finalStrengthText = document.getElementById('final-strength-text');
+        const finalDurabilityText = document.getElementById('final-durability-text');
+        const finalTimeText = document.getElementById('final-time-text');
+        const strengthRating = document.getElementById('strength-rating');
+        const durabilityRating = document.getElementById('durability-rating');
+        const timeRating = document.getElementById('time-rating');
+        const finalHouse = document.getElementById('final-house');
+        const playAgainBtn = document.getElementById('play-again-btn');
+
+        // Форматирование чисел с разделителями
+        function formatNumber(num) {
+            return new Intl.NumberFormat('ru-RU').format(num);
+        }
+
+        // Загрузка результатов
+        function loadResults() {
+            const money = localStorage.getItem('finalMoney') || 0;
+            const strength = localStorage.getItem('finalStrength') || 0;
+            const durability = localStorage.getItem('finalDurability') || 0;
+            const time = localStorage.getItem('finalTime') || 0;
+            const title = localStorage.getItem('finalTitle') || "СТРОИТЕЛЬСТВО ЗАВЕРШЕНО!";
+            const result = localStorage.getItem('finalResult') || "Результаты не найдены.";
+            const maxTime = localStorage.getItem('maxTime') || 90;
+
+            // Отображаем данные
+            endTitle.textContent = title;
+            endResult.textContent = result;
+            finalMoney.textContent = formatNumber(money);
+            finalStrength.textContent = strength;
+            finalDurability.textContent = durability;
+            finalTime.textContent = Math.max(0, time);
+
+            // Оценка параметров
+            const strengthPercent = Math.min(100, parseInt(strength));
+            const durabilityPercent = Math.min(100, parseInt(durability));
+            const timePercent = Math.max(0, Math.min(100, (time / maxTime) * 100));
+
+            finalStrengthText.textContent = strengthPercent;
+            finalDurabilityText.textContent = durabilityPercent;
+            finalTimeText.textContent = timePercent.toFixed(0);
+
+            // Текстовые оценки
+            let strengthRatingText = "";
+            let durabilityRatingText = "";
+            let timeRatingText = "";
+
+            if (strengthPercent >= 80) {
+                strengthRatingText = "Отличная прочность! Дом простоит века.";
+            } else if (strengthPercent >= 50) {
+                strengthRatingText = "Хорошая прочность. Дом надежный и крепкий.";
+            } else {
+                strengthRatingText = "Слабая прочность. Дом может не выдержать серьезных нагрузок.";
+            }
+
+            if (durabilityPercent >= 80) {
+                durabilityRatingText = "Отличная долговечность! Материалы высшего качества.";
+            } else if (durabilityPercent >= 50) {
+                durabilityRatingText = "Хорошая долговечность. Дом прослужит долго.";
+            } else {
+                durabilityRatingText = "Низкая долговечность. Скоро потребуется ремонт.";
+            }
+
+            if (timePercent >= 50) {
+                timeRatingText = "Отличный результат! Вы уложились в срок с запасом.";
+            } else if (timePercent >= 20) {
+                timeRatingText = "Хороший результат. Сроки соблюдены.";
+            } else if (timePercent >= 0) {
+                timeRatingText = "Еле уложились в срок. Пришлось поторопиться.";
+            } else {
+                timeRatingText = "Сроки сорваны. Придется платить штрафы.";
+            }
+
+            strengthRating.textContent = strengthRatingText;
+            durabilityRating.textContent = durabilityRatingText;
+            timeRating.textContent = timeRatingText;
+
+            // Визуальные эффекты для дома
+            if (title.includes("БАНКРОТСТВО") || title.includes("ОБРУШЕНИЕ") || title.includes("РАЗРУШЕНИЕ") || title.includes("ПРОСРОЧКА")) {
+                finalHouse.style.opacity = "0.5";
+                finalHouse.style.filter = "grayscale(100%)";
+            } else if (strengthPercent < 50 || durabilityPercent < 50 || timePercent < 0) {
+                finalHouse.style.opacity = "0.7";
+                finalHouse.style.filter = "sepia(0.5)";
+            } else if (strengthPercent >= 80 && durabilityPercent >= 80 && timePercent >= 50) {
+                finalHouse.style.opacity = "1";
+                finalHouse.style.filter = "brightness(1.2)";
+                finalHouse.style.borderColor = "#32CD32";
+                finalHouse.style.boxShadow = "0 0 30px rgba(50, 205, 50, 0.7)";
+            }
+        }
+
+        // Кнопка "Играть снова"
+        playAgainBtn.addEventListener('click', function() {
+            window.location.href = 'index.html';
+        });
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', loadResults);
+    </script>
+</body>
+</html>

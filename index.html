@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стройка мечты - Начало</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Стили только для стартовой страницы */
+        .game-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            z-index: 10;
+        }
+
+        .start-screen {
+            background-color: var(--ui-bg);
+            border: 8px solid var(--ui-border);
+            padding: 40px;
+            text-align: center;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            box-shadow:
+                inset 0 0 40px rgba(0, 0, 0, 0.8),
+                0 10px 0 rgba(0, 0, 0, 0.6),
+                var(--shadow-heavy);
+            border-radius: 12px;
+        }
+
+        .start-screen::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            bottom: 12px;
+            left: 12px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            pointer-events: none;
+            border-radius: 6px;
+        }
+
+        .start-content {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 40px;
+            margin: 30px 0;
+            text-align: left;
+            width: 100%;
+        }
+
+        .instructions {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 4px solid var(--ui-border);
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .instructions h3 {
+            font-size: 1.1rem;
+            color: var(--warning);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .instruction-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .instruction-icon {
+            width: 45px;
+            height: 45px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 2px solid var(--primary-dark);
+            border-radius: 6px;
+        }
+
+        .instruction-text h4 {
+            font-size: 0.85rem;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .instruction-text p {
+            font-size: 0.8rem;
+            color: #ccc;
+            line-height: 1.4;
+        }
+
+        .budget-selector, .time-selector {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 4px solid var(--ui-border);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .time-selector {
+            border-color: var(--time-color);
+        }
+
+        #budget-value, #time-value {
+            font-size: 2rem;
+            margin: 15px 0;
+            text-shadow: 2px 2px 0 #000;
+            text-align: center;
+        }
+
+        #budget-value { color: var(--success); }
+        #time-value { color: var(--time-color); }
+
+        #budget-slider, #time-slider {
+            width: 100%;
+            height: 20px;
+            margin: 20px 0;
+            -webkit-appearance: none;
+            outline: none;
+            border-radius: 10px;
+            border: 2px solid #000;
+        }
+
+        #budget-slider {
+            background: linear-gradient(90deg, var(--danger), var(--warning), var(--success));
+        }
+
+        #time-slider {
+            background: linear-gradient(90deg, #8B4513, #FFA500, #FFD700);
+        }
+
+        #budget-slider::-webkit-slider-thumb,
+        #time-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 28px;
+            height: 28px;
+            background: #fff;
+            cursor: pointer;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+        }
+
+        #budget-slider::-webkit-slider-thumb {
+            border: 3px solid var(--primary);
+        }
+
+        #time-slider::-webkit-slider-thumb {
+            border: 3px solid var(--time-color);
+        }
+
+        .preset-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .budget-preset, .time-preset {
+            padding: 15px;
+            border: 3px solid var(--ui-border);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            border-radius: 6px;
+            min-height: 85px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .time-preset {
+            border-color: var(--time-color);
+        }
+
+        .budget-preset:hover, .time-preset:hover {
+            transform: scale(1.03);
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(123, 104, 238, 0.5);
+        }
+
+        .time-preset:hover {
+            border-color: var(--time-color);
+            box-shadow: 0 0 15px rgba(255, 165, 0, 0.5);
+        }
+
+        .difficulty-indicator {
+            display: inline-block;
+            padding: 4px 8px;
+            font-size: 0.7rem;
+            margin-top: 6px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+        }
+
+        #budget-message, #time-message {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #aaa;
+            text-align: center;
+            padding: 12px;
+            background-color: rgba(0,0,0,0.3);
+            border-radius: 6px;
+        }
+
+        .game-controls {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 4px solid var(--ui-border);
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .start-content {
+                grid-template-columns: 1fr;
+            }
+
+            .preset-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Фон -->
+    <div class="terraria-bg">
+        <div class="sky-bg">
+            <div class="sun"></div>
+            <div class="pixel-cloud cloud-1"></div>
+            <div class="pixel-cloud cloud-2"></div>
+            <div class="pixel-cloud cloud-3"></div>
+            <div class="pixel-cloud cloud-4"></div>
+            <div class="bird bird-1"><i class="fas fa-dove"></i></div>
+            <div class="bird bird-2"><i class="fas fa-dove"></i></div>
+            <div class="bird bird-3"><i class="fas fa-dove"></i></div>
+        </div>
+        <div class="mountain-range">
+            <div class="mountain mountain-1"></div>
+            <div class="mountain mountain-2"></div>
+            <div class="mountain mountain-3"></div>
+            <div class="mountain mountain-4"></div>
+        </div>
+        <div class="bg-tree bg-tree-1">
+            <div class="bg-tree-trunk"></div>
+            <div class="bg-tree-crown"></div>
+        </div>
+        <div class="bg-tree bg-tree-2">
+            <div class="bg-tree-trunk"></div>
+            <div class="bg-tree-crown"></div>
+        </div>
+        <div class="bg-tree bg-tree-3">
+            <div class="bg-tree-trunk"></div>
+            <div class="bg-tree-crown"></div>
+        </div>
+        <div class="detailed-ground"></div>
+        <div class="pixel-grid"></div>
+    </div>
+
+    <div class="game-container">
+        <div class="start-screen">
+            <header>
+                <h1>СТРОЙКА МЕЧТЫ</h1>
+                <p class="subtitle">ПОСТРОЙТЕ СВОЙ ИДЕАЛЬНЫЙ ДОМ В ЭТОЙ ПИКСЕЛЬНОЙ СТРОИТЕЛЬНОЙ ИГРЕ</p>
+            </header>
+
+            <div class="start-content">
+                <div class="instructions">
+                    <h3>КАК ИГРАТЬ</h3>
+                    <div class="instruction-item">
+                        <div class="instruction-icon">
+                            <i class="fas fa-hammer"></i>
+                        </div>
+                        <div class="instruction-text">
+                            <h4>8 ЭТАПОВ СТРОИТЕЛЬСТВА</h4>
+                            <p>Пройдите все этапы от фундамента до благоустройства территории вокруг дома</p>
+                        </div>
+                    </div>
+                    <div class="instruction-item">
+                        <div class="instruction-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="instruction-text">
+                            <h4>УПРАВЛЯЙТЕ ВРЕМЕНЕМ</h4>
+                            <p>Следите за сроками строительства. Каждый этап требует времени на монтаж</p>
+                        </div>
+                    </div>
+                    <div class="instruction-item">
+                        <div class="instruction-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="instruction-text">
+                            <h4>СТРОЙТЕ ДОМ</h4>
+                            <p>Наблюдайте, как растет ваш пиксельный дом на каждом этапе строительства</p>
+                        </div>
+                    </div>
+                    <div class="instruction-item">
+                        <div class="instruction-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="instruction-text">
+                            <h4>ДОБЕЙТЕСЬ УСПЕХА</h4>
+                            <p>Постройте дом с максимальными параметрами прочности, долговечности и уложитесь в сроки</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="budget-selector">
+                        <h3>ВЫБЕРИТЕ НАЧАЛЬНЫЙ БЮДЖЕТ</h3>
+                        <div id="budget-value">500000</div>
+                        <input type="range" id="budget-slider" min="200000" max="1500000" step="50000" value="500000">
+
+                        <div class="preset-buttons">
+                            <button class="budget-preset" id="preset-low" data-value="300000">
+                                <div>ЭКОНОМНЫЙ</div>
+                                <span class="difficulty-indicator">СЛОЖНЫЙ РЕЖИМ</span>
+                            </button>
+                            <button class="budget-preset" id="preset-medium" data-value="500000">
+                                <div>СТАНДАРТНЫЙ</div>
+                                <span class="difficulty-indicator">СРЕДНЯЯ СЛОЖНОСТЬ</span>
+                            </button>
+                            <button class="budget-preset" id="preset-high" data-value="800000">
+                                <div>ЩЕДРЫЙ</div>
+                                <span class="difficulty-indicator">ЛЕГКИЙ РЕЖИМ</span>
+                            </button>
+                            <button class="budget-preset" id="preset-expert" data-value="200000">
+                                <div>ЭКСТРИМ</div>
+                                <span class="difficulty-indicator">ЭКСПЕРТНЫЙ УРОВЕНЬ</span>
+                            </button>
+                        </div>
+
+                        <div id="budget-message">
+                            Выберите бюджет или нажмите "Случайный бюджет" для игры со случайной суммой
+                        </div>
+                    </div>
+
+                    <div class="time-selector">
+                        <h3>ВЫБЕРИТЕ СРОК СТРОИТЕЛЬСТВА (ДНЕЙ)</h3>
+                        <div id="time-value">90</div>
+                        <input type="range" id="time-slider" min="30" max="180" step="5" value="90">
+
+                        <div class="preset-buttons">
+                            <button class="time-preset" id="time-short" data-value="45">
+                                <div>КОРОТКИЙ</div>
+                                <span class="difficulty-indicator">45 ДНЕЙ</span>
+                            </button>
+                            <button class="time-preset" id="time-medium" data-value="90">
+                                <div>СТАНДАРТНЫЙ</div>
+                                <span class="difficulty-indicator">90 ДНЕЙ</span>
+                            </button>
+                            <button class="time-preset" id="time-long" data-value="120">
+                                <div>ДЛИННЫЙ</div>
+                                <span class="difficulty-indicator">120 ДНЕЙ</span>
+                            </button>
+                            <button class="time-preset" id="time-extreme" data-value="30">
+                                <div>ЭКСТРИМ</div>
+                                <span class="difficulty-indicator">30 ДНЕЙ</span>
+                            </button>
+                        </div>
+
+                        <div id="time-message">
+                            Каждый этап строительства требует времени. Уложитесь в сроки!
+                        </div>
+                    </div>
+
+                    <div class="game-controls" style="border-top: none; margin-top: 20px;">
+                        <button class="game-button" id="random-budget-btn">
+                            <i class="fas fa-dice"></i> СЛУЧАЙНЫЙ БЮДЖЕТ
+                        </button>
+                        <button class="game-button" id="random-time-btn" style="margin-left: 15px;">
+                            <i class="fas fa-clock"></i> СЛУЧАЙНОЕ ВРЕМЯ
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="game-button" id="start-btn" style="margin-top: 25px;">
+                НАЧАТЬ СТРОИТЕЛЬСТВО
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Функции для стартовой страницы
+        const budgetSlider = document.getElementById('budget-slider');
+        const budgetValue = document.getElementById('budget-value');
+        const timeSlider = document.getElementById('time-slider');
+        const timeValue = document.getElementById('time-value');
+        const randomBudgetBtn = document.getElementById('random-budget-btn');
+        const randomTimeBtn = document.getElementById('random-time-btn');
+        const budgetMessage = document.getElementById('budget-message');
+        const timeMessage = document.getElementById('time-message');
+        const startBtn = document.getElementById('start-btn');
+        const budgetPresetButtons = document.querySelectorAll('.budget-preset');
+        const timePresetButtons = document.querySelectorAll('.time-preset');
+
+        // Обновление значений ползунка бюджета
+        budgetSlider.addEventListener('input', function() {
+            const value = parseInt(this.value);
+            budgetValue.textContent = formatNumber(value);
+            updateBudgetMessage(value);
+        });
+
+        // Обновление значений ползунка времени
+        timeSlider.addEventListener('input', function() {
+            const value = parseInt(this.value);
+            timeValue.textContent = value;
+            updateTimeMessage(value);
+        });
+
+        // Кнопка случайного бюджета
+        randomBudgetBtn.addEventListener('click', generateRandomBudget);
+
+        // Кнопка случайного времени
+        randomTimeBtn.addEventListener('click', generateRandomTime);
+
+        // Пресеты бюджета
+        budgetPresetButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const value = this.getAttribute('data-value');
+                budgetSlider.value = value;
+                budgetValue.textContent = formatNumber(value);
+                updateBudgetMessage(parseInt(value));
+
+                budgetPresetButtons.forEach(btn => {
+                    btn.style.opacity = "0.8";
+                    btn.style.transform = "scale(0.98)";
+                });
+                this.style.opacity = "1";
+                this.style.transform = "scale(1.02)";
+            });
+        });
+
+        // Пресеты времени
+        timePresetButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const value = this.getAttribute('data-value');
+                timeSlider.value = value;
+                timeValue.textContent = value;
+                updateTimeMessage(parseInt(value));
+
+                timePresetButtons.forEach(btn => {
+                    btn.style.opacity = "0.8";
+                    btn.style.transform = "scale(0.98)";
+                });
+                this.style.opacity = "1";
+                this.style.transform = "scale(1.02)";
+            });
+        });
+
+        // Форматирование чисел с разделителями
+        function formatNumber(num) {
+            return new Intl.NumberFormat('ru-RU').format(num);
+        }
+
+        // Генерация случайного бюджета
+        function generateRandomBudget() {
+            const minBudget = 200000;
+            const maxBudget = 1200000;
+            const steps = (maxBudget - minBudget) / 50000;
+            const randomStep = Math.floor(Math.random() * (steps + 1));
+            const randomBudget = minBudget + (randomStep * 50000);
+
+            budgetSlider.value = randomBudget;
+            budgetValue.textContent = formatNumber(randomBudget);
+
+            let difficulty = "";
+            let message = "";
+
+            if (randomBudget < 350000) {
+                difficulty = "ЭКСПЕРТ";
+                message = "Случайный бюджет: очень сложный режим! Удачи!";
+            } else if (randomBudget < 500000) {
+                difficulty = "СЛОЖНЫЙ";
+                message = "Случайный бюджет: непростой вызов для строителя!";
+            } else if (randomBudget < 700000) {
+                difficulty = "СРЕДНИЙ";
+                message = "Случайный бюджет: сбалансированный вариант.";
+            } else if (randomBudget < 900000) {
+                difficulty = "ЛЕГКИЙ";
+                message = "Случайный бюджет: хороший бюджет для строительства.";
+            } else {
+                difficulty = "ОЧЕНЬ ЛЕГКИЙ";
+                message = "Случайный бюджет: щедрый бюджет! Можно не экономить.";
+            }
+
+            budgetMessage.innerHTML = `<i class="fas fa-dice"></i> ${message} (Сложность: ${difficulty})`;
+        }
+
+        // Генерация случайного времени
+        function generateRandomTime() {
+            const minTime = 30;
+            const maxTime = 180;
+            const steps = (maxTime - minTime) / 5;
+            const randomStep = Math.floor(Math.random() * (steps + 1));
+            const randomTime = minTime + (randomStep * 5);
+
+            timeSlider.value = randomTime;
+            timeValue.textContent = randomTime;
+
+            let difficulty = "";
+            let message = "";
+
+            if (randomTime < 45) {
+                difficulty = "ЭКСТРИМ";
+                message = "Случайное время: экстремально сжатые сроки! Только быстрые варианты!";
+            } else if (randomTime < 75) {
+                difficulty = "СЛОЖНЫЙ";
+                message = "Случайное время: сжатые сроки! Придется торопиться.";
+            } else if (randomTime < 105) {
+                difficulty = "СРЕДНИЙ";
+                message = "Случайное время: стандартные сроки. Хороший баланс.";
+            } else if (randomTime < 135) {
+                difficulty = "ЛЕГКИЙ";
+                message = "Случайное время: щедрые сроки. Можно не торопиться.";
+            } else {
+                difficulty = "ОЧЕНЬ ЛЕГКИЙ";
+                message = "Случайное время: очень много времени! Можно выбирать самые качественные варианты.";
+            }
+
+            timeMessage.innerHTML = `<i class="fas fa-clock"></i> ${message} (Сложность: ${difficulty})`;
+        }
+
+        // Обновление сообщения о бюджете
+        function updateBudgetMessage(value) {
+            let message = "";
+
+            if (value < 350000) {
+                message = "Очень сложный режим! Придется серьезно экономить.";
+            } else if (value < 500000) {
+                message = "Сложный режим. Потребуется тщательное планирование.";
+            } else if (value < 700000) {
+                message = "Сбалансированный бюджет. Хороший выбор для новичков.";
+            } else if (value < 900000) {
+                message = "Щедрый бюджет. Можно позволить себе качественные материалы.";
+            } else {
+                message = "Очень щедрый бюджет! Строительство будет комфортным.";
+            }
+
+            budgetMessage.innerHTML = `<i class="fas fa-info-circle"></i> ${message}`;
+        }
+
+        // Обновление сообщения о времени
+        function updateTimeMessage(value) {
+            let message = "";
+
+            if (value < 45) {
+                message = "Очень сжатые сроки! Придется выбирать только быстрые варианты.";
+            } else if (value < 75) {
+                message = "Сжатые сроки. Нужно внимательно следить за временем.";
+            } else if (value < 105) {
+                message = "Стандартные сроки. Хороший баланс между качеством и скоростью.";
+            } else if (value < 135) {
+                message = "Щедрые сроки. Можно не торопиться и выбирать качественные варианты.";
+            } else {
+                message = "Очень много времени! Можно выбирать самые качественные и долгие варианты.";
+            }
+
+            timeMessage.innerHTML = `<i class="fas fa-clock"></i> ${message}`;
+        }
+
+        // Начало игры - переход на игровую страницу
+        startBtn.addEventListener('click', function() {
+            // Сохраняем настройки в localStorage
+            localStorage.setItem('budget', budgetSlider.value);
+            localStorage.setItem('time', timeSlider.value);
+            // Переходим на игровую страницу
+            window.location.href = 'game.html';
+        });
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            budgetValue.textContent = formatNumber(budgetSlider.value);
+            timeValue.textContent = timeSlider.value;
+            updateBudgetMessage(parseInt(budgetSlider.value));
+            updateTimeMessage(parseInt(timeSlider.value));
+        });
+    </script>
+</body>
+</html>
