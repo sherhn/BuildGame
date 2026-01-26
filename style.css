@@ -757,7 +757,10 @@ h1 {
 
 .choice-option.selected {
     border-color: var(--step-completed);
-    background-color: rgba(50, 205, 50, 0.2) !important;
+    background: linear-gradient(
+        rgba(50, 205, 50, 0.25),
+        rgba(50, 205, 50, 0.12)
+    ), var(--ui-bg) !important;
     box-shadow: 0 4px 0 rgba(50, 205, 50, 0.4), var(--shadow-heavy);
 }
 
