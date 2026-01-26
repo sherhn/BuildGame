@@ -149,7 +149,7 @@
 
     <div class="game-container">
         <div class="end-screen">
-            <h2 class="end-title" id="end-title">СТРОИТЕЛЬСТВО ЗАВЕРШЕНО!</h2>
+            <h2 class="end-title" id="end-title">Строительство завершено!</h2>
 
             <div class="end-content">
                 <div class="final-house-container" id="final-house">
@@ -181,43 +181,43 @@
 
                     <div class="end-stats">
                         <div class="end-stat">
-                            <div class="end-stat-label">ОСТАТОК БЮДЖЕТА</div>
+                            <div class="end-stat-label">Остаток бюджета</div>
                             <div class="end-stat-value" id="final-money" style="color: var(--success);">0</div>
                         </div>
                         <div class="end-stat">
-                            <div class="end-stat-label">ИТОГОВАЯ ПРОЧНОСТЬ</div>
+                            <div class="end-stat-label">Итоговая прочность</div>
                             <div class="end-stat-value" id="final-strength" style="color: var(--danger);">0</div>
                         </div>
                         <div class="end-stat">
-                            <div class="end-stat-label">ИТОГОВАЯ ДОЛГОВЕЧНОСТЬ</div>
+                            <div class="end-stat-label">Итоговая долговечность</div>
                             <div class="end-stat-value" id="final-durability" style="color: var(--primary);">0</div>
                         </div>
                         <div class="end-stat">
-                            <div class="end-stat-label">ОСТАЛОСЬ ДНЕЙ</div>
+                            <div class="end-stat-label">Осталось дней</div>
                             <div class="end-stat-value" id="final-time" style="color: var(--time-color);">0</div>
                         </div>
                     </div>
 
                     <div class="parameter-rating">
                         <h3 style="color: var(--warning); margin-bottom: 15px; font-size: 1rem; text-align: center;">
-                            ОЦЕНКА ПАРАМЕТРОВ:
+                            Оценка параметров:
                         </h3>
                         <div class="parameter-grid">
                             <div class="parameter-item" style="background-color: rgba(255,69,0,0.15); border: 2px solid rgba(255,69,0,0.4);">
                                 <div style="color: #fff; margin-bottom: 8px; font-size: 0.9rem;">
-                                    <i class="fas fa-shield-alt"></i> ПРОЧНОСТЬ: <span id="final-strength-text">0</span>%
+                                    <i class="fas fa-shield-alt"></i> Прочность: <span id="final-strength-text">0</span>%
                                 </div>
                                 <div style="color: #aaa; font-size: 0.8rem;" id="strength-rating"></div>
                             </div>
                             <div class="parameter-item" style="background-color: rgba(123,104,238,0.15); border: 2px solid rgba(123,104,238,0.4);">
                                 <div style="color: #fff; margin-bottom: 8px; font-size: 0.9rem;">
-                                    <i class="fas fa-hourglass-half"></i> ДОЛГОВЕЧНОСТЬ: <span id="final-durability-text">0</span>%
+                                    <i class="fas fa-hourglass-half"></i> Долговечность: <span id="final-durability-text">0</span>%
                                 </div>
                                 <div style="color: #aaa; font-size: 0.8rem;" id="durability-rating"></div>
                             </div>
                             <div class="parameter-item" style="background-color: rgba(255,165,0,0.15); border: 2px solid rgba(255,165,0,0.4);">
                                 <div style="color: #fff; margin-bottom: 8px; font-size: 0.9rem;">
-                                    <i class="fas fa-clock"></i> СРОКИ: <span id="final-time-text">0</span>%
+                                    <i class="fas fa-clock"></i> Сроки: <span id="final-time-text">0</span>%
                                 </div>
                                 <div style="color: #aaa; font-size: 0.8rem;" id="time-rating"></div>
                             </div>
@@ -227,7 +227,7 @@
             </div>
 
             <button class="game-button" id="play-again-btn" style="margin-top: 30px;">
-                ИГРАТЬ СНОВА
+                Играть снова
             </button>
         </div>
     </div>
@@ -260,7 +260,7 @@
             const strength = localStorage.getItem('finalStrength') || 0;
             const durability = localStorage.getItem('finalDurability') || 0;
             const time = localStorage.getItem('finalTime') || 0;
-            const title = localStorage.getItem('finalTitle') || "СТРОИТЕЛЬСТВО ЗАВЕРШЕНО!";
+            const title = localStorage.getItem('finalTitle') || "Строительство завершено!";
             const result = localStorage.getItem('finalResult') || "Результаты не найдены.";
             const maxTime = localStorage.getItem('maxTime') || 90;
 
@@ -317,7 +317,7 @@
             timeRating.textContent = timeRatingText;
 
             // Визуальные эффекты для дома
-            if (title.includes("БАНКРОТСТВО") || title.includes("ОБРУШЕНИЕ") || title.includes("РАЗРУШЕНИЕ") || title.includes("ПРОСРОЧКА")) {
+            if (title.includes("Банкротство") || title.includes("Обрушение") || title.includes("Разрушение") || title.includes("Просрочка")) {
                 finalHouse.style.opacity = "0.5";
                 finalHouse.style.filter = "grayscale(100%)";
             } else if (strengthPercent < 50 || durabilityPercent < 50 || timePercent < 0) {

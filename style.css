@@ -271,17 +271,17 @@ header::before {
 }
 
 h1 {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     color: var(--warning);
     text-shadow:
         3px 3px 0 #000,
         6px 6px 0 rgba(0, 0, 0, 0.4);
     margin-bottom: 12px;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 
 .subtitle {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #ddd;
     text-shadow: 2px 2px 0 #000;
     max-width: 90%;
@@ -371,7 +371,7 @@ h1 {
 }
 
 .hud-label {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     color: #aaa;
     margin-bottom: 10px;
     text-transform: uppercase;
@@ -379,7 +379,7 @@ h1 {
 }
 
 .hud-value {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: #fff;
     text-shadow: 2px 2px 0 #000;
     text-align: center;
@@ -532,7 +532,7 @@ h1 {
 }
 
 .step-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--warning);
     margin-bottom: 12px;
     text-shadow: 2px 2px 0 #000;
@@ -762,7 +762,7 @@ h1 {
 }
 
 .choice-title {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     color: #fff;
     margin-bottom: 12px;
     display: flex;
@@ -840,7 +840,7 @@ h1 {
 }
 
 .fact-modal-title {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: var(--warning);
     text-shadow: 2px 2px 0 #000;
     display: flex;
@@ -851,7 +851,7 @@ h1 {
 }
 
 .fact-modal-subtitle {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: #aaa;
     text-transform: uppercase;
 }
@@ -985,7 +985,7 @@ h1 {
     }
 
     h1 {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
 
     .steps-tracker {
@@ -1003,7 +1003,7 @@ h1 {
     }
 
     .fact-modal-title {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     .fact-text {
@@ -1013,15 +1013,15 @@ h1 {
 
 @media (max-width: 480px) {
     h1 {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 
     .subtitle {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
 
     .hud-value {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 
     .terraria-house, .final-house-container {

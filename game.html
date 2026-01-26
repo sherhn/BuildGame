@@ -136,36 +136,36 @@
     <div class="game-container">
         <div id="game-screen">
             <header>
-                <h1>СТРОЙКА МЕЧТЫ</h1>
-                <p class="subtitle">ЭТАП ЗА ЭТАПОМ СОЗДАВАЙТЕ СВОЙ ДОМ</p>
+                <h1>Стройка мечты</h1>
+                <p class="subtitle">Этап за этапом создавайте свой дом</p>
             </header>
 
             <div id="bonus-container"></div>
 
             <div class="game-hud">
                 <div class="hud-item money">
-                    <div class="hud-label">БЮДЖЕТ</div>
+                    <div class="hud-label">Бюджет</div>
                     <div class="hud-value" id="money-value">0</div>
                     <div class="hud-bar">
                         <div class="hud-bar-fill" id="money-bar"></div>
                     </div>
                 </div>
                 <div class="hud-item strength">
-                    <div class="hud-label">ПРОЧНОСТЬ</div>
+                    <div class="hud-label">Прочность</div>
                     <div class="hud-value" id="strength-value">0</div>
                     <div class="hud-bar">
                         <div class="hud-bar-fill" id="strength-bar"></div>
                     </div>
                 </div>
                 <div class="hud-item durability">
-                    <div class="hud-label">ДОЛГОВЕЧНОСТЬ</div>
+                    <div class="hud-label">Долговечность</div>
                     <div class="hud-value" id="durability-value">0</div>
                     <div class="hud-bar">
                         <div class="hud-bar-fill" id="durability-bar"></div>
                     </div>
                 </div>
                 <div class="hud-item time">
-                    <div class="hud-label">ОСТАЛОСЬ ДНЕЙ</div>
+                    <div class="hud-label">Осталось дней</div>
                     <div class="hud-value" id="time-value-hud">0</div>
                     <div class="hud-bar">
                         <div class="hud-bar-fill" id="time-bar"></div>
@@ -180,7 +180,7 @@
                 <div class="construction-area">
                     <div class="step-info">
                         <div class="step-title" id="step-title">
-                            <i class="fas fa-hammer"></i> ФУНДАМЕНТ
+                            <i class="fas fa-hammer"></i> Фундамент
                         </div>
                         <div class="step-description" id="step-description">
                             Выберите тип фундамента для вашего дома. От этого выбора зависит прочность всей конструкции, стоимость и время строительства.
@@ -214,7 +214,7 @@
                         Начните строительство, выбрав вариант справа
                     </div>
                     <div class="step-counter">
-                        ЭТАП: <span id="current-step">1</span> ИЗ <span id="total-steps">8</span>
+                        Этап: <span id="current-step">1</span> из <span id="total-steps">8</span>
                     </div>
                 </div>
 
@@ -223,7 +223,7 @@
 
             <div class="game-controls">
                 <button class="game-button" id="restart-btn">
-                    <i class="fas fa-redo"></i> НАЧАТЬ ЗАНОВО
+                    <i class="fas fa-redo"></i> Начать заново
                 </button>
             </div>
         </div>
@@ -235,9 +235,9 @@
             <div class="fact-modal-header">
                 <div class="fact-modal-title">
                     <i class="fas fa-lightbulb"></i>
-                    <span id="fact-modal-title-text">ИНТЕРЕСНЫЙ ФАКТ</span>
+                    <span id="fact-modal-title-text">Интересный факт</span>
                 </div>
-                <div class="fact-modal-subtitle">УЗНАЙТЕ ЧТО-ТО НОВОЕ О СТРОИТЕЛЬСТВЕ!</div>
+                <div class="fact-modal-subtitle">Узнайте что-то новое о строительстве!</div>
             </div>
             <div class="fact-content">
                 <div class="fact-text" id="fact-text">
@@ -249,7 +249,7 @@
             </div>
             <div class="fact-modal-actions">
                 <button class="fact-close-btn" id="fact-close-btn">
-                    <i class="fas fa-check-circle"></i> КРУТО! ПРОДОЛЖИТЬ
+                    <i class="fas fa-check-circle"></i> Круто! Продолжить
                 </button>
             </div>
         </div>
@@ -315,14 +315,14 @@
             ],
             gameSteps: [
                 {
-                    title: "ФУНДАМЕНТ",
+                    title: "Фундамент",
                     description: "Выберите тип фундамента для вашего дома. От этого выбора зависит прочность всей конструкции, стоимость и время строительства.",
                     housePart: "foundation",
                     statusText: "Заливаем фундамент...",
                     icon: "fas fa-hammer",
                     options: [
                         {
-                            title: "ЛЕНТОЧНЫЙ ФУНДАМЕНТ",
+                            title: "Ленточный фундамент",
                             description: "Классический надежный вариант, подходит для большинства грунтов.",
                             icon: "fas fa-layer-group",
                             money: -100000,
@@ -332,7 +332,7 @@
                             bonusChance: 0.1
                         },
                         {
-                            title: "ПЛИТНЫЙ ФУНДАМЕНТ",
+                            title: "Плитный фундамент",
                             description: "Дорогой, но самый прочный вариант, обеспечивает равномерную нагрузку.",
                             icon: "fas fa-square",
                             money: -150000,
@@ -342,7 +342,7 @@
                             bonusChance: 0.05
                         },
                         {
-                            title: "СВАЙНЫЙ ФУНДАМЕНТ",
+                            title: "Свайный фундамент",
                             description: "Экономичный вариант для сложных грунтов, но менее долговечный.",
                             icon: "fas fa-ankh",
                             money: -70000,
@@ -354,14 +354,14 @@
                     ]
                 },
                 {
-                    title: "СТЕНЫ",
+                    title: "Стены",
                     description: "Из какого материала будут стены вашего дома? Это важное решение, влияющее на теплоизоляцию, стоимость и сроки строительства.",
                     housePart: "walls",
                     statusText: "Возводим стены...",
                     icon: "fas fa-wall",
                     options: [
                         {
-                            title: "КИРПИЧНЫЕ СТЕНЫ",
+                            title: "Кирпичные стены",
                             description: "Долговечные и прочные, но дорогие и требуют времени на возведение.",
                             icon: "fas fa-cube",
                             money: -180000,
@@ -371,7 +371,7 @@
                             bonusChance: 0.08
                         },
                         {
-                            title: "ГАЗОБЕТОННЫЕ БЛОКИ",
+                            title: "Газобетонные блоки",
                             description: "Хорошая теплоизоляция и скорость строительства, средняя цена.",
                             icon: "fas fa-th-large",
                             money: -120000,
@@ -381,7 +381,7 @@
                             bonusChance: 0.1
                         },
                         {
-                            title: "ДЕРЕВЯННЫЙ БРУС",
+                            title: "Деревянный брус",
                             description: "Экологично и быстро, но требует ухода и менее долговечно.",
                             icon: "fas fa-tree",
                             money: -90000,
@@ -393,14 +393,14 @@
                     ]
                 },
                 {
-                    title: "КРОВЛЯ",
+                    title: "Кровля",
                     description: "Выбор кровли влияет на защиту дома от осадков, общий вид и сроки монтажа.",
                     housePart: "roof",
                     statusText: "Устанавливаем крышу...",
                     icon: "fas fa-home",
                     options: [
                         {
-                            title: "МЕТАЛЛОЧЕРЕПИЦА",
+                            title: "Металлочерепица",
                             description: "Прочная, долговечная и относительно недорогая, быстрый монтаж.",
                             icon: "fas fa-hard-hat",
                             money: -90000,
@@ -410,7 +410,7 @@
                             bonusChance: 0.1
                         },
                         {
-                            title: "ГИБКАЯ ЧЕРЕПИЦА",
+                            title: "Гибкая черепица",
                             description: "Отличная гидроизоляция, эстетичный вид, но требует больше времени на укладку.",
                             icon: "fas fa-palette",
                             money: -120000,
@@ -420,7 +420,7 @@
                             bonusChance: 0.07
                         },
                         {
-                            title: "ШИФЕР",
+                            title: "Шифер",
                             description: "Самый бюджетный вариант, быстрый монтаж, но тяжелый и хрупкий.",
                             icon: "fas fa-sliders-h",
                             money: -50000,
@@ -432,15 +432,15 @@
                     ]
                 },
                 {
-                    title: "ОКНА",
+                    title: "Окна",
                     description: "Окна важны для теплоизоляции, естественного освещения, внешнего вида дома и сроков установки.",
                     housePart: "window",
                     statusText: "Устанавливаем окна...",
                     icon: "fas fa-window-maximize",
                     options: [
                         {
-                            title: "ДЕРЕВЯННЫЕ ОКНА",
-                            description: "Экологичные, классический вид, но требуют больше времени на изготовление и установку.",
+                            title: "Деревянные окна",
+                            description: "Экологичные, классический вид, но требует больше времени на изготовление и установку.",
                             icon: "fas fa-door-open",
                             money: -80000,
                             strength: 8,
@@ -449,7 +449,7 @@
                             bonusChance: 0.1
                         },
                         {
-                            title: "ПЛАСТИКОВЫЕ ОКНА",
+                            title: "Пластиковые окна",
                             description: "Хорошая теплоизоляция, не требуют ухода, быстрая установка.",
                             icon: "fas fa-square",
                             money: -60000,
@@ -459,7 +459,7 @@
                             bonusChance: 0.12
                         },
                         {
-                            title: "АЛЮМИНИЕВЫЕ ОКНА",
+                            title: "Алюминиевые окна",
                             description: "Современный вид, прочные, но требуют времени на точную установку.",
                             icon: "fas fa-border-style",
                             money: -100000,
@@ -471,14 +471,14 @@
                     ]
                 },
                 {
-                    title: "ДВЕРИ",
+                    title: "Двери",
                     description: "Главный вход в ваш дом должен быть надежным, эстетичным и устанавливаться в срок.",
                     housePart: "door",
                     statusText: "Устанавливаем входную дверь...",
                     icon: "fas fa-door-closed",
                     options: [
                         {
-                            title: "ДЕРЕВЯННАЯ ДВЕРЬ",
+                            title: "Деревянная дверь",
                             description: "Традиционный вариант, хорошо сохраняет тепло, требует времени на подгонку.",
                             icon: "fas fa-door-closed",
                             money: -50000,
@@ -488,7 +488,7 @@
                             bonusChance: 0.1
                         },
                         {
-                            title: "МЕТАЛЛИЧЕСКАЯ ДВЕРЬ",
+                            title: "Металлическая дверь",
                             description: "Повышенная безопасность, прочность, быстрая установка.",
                             icon: "fas fa-shield-alt",
                             money: -90000,
@@ -498,7 +498,7 @@
                             bonusChance: 0.07
                         },
                         {
-                            title: "СТЕКЛЯННАЯ ДВЕРЬ",
+                            title: "Стеклянная дверь",
                             description: "Современный вид, много света, требует аккуратной установки.",
                             icon: "fas fa-glass-whiskey",
                             money: -70000,
@@ -510,14 +510,14 @@
                     ]
                 },
                 {
-                    title: "ОТДЕЛКА ФАСАДА",
+                    title: "Отделка фасада",
                     description: "Внешний вид дома и его защита от воздействия окружающей среды. Влияет на сроки завершения работ.",
                     housePart: "facade",
                     statusText: "Отделываем фасад...",
                     icon: "fas fa-paint-roller",
                     options: [
                         {
-                            title: "ШТУКАТУРКА",
+                            title: "Штукатурка",
                             description: "Классический вариант, многообразие цветов и фактур, требует времени на просушку.",
                             icon: "fas fa-paint-roller",
                             money: -60000,
@@ -527,7 +527,7 @@
                             bonusChance: 0.1
                         },
                         {
-                            title: "ОБЛИЦОВОЧНЫЙ КИРПИЧ",
+                            title: "Облицовочный кирпич",
                             description: "Долговечно и престижно, но значительно дольше по времени укладки.",
                             icon: "fas fa-gem",
                             money: -120000,
@@ -537,7 +537,7 @@
                             bonusChance: 0.05
                         },
                         {
-                            title: "ВЕНТИЛИРУЕМЫЙ ФАСАД",
+                            title: "Вентилируемый фасад",
                             description: "Современное решение с хорошей теплоизоляцией, относительно быстрый монтаж.",
                             icon: "fas fa-wind",
                             money: -90000,
@@ -549,14 +549,14 @@
                     ]
                 },
                 {
-                    title: "КОММУНИКАЦИИ",
+                    title: "Коммуникации",
                     description: "Прокладка коммуникаций (электричество, водопровод, канализация) - важный этап, влияющий на комфорт и сроки сдачи дома.",
                     housePart: "",
                     statusText: "Прокладываем коммуникации...",
                     icon: "fas fa-wrench",
                     options: [
                         {
-                            title: "СТАНДАРТНЫЕ КОММУНИКАЦИИ",
+                            title: "Стандартные коммуникации",
                             description: "Надежная разводка по стандартам, проверенные материалы, средние сроки.",
                             icon: "fas fa-bolt",
                             money: -80000,
@@ -566,7 +566,7 @@
                             bonusChance: 0.1
                         },
                         {
-                            title: "СОВРЕМЕННЫЕ КОММУНИКАЦИИ",
+                            title: "Современные коммуникации",
                             description: "Интеллектуальные системы, энергоэффективные решения, требует больше времени на монтаж.",
                             icon: "fas fa-tint",
                             money: -120000,
@@ -576,7 +576,7 @@
                             bonusChance: 0.07
                         },
                         {
-                            title: "ЭКОНОМНЫЕ КОММУНИКАЦИИ",
+                            title: "Экономные коммуникации",
                             description: "Базовые решения, минимальные требования, быстрый монтаж.",
                             icon: "fas fa-plug",
                             money: -50000,
@@ -588,14 +588,14 @@
                     ]
                 },
                 {
-                    title: "БЛАГОУСТРОЙСТВО",
+                    title: "Благоустройство",
                     description: "Завершающий этап - создание уюта вокруг вашего дома. Время зависит от сложности работ.",
                     housePart: "fence",
                     statusText: "Устанавливаем забор и высаживаем деревья...",
                     icon: "fas fa-tree",
                     options: [
                         {
-                            title: "МИНИМАЛЬНОЕ БЛАГОУСТРОЙСТВО",
+                            title: "Минимальное благоустройство",
                             description: "Газон, дорожки к входу, базовое озеленение. Быстро и недорого.",
                             icon: "fas fa-seedling",
                             money: -50000,
@@ -605,7 +605,7 @@
                             bonusChance: 0.12
                         },
                         {
-                            title: "СТАНДАРТНЫЙ ДВОР",
+                            title: "Стандартный двор",
                             description: "Зона отдыха, цветники, ограждение. Средние сроки и стоимость.",
                             icon: "fas fa-tree",
                             money: -100000,
@@ -615,7 +615,7 @@
                             bonusChance: 0.08
                         },
                         {
-                            title: "ЛАНДШАФТНЫЙ ДИЗАЙН",
+                            title: "Ландшафтный дизайн",
                             description: "Профессиональное планирование, сложные элементы. Дорого и требует времени.",
                             icon: "fas fa-spa",
                             money: -180000,
@@ -914,10 +914,10 @@
                     </div>
                     <div class="choice-description">${option.description}</div>
                     <div class="choice-stats">
-                        <div>БЮДЖЕТ: <span class="stat-change ${moneyClass}">${option.money >= 0 ? '+' : ''}${formatNumber(option.money)}₽</span></div>
-                        <div>ПРОЧНОСТЬ: <span class="stat-change ${strengthClass}">${option.strength >= 0 ? '+' : ''}${option.strength}</span></div>
-                        <div>ДОЛГОВЕЧНОСТЬ: <span class="stat-change ${durabilityClass}">${option.durability >= 0 ? '+' : ''}${option.durability}</span></div>
-                        <div>ВРЕМЯ: <span class="stat-change time-change">${option.time} дн.</span></div>
+                        <div>Бюджет: <span class="stat-change ${moneyClass}">${option.money >= 0 ? '+' : ''}${formatNumber(option.money)}₽</span></div>
+                        <div>Прочность: <span class="stat-change ${strengthClass}">${option.strength >= 0 ? '+' : ''}${option.strength}</span></div>
+                        <div>Долговечность: <span class="stat-change ${durabilityClass}">${option.durability >= 0 ? '+' : ''}${option.durability}</span></div>
+                        <div>Время: <span class="stat-change time-change">${option.time} дн.</span></div>
                     </div>
                 `;
 
@@ -1012,28 +1012,28 @@
                 // Проверка условий поражения
                 if (gameData.money < 0) {
                     setTimeout(() => {
-                        endGame("БАНКРОТСТВО", "К сожалению, вы исчерпали бюджет до завершения строительства. Дом остался недостроенным.");
+                        endGame("Банкротство", "К сожалению, вы исчерпали бюджет до завершения строительства. Дом остался недостроенным.");
                     }, 500);
                     return;
                 }
 
                 if (gameData.strength <= 0) {
                     setTimeout(() => {
-                        endGame("ОБРУШЕНИЕ", "Прочность конструкции оказалась недостаточной. Дом не выдержал нагрузок и разрушился.");
+                        endGame("Обрушение", "Прочность конструкции оказалась недостаточной. Дом не выдержал нагрузок и разрушился.");
                     }, 500);
                     return;
                 }
 
                 if (gameData.durability <= 0) {
                     setTimeout(() => {
-                        endGame("РАЗРУШЕНИЕ", "Долговечность материалов оказалась слишком низкой. Дом быстро пришел в негодность.");
+                        endGame("Разрушение", "Долговечность материалов оказалась слишком низкой. Дом быстро пришел в негодность.");
                     }, 500);
                     return;
                 }
 
                 if (gameData.time < 0) {
                     setTimeout(() => {
-                        endGame("ПРОСРОЧКА", "Вы не уложились в сроки строительства. Заказчик подает в суд!");
+                        endGame("Просрочка", "Вы не уложились в сроки строительства. Заказчик подает в суд!");
                     }, 500);
                     return;
                 }
@@ -1068,13 +1068,13 @@
             // Назначаем обработчик закрытия модального окна
             factCloseBtn.onclick = function() {
                 hideFactModal();
-                setTimeout(continueAfterFact, 300);
+                setTimeout(continueAfterFact, 100);
             };
         }
 
         // Оценка финального результата
         function evaluateFinalResult() {
-            let title = "СТРОИТЕЛЬСТВО ЗАВЕРШЕНО!";
+            let title = "Строительство завершено!";
             let result = "";
 
             if (gameData.strength >= 50 && gameData.durability >= 50 && gameData.time >= 0) {
@@ -1085,7 +1085,7 @@
                 }
             } else {
                 result = "Дом построен, но с недостатками. Прочность, долговечность или сроки ниже минимальных требований.";
-                title = "ДОМ ПОСТРОЕН С НЕДОСТАТКАМИ";
+                title = "Дом построен с недостатками";
             }
 
             endGame(title, result);
