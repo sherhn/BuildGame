@@ -97,7 +97,7 @@
   const stars={built:true,tough:!broken.length,pretty:pretty>=PRETTY_GOAL};
   const levels=strong.map(k=>s.picks[k]);
   const title=levels.every(i=>i===0)?'straw':broken.length?'wobbly':levels.every(i=>i===2)?'fortress':!stars.pretty?'sturdy':pretty>=PRETTY_GOAL+1?'palace':'perfect';
-  const tip=broken.length?'Совет: красные значки — это то, чего боится материал. Выбирай карточки без красных значков.':!stars.pretty?'Совет: бери самое дешёвое, что не боится прогноза, — на красоту останется больше монет.':'';
+  const tip=broken.length?'Совет: выбирай карточки без красных значков.':!stars.pretty?'Совет: бери дешёвое, что не боится прогноза: на красоту останется больше монет.':'';
   return{trials:list,broken,beauty:pretty,stars,starCount:Object.values(stars).filter(Boolean).length,title,tip};
  }
  const stageById=id=>stages.find(st=>st.id===id);

@@ -172,7 +172,7 @@ test('stars: built always, tough if nothing broke, pretty from 6 points of decor
   assert.match(plain.tip, /дешёвое|красот/);
   const weak = G.result(play([1, 1, 1, 2, 2, 1], f));
   assert.equal(weak.stars.tough, false); assert.equal(weak.stars.pretty, true);
-  assert.match(weak.tip, /красные значки/);
+  assert.match(weak.tip, /без красных значков/);
 });
 
 test('a result needs a finished house', () => {
