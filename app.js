@@ -58,41 +58,53 @@ function card(o,i,k){
  return `<button class="card ${ok?'':'off'}" data-act="card" data-i="${i}" aria-pressed="false" aria-label="${label}"><span class="ico">${o.icon}</span><b>${o.name}</b><span class="fears">${chips}</span><span class="cost" aria-hidden="true">${'🪙'.repeat(i+1)}</span></button>`;
 }
 
-function panel(){
+// What the foreman says (under the scene) and what the player does (the panel) are drawn separately,
+// so the layout can put them side by side, stacked or in one column depending on the screen.
+const heading=(small,name)=>`<h2 class="stage-head"><small>${small}</small>${name}</h2>`;
+const tracker=()=>`<div class="hz-list">${run.list.map((t,i)=>{
+ const z=G.hazards[t.hazard],over=i<run.i||(i===run.i&&run.stage==='after'),st=over?(t.passed?'ok':'bad'):i===run.i?'now':'wait';
+ const note={ok:'Выдержал!',bad:t.already?'Ломать уже нечего':'Не выдержал',now:'Идёт испытание…',wait:'Ждёт своей очереди'}[st];
+ return `<div class="hz ${st}"><span class="hz-ico" aria-hidden="true">${z.icon}</span><div><b>${i+1}. ${z.name}</b><small>${note}</small></div><span class="state" aria-hidden="true">${{ok:'✅',bad:'💥',now:'⚡',wait:'⏳'}[st]}</span></div>`;
+}).join('')}</div>`;
+
+function talk(){
  const k=stageNo(),st=G.stages[k];
- const head=`<p class="stage-name">Этап ${k+1} из ${G.stages.length} · ${st.name}</p>`;
- if(phase==='start')return `${bubble('Привет! Я прораб Макс. Построим твой дом мечты?')}
-  <p class="label">Выбери любимый цвет</p>
+ if(phase==='start')return bubble('Привет! Я прораб Макс. Построим твой дом мечты?')+titlesRow();
+ if(phase==='brief')return bubble(`Внимание! На стройку придут ${G.TRIALS} испытания, а главный — ураган: он будет последним.`);
+ if(phase==='choose')return bubble(st.ask+(k===0?` У нас ${G.BUDGET} монет на весь дом!`:''))+forecastBar();
+ if(phase==='build')return bubble('Стучи молотком — или прямо по дому!');
+ if(phase==='built')return bubble(G.finished(game)?'Дом построен! Теперь его проверят испытания.':'Отлично! Идём дальше?');
+ if(phase==='trials')return bubble(run.text);
+ return '';
+}
+
+function panel(){
+ const k=stageNo(),st=G.stages[k],head=heading(`Этап ${k+1} из ${G.stages.length}`,st.name);
+ if(phase==='start')return `${heading('Юный строитель','Построй дом мечты')}<p class="label">Выбери любимый цвет</p>
   <div class="swatches">${S.colors.map(c=>`<button class="swatch" data-act="color" data-id="${c.id}" style="--c:${c.hex}" aria-label="${c.name}" aria-pressed="${save.color===c.id}"></button>`).join('')}</div>
-  <button class="big go" data-act="go">Строить! 🔨</button>${titlesRow()}`;
- if(phase==='brief')return `${bubble(`Внимание! На стройку придут ${G.TRIALS} испытания, а главный — ураган: он будет последним.`)}
-  <div class="hz-list">${game.forecast.map((h,i)=>`<div class="hz ${h===G.FINALE?'finale':''}"><span class="hz-ico" aria-hidden="true">${G.hazards[h].icon}</span><div><b>${i+1}. ${G.hazards[h].name}${h===G.FINALE?' — финал':''}</b><small>Проверит: ${lower(G.targets(h).join(', '))}</small></div></div>`).join('')}</div>
+  <button class="big go" data-act="go">Строить! 🔨</button>`;
+ if(phase==='brief')return `${heading('Прогноз',`${G.TRIALS} испытания`)}<div class="hz-list">${game.forecast.map((h,i)=>`<div class="hz ${h===G.FINALE?'finale':''}"><span class="hz-ico" aria-hidden="true">${G.hazards[h].icon}</span><div><b>${i+1}. ${G.hazards[h].name}${h===G.FINALE?' — финал':''}</b><small>Проверит: ${lower(G.targets(h).join(', '))}</small></div></div>`).join('')}</div>
   <p class="tip">На карточках красным горит то, чего боится материал из этого списка.</p>
   <button class="big go" data-act="brief">Понятно, строим! 🔨</button>`;
- if(phase==='choose')return `${head}${bubble(st.ask+(k===0?` У нас ${G.BUDGET} монет на весь дом!`:''))}${forecastBar()}
-  <div class="tag ${st.kind}">${st.kind==='strong'?'💪 Для прочности — без красных значков!':'✨ Для красоты: дороже — красивее'}</div>
+ if(phase==='choose')return `<div class="panel-head">${head}<div class="tag ${st.kind}">${st.kind==='strong'?'💪 Без красных значков!':'✨ Дороже — красивее'}</div></div>
   <div class="cards">${st.options.map((o,i)=>card(o,i,k)).join('')}</div>
   <button class="big go" id="ok" data-act="ok" disabled>Выбери вариант</button>`;
- if(phase==='build')return `${head}${bubble('Стучи молотком — или прямо по дому!')}
+ if(phase==='build')return `${head}
   <div class="bricks" id="bricks">${'<i></i>'.repeat(G.taps(sel))}</div>
   <button class="big hammer" data-act="hit"><span>🔨</span> Стучи!</button>`;
  if(phase==='built'){
   const last=G.finished(game),done=game.picks.length-1,o=G.stages[done].options[game.picks[done]];
-  return `<p class="stage-name">${G.stages[done].name} готов!</p>${bubble(last?'Дом построен! Теперь его проверят испытания.':'Отлично! Идём дальше?')}
+  return `${heading('Готово!',G.stages[done].name)}
   <div class="fact"><b>${o.icon} ${o.name}</b><p>💡 ${o.fact}</p></div>
   <button class="big go" data-act="next">${last?'Начать испытания! ⚠️':'Дальше →'}</button>`;
  }
- if(phase==='trials')return `${bubble(run.text)}${forecastBar(i=>{const t=run.list[i];return i<run.i||(i===run.i&&run.stage==='after')?(t.passed?'ok':'bad'):i===run.i?'now':'';})}
-  <button class="link" data-act="skip">Пропустить ⏩</button>`;
- const r=G.result(game),t=G.titles[r.title],stars=[['Дом построен',r.stars.built],['Выдержал испытания',r.stars.tough],['Красивый дом',r.stars.pretty]];
- return `<div class="result ${r.stars.tough?'good':'bad'}">
-  <div class="title-card"><span class="big-ico">${t.icon}</span><div><small>Твой дом —</small><h2>${t.name}</h2></div></div>
-  ${fresh?'<div class="new">🎉 Новое звание!</div>':''}
-  <p class="lead">${t.text}</p>
-  <div class="rows">${r.trials.map(x=>`<div class="row ${x.passed?'':'bad'}"><span>${G.hazards[x.hazard].icon}</span><div><b>${G.hazards[x.hazard].name}:</b> ${x.passed?'выдержал ✅':x.already?'ломать уже нечего.':x.fails.map(f=>f.text).join(' ')}</div></div>`).join('')}</div>
+ if(phase==='trials')return `${tracker()}<button class="link" data-act="skip">Пропустить ⏩</button>`;
+ const r=G.result(game),t=G.titles[r.title],stars=[['Дом построен',r.stars.built],['Всё выдержал',r.stars.tough],['Красивый дом',r.stars.pretty]];
+ return `<div class="title-card ${r.stars.tough?'good':'bad'}"><span class="big-ico">${t.icon}</span><div><small>Твой дом —</small><h2>${t.name}</h2><p class="lead">${t.text}</p></div>${fresh?'<span class="new">🎉 Новое!</span>':''}</div>
   <div class="stars">${stars.map(([l,ok])=>`<div class="star ${ok?'on':''}"><span>${ok?'⭐':'☆'}</span>${l}</div>`).join('')}</div>
+  <div class="rows">${r.trials.map(x=>`<div class="row ${x.passed?'':'bad'}"><span>${G.hazards[x.hazard].icon}</span><div>${x.passed?`<b>${G.hazards[x.hazard].name}:</b> выдержал ✅`:x.already?`<b>${G.hazards[x.hazard].name}:</b> ломать уже нечего.`:x.fails.map(f=>f.text).join(' ')}</div></div>`).join('')}</div>
   ${r.tip?`<p class="tip">${r.tip}</p>`:''}
-  <button class="big go" data-act="again">Построить ещё! 🔨</button>${titlesRow()}</div>`;
+  <button class="big go" data-act="again">Построить ещё! 🔨</button>${titlesRow()}`;
 }
 
 function sceneOptions(){
@@ -119,7 +131,8 @@ function drawHud(){
 }
 function draw(){
  const p=document.getElementById('panel');
- p.innerHTML=panel();p.className='panel '+phase;
+ document.getElementById('talk').innerHTML=talk();
+ p.innerHTML=panel();p.className='panel '+phase;app.dataset.phase=phase;
  drawScene();drawHud();
  p.querySelector('.go:not(:disabled),.hammer')?.focus({preventScroll:true});
 }
@@ -224,6 +237,7 @@ app.innerHTML=`<header class="hud">
 </header>
 <main class="stage">
  <section class="scene" id="scene" aria-label="Твой дом"><div class="world">${S.backdrop()}<div id="house"></div></div><div id="fx" aria-hidden="true"></div></section>
+ <section class="talk" id="talk"></section>
  <section class="panel" id="panel"></section>
 </main>`;
 app.addEventListener('click',e=>{
