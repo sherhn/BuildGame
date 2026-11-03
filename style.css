@@ -1,924 +1,291 @@
-/* Общие стили для всех страниц - ОБЛЕГЧЕННАЯ ВЕРСИЯ */
-:root {
-    --primary: #7B68EE;
-    --primary-dark: #5D4EC2;
-    --success: #32CD32;
-    --danger: #FF4500;
-    --warning: #FFD700;
-    --earth: #8B4513;
-    --grass: #228B22;
-    --sky-day: #87CEEB;
-    --cloud: #F0F8FF;
-    --stone: #808080;
-    --wood: #8B4513;
-    --brick: #B22222;
-    --dark-bg: #1a1a2e;
-    --ui-bg: rgba(30, 30, 46, 0.95);
-    --ui-border: #483D8B;
-    --time-color: #FFA500;
-    --step-current: #FFD700;
-    --step-completed: #32CD32;
-    --step-incomplete: #7B68EE;
-    --step-future: #5D4EC2;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Press Start 2P', cursive;
-    image-rendering: pixelated;
-}
-
-body {
-    background-color: var(--dark-bg);
-    color: #fff;
-    min-height: 100vh;
-    overflow-x: hidden;
-    position: relative;
-    font-size: 14px;
-}
-
-/* Фон в стиле Terraria - упрощенный */
-.terraria-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
-
-.sky-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 45%;
-    background: linear-gradient(to bottom,
-        #1a3c78 0%,
-        #4a90e2 50%,
-        #87CEEB 100%);
-    z-index: 1;
-}
-
-.sun {
-    position: absolute;
-    top: 10%;
-    right: 15%;
-    width: 50px;
-    height: 50px;
-    background: #FFD700;
-    border-radius: 50%;
-    box-shadow: 0 0 20px #FFA500;
-    z-index: 2;
-}
-
-.mountain-range {
-    position: absolute;
-    bottom: 40%;
-    left: 0;
-    width: 100%;
-    height: 20%;
-    z-index: 3;
-}
-
-.mountain {
-    position: absolute;
-    bottom: 0;
-    background: #2c3e50;
-    border: 1px solid #1c2833;
-}
-
-.mountain-1 {
-    left: 5%;
-    width: 18%;
-    height: 100%;
-    clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
-}
-
-.mountain-2 {
-    left: 25%;
-    width: 22%;
-    height: 80%;
-    clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
-}
-
-.mountain-3 {
-    left: 55%;
-    width: 20%;
-    height: 90%;
-    clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
-}
-
-.mountain-4 {
-    left: 75%;
-    width: 18%;
-    height: 75%;
-    clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
-}
-
-.detailed-ground {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 55%;
-    background: var(--earth);
-    z-index: 4;
-}
-
-.bg-tree {
-    position: absolute;
-    bottom: 55%;
-    z-index: 3;
-}
-
-.bg-tree-1 {
-    left: 10%;
-    width: 30px;
-    height: 80px;
-}
-
-.bg-tree-2 {
-    left: 35%;
-    width: 40px;
-    height: 100px;
-}
-
-.bg-tree-3 {
-    left: 70%;
-    width: 35px;
-    height: 90px;
-}
-
-.bg-tree-trunk {
-    position: absolute;
-    bottom: 0;
-    width: 8px;
-    height: 40px;
-    background-color: #8B4513;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.bg-tree-crown {
-    position: absolute;
-    bottom: 40px;
-    left: 0;
-    width: 100%;
-    height: 50px;
-    background-color: #228B22;
-    border-radius: 50%;
-}
-
-.pixel-cloud {
-    position: absolute;
-    background-color: var(--cloud);
-    border-radius: 6px;
-    z-index: 2;
-    animation: floatCloud 80s infinite linear;
-}
-
-.cloud-1 { top: 15%; left: -100px; width: 100px; height: 35px; animation-delay: 0s; }
-.cloud-2 { top: 25%; left: -150px; width: 140px; height: 45px; animation-delay: 20s; }
-
-@keyframes floatCloud {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(100vw + 300px)); }
-}
-
-.pixel-grid {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-    background-size: 20px 20px;
-    z-index: 5;
-    pointer-events: none;
-}
-
-/* Общие элементы интерфейса */
-header {
-    text-align: center;
-    padding: 25px;
-    margin-bottom: 25px;
-    background-color: var(--ui-bg);
-    border: 4px solid var(--ui-border);
-    border-radius: 10px;
-    width: 100%;
-}
-
-h1 {
-    font-size: 2rem;
-    color: var(--warning);
-    text-shadow: 2px 2px 0 #000;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
-}
-
-.subtitle {
-    font-size: 0.9rem;
-    color: #ddd;
-    max-width: 90%;
-    margin: 0 auto;
-    line-height: 1.5;
-}
-
-/* Кнопки */
-.game-button {
-    background-color: var(--primary);
-    border: 3px solid var(--primary-dark);
-    color: #fff;
-    padding: 15px 30px;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 8px;
-    margin-top: 10px;
-    display: inline-block;
-}
-
-.game-button:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.game-controls {
-    margin-top: 25px;
-    padding-top: 20px;
-    border-top: 3px solid var(--ui-border);
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-/* Стили для HUD элементов */
-.hud-item {
-    background-color: var(--ui-bg);
-    border: 3px solid var(--ui-border);
-    padding: 15px;
-    border-radius: 8px;
-    min-height: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.hud-label {
-    font-size: 0.75rem;
-    color: #aaa;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    text-align: center;
-}
-
-.hud-value {
-    font-size: 1.5rem;
-    color: #fff;
-    text-align: center;
-    margin: 8px 0;
-}
-
-.money .hud-value { color: var(--success); }
-.strength .hud-value { color: var(--danger); }
-.durability .hud-value { color: var(--primary); }
-.time .hud-value { color: var(--time-color); }
-
-.hud-bar {
-    height: 15px;
-    background-color: #222;
-    border: 1px solid #000;
-    margin-top: 10px;
-    overflow: hidden;
-    position: relative;
-    border-radius: 6px;
-}
-
-.hud-bar-fill {
-    height: 100%;
-    transition: width 0.3s ease;
-    border-radius: 5px;
-}
-
-.money .hud-bar-fill { background-color: #32CD32; }
-.strength .hud-bar-fill { background-color: #FF4500; }
-.durability .hud-bar-fill { background-color: #7B68EE; }
-.time .hud-bar-fill { background-color: #FFA500; }
-
-.threshold {
-    position: absolute;
-    top: 0;
-    width: 2px;
-    height: 100%;
-    z-index: 2;
-    pointer-events: none;
-    transform: translateX(-1px);
-}
-
-.threshold-50 {
-    left: 50%;
-    background-color: rgba(255, 255, 255, 0.5);
-}
-
-.threshold-80 {
-    left: 80%;
-    background-color: rgba(255, 215, 0, 0.6);
-}
-
-/* Шкала этапов */
-.steps-tracker {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px 0;
-    padding: 10px;
-    background-color: var(--ui-bg);
-    border: 3px solid var(--ui-border);
-    border-radius: 8px;
-}
-
-.step-tracker-item {
-    flex: 1;
-    text-align: center;
-    padding: 8px 4px;
-    margin: 0 3px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border-radius: 6px;
-    font-size: 0.65rem;
-    min-height: 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.step-tracker-item.completed {
-    background-color: rgba(50, 205, 50, 0.15);
-    border: 1px solid var(--step-completed);
-    color: var(--step-completed);
-}
-
-.step-tracker-item.current {
-    background-color: rgba(255, 215, 0, 0.15);
-    border: 1px solid var(--step-current);
-    color: var(--step-current);
-    transform: scale(1.05);
-}
-
-.step-tracker-item.future {
-    background-color: rgba(123, 104, 238, 0.08);
-    border: 1px solid var(--step-future);
-    color: var(--step-future);
-    opacity: 0.7;
-}
-
-.step-tracker-item.incomplete {
-    background-color: rgba(123, 104, 238, 0.15);
-    border: 1px solid var(--step-incomplete);
-    color: var(--step-incomplete);
-}
-
-.step-number {
-    font-size: 0.9rem;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.step-name {
-    font-size: 0.55rem;
-    line-height: 1.2;
-}
-
-/* Стили для строительной области */
-.construction-area {
-    background-color: var(--ui-bg);
-    border: 3px solid var(--ui-border);
-    padding: 25px;
-    border-radius: 10px;
-    min-height: 520px;
-    display: flex;
-    flex-direction: column;
-}
-
-.step-info {
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid var(--ui-border);
-}
-
-.step-title {
-    font-size: 1rem;
-    color: var(--warning);
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.step-description {
-    font-size: 0.85rem;
-    color: #ccc;
-    line-height: 1.5;
-}
-
-/* Дом в стиле Terraria */
-.terraria-house {
-    width: 100%;
-    height: 380px;
-    position: relative;
-    background-color: rgba(0, 0, 0, 0.3);
-    border: 3px solid #000;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    flex-grow: 1;
-}
-
-.house-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom,
-        rgba(135, 206, 235, 0.2) 40%,
-        rgba(139, 69, 19, 0.3) 40%);
-    z-index: 1;
-}
-
-.pixel-block {
-    position: absolute;
-    z-index: 2;
-    transition: all 0.4s ease;
-    border-radius: 3px;
-}
-
-.foundation {
-    bottom: 100px;
-    left: 15%;
-    width: 70%;
-    height: 30px;
-    background-color: var(--stone);
-    border: 2px solid #555;
-}
-
-.walls {
-    bottom: 130px;
-    left: 15%;
-    width: 70%;
-    height: 220px;
-    background-color: var(--brick);
-    border: 2px solid #8B0000;
-}
-
-.roof {
-    bottom: 350px;
-    left: 10%;
-    width: 80%;
-    height: 120px;
-    background-color: #2F4F4F;
-    border: 2px solid #1C2F2F;
-    clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
-}
-
-.window {
-    width: 45px;
-    height: 45px;
-    background-color: #87CEEB;
-    border: 2px solid #4682B4;
-}
-
-.window-left { bottom: 220px; left: 25%; }
-.window-right { bottom: 220px; right: 25%; }
-
-.door {
-    bottom: 130px;
-    left: 45%;
-    width: 50px;
-    height: 140px;
-    background-color: var(--wood);
-    border: 2px solid #654321;
-}
-
-.chimney {
-    bottom: 350px;
-    right: 15%;
-    width: 25px;
-    height: 70px;
-    background-color: #696969;
-    border: 2px solid #363636;
-}
-
-.fence {
-    bottom: 100px;
-    left: 5%;
-    width: 90%;
-    height: 25px;
-    background-color: var(--wood);
-    border: 2px solid #654321;
-    display: flex;
-    justify-content: space-around;
-    padding: 0 12px;
-}
-
-.fence-post {
-    width: 6px;
-    height: 100%;
-    background-color: #654321;
-}
-
-.tree {
-    bottom: 100px;
-    left: 3%;
-    width: 50px;
-    height: 120px;
-}
-
-.tree-trunk {
-    position: absolute;
-    bottom: 0;
-    left: 20px;
-    width: 12px;
-    height: 70px;
-    background-color: #8B4513;
-    border: 2px solid #654321;
-}
-
-.tree-crown {
-    position: absolute;
-    bottom: 70px;
-    left: 0;
-    width: 50px;
-    height: 50px;
-    background-color: #228B22;
-    border: 2px solid #006400;
-    border-radius: 50%;
-}
-
-.part-hidden {
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-.part-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.construction-status {
-    text-align: center;
-    font-size: 0.85rem;
-    color: #aaa;
-    margin-top: 15px;
-    background-color: rgba(0, 0, 0, 0.2);
-    padding: 8px;
-    border-radius: 6px;
-}
-
-.step-counter {
-    text-align: center;
-    font-size: 0.8rem;
-    color: var(--warning);
-    margin-top: 15px;
-    background-color: rgba(0, 0, 0, 0.2);
-    padding: 8px;
-    border-radius: 6px;
-}
-
-/* Область выбора */
-.choices-area {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-}
-
-.choice-option {
-    background-color: var(--ui-bg);
-    border: 3px solid var(--ui-border);
-    padding: 20px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border-radius: 8px;
-    min-height: 150px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.choice-option:hover {
-    border-color: var(--primary);
-    transform: translateY(-4px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.choice-option.selected {
-    border-color: var(--step-completed);
-    background: linear-gradient(
-        rgba(50, 205, 50, 0.25),
-        rgba(50, 205, 50, 0.12)
-    ), var(--ui-bg) !important;
-    box-shadow: 0 4px 0 rgba(50, 205, 50, 0.4), var(--shadow-heavy);
-}
-
-.choice-title {
-    font-size: 0.8rem;
-    color: #fff;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.choice-icon {
-    color: var(--primary);
-    font-size: 1.1rem;
-}
-
-.choice-description {
-    font-size: 0.8rem;
-    color: #ccc;
-    margin-bottom: 15px;
-    line-height: 1.4;
-    flex-grow: 1;
-}
-
-.choice-stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    font-size: 0.8rem;
-}
-
-.stat-change {
-    font-weight: bold;
-    display: block;
-    margin-top: 5px;
-    font-size: 0.85rem;
-}
-
-.positive { color: var(--success); }
-.negative { color: var(--danger); }
-.neutral { color: var(--warning); }
-.time-change { color: var(--time-color); }
-
-/* Модальное окно фактов */
-.fact-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.85);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    animation: fadeIn 0.3s ease-out;
-}
-
-.fact-modal {
-    background-color: var(--ui-bg);
-    border: 5px solid var(--primary);
-    border-radius: 10px;
-    width: 90%;
-    max-width: 600px;
-    padding: 30px;
-    animation: slideUp 0.3s ease-out;
-}
-
-.fact-modal-header {
-    text-align: center;
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 3px solid var(--primary);
-}
-
-.fact-modal-title {
-    font-size: 1rem;
-    color: var(--warning);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 10px;
-}
-
-.fact-modal-subtitle {
-    font-size: 0.7rem;
-    color: #aaa;
-    text-transform: uppercase;
-}
-
-.fact-content {
-    background-color: rgba(0, 0, 0, 0.3);
-    border: 3px solid var(--ui-border);
-    padding: 25px;
-    border-radius: 8px;
-    margin-bottom: 25px;
-    min-height: 140px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.fact-text {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: #fff;
-    text-align: center;
-}
-
-.fact-source {
-    font-size: 0.6rem;
-    color: #888;
-    text-align: center;
-    margin-top: 10px;
-    font-style: italic;
-}
-
-.fact-modal-actions {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.fact-close-btn {
-    background-color: var(--primary);
-    border: 3px solid var(--primary-dark);
-    color: white;
-    padding: 15px 35px;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-transform: uppercase;
-    border-radius: 8px;
-}
-
-.fact-close-btn:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-2px);
-}
-
-/* Анимации для модального окна */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Адаптивность */
-@media (max-width: 1200px) {
-    .game-container {
-        max-width: 95%;
-        padding: 15px;
-    }
-}
-
-@media (max-width: 992px) {
-    .start-content {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-
-    .game-container {
-        padding: 15px;
-    }
-
-    .game-hud, .end-stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .choice-stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .terraria-house, .final-house-container {
-        height: 320px;
-    }
-
-    h1 {
-        font-size: 1.7rem;
-    }
-
-    .step-tracker-item {
-        min-width: 100px;
-        padding: 6px 3px;
-    }
-
-    .fact-modal {
-        width: 95%;
-        padding: 20px;
-    }
-}
-
-@media (max-width: 768px) {
-    .game-container {
-        padding: 10px;
-    }
-
-    .preset-buttons {
-        grid-template-columns: 1fr;
-    }
-
-    .terraria-house, .final-house-container {
-        height: 250px;
-    }
-
-    h1 {
-        font-size: 1.4rem;
-    }
-
-    .subtitle {
-        font-size: 0.8rem;
-    }
-
-    .hud-value {
-        font-size: 1.3rem;
-    }
-
-    .game-button {
-        padding: 12px 20px;
-        font-size: 0.85rem;
-    }
-
-    .choice-stats {
-        grid-template-columns: 1fr;
-    }
-
-    .step-tracker-item {
-        min-width: 70px;
-        font-size: 0.6rem;
-    }
-
-    .step-number {
-        font-size: 0.8rem;
-    }
-
-    .step-name {
-        font-size: 0.45rem;
-    }
-
-    .fact-modal {
-        padding: 15px;
-    }
-
-    .fact-content {
-        padding: 20px;
-        min-height: 120px;
-    }
-
-    .fact-text {
-        font-size: 0.8rem;
-    }
-
-    .fact-close-btn {
-        padding: 12px 25px;
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.2rem;
-    }
-
-    .subtitle {
-        font-size: 0.7rem;
-    }
-
-    .terraria-house, .final-house-container {
-        height: 200px;
-    }
-
-    .game-button {
-        padding: 10px 15px;
-        font-size: 0.8rem;
-    }
-
-    .step-tracker-item {
-        min-width: 60px;
-        font-size: 0.5rem;
-    }
-
-    .fact-modal {
-        padding: 12px;
-    }
+/* Bright, large and touch-friendly: everything is a big button, text is short. */
+:root{--ink:#1f3a52;--sky:#bfe8ff;--card:#fff;--green:#2fbf71;--green-d:#1f9a58;--orange:#ff9f1c;--orange-d:#d97f00;--line:#d5e6f2;--gold:#ffd23f;--radius:22px}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;color:var(--ink);background:linear-gradient(#a9deff,#e9f8ff 60%,#d6f3c9);font:600 17px/1.35 ui-rounded,"Nunito","Trebuchet MS","Segoe UI",system-ui,sans-serif}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+button:focus-visible{outline:4px solid #1d6fd6;outline-offset:3px}
+#app{max-width:1100px;margin:0 auto;padding:12px 14px 24px}
+
+.hud{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.logo{display:flex;align-items:center;gap:8px;font-size:21px;white-space:nowrap}
+.logo span{font-size:28px}
+.steps{display:flex;gap:6px;flex:1;min-width:0;justify-content:center}
+.dot{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#fff;border:3px solid var(--line);font-style:normal;font-size:14px;font-weight:800;color:#7b96ab}
+.dot.done{background:var(--green);border-color:var(--green-d);color:#fff}
+.dot.now{border-color:var(--orange);color:var(--orange-d);transform:scale(1.18);box-shadow:0 0 0 4px #ffe3b0}
+.coins{min-width:136px;text-align:center;background:#fff;border:3px solid var(--gold);border-radius:999px;padding:4px 14px;font-size:21px;white-space:nowrap}
+.coins b{font-size:24px}
+.coins small{margin-left:6px;color:#d6455d;font-size:17px;font-weight:800}
+.icon{width:46px;height:46px;border-radius:50%;border:3px solid var(--line);background:#fff;font-size:22px;line-height:1;padding:0}
+.icon:active{transform:scale(.94)}
+
+.stage{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(300px,1fr);gap:16px;align-items:start}
+.scene{position:relative;aspect-ratio:600/420;overflow:hidden;border-radius:26px;border:5px solid #fff;box-shadow:0 8px 0 #9cc9e6,0 14px 28px #3b6f9433;background:#7cc8ff;touch-action:manipulation}
+.scene svg,#house{position:absolute;inset:0;width:100%;height:100%;display:block}
+.scene.bump{animation:bump .14s ease-out}
+#fx{position:absolute;inset:0;pointer-events:none}
+#fx span{position:absolute;font-size:26px;animation:spark .8s ease-out forwards}
+#fx span.fall{top:-30px;animation:fall 2.4s linear forwards;font-size:30px}
+
+.panel{background:var(--card);border-radius:var(--radius);border:4px solid #fff;box-shadow:0 8px 0 #9cc9e6;padding:16px;display:grid;gap:12px}
+.stage-name{margin:0;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#6a8aa3;font-weight:800}
+.mascot{display:flex;gap:10px;align-items:flex-start}
+.avatar{flex:none;display:grid;place-items:center;width:54px;height:54px;border-radius:50%;background:#ffe27a;border:3px solid var(--gold);font-size:32px;animation:bob 2.4s ease-in-out infinite}
+.bubble{position:relative;margin:0;padding:10px 14px;background:#eaf6ff;border-radius:16px;min-height:54px;display:flex;align-items:center;font-size:18px}
+.bubble::before{content:"";position:absolute;left:-8px;top:18px;border:8px solid transparent;border-left:0;border-right-color:#eaf6ff}
+.label{margin:0;font-weight:800}
+.tag{justify-self:start;padding:5px 12px;border-radius:999px;font-size:15px;font-weight:800}
+.tag.strong{background:#dff0ff;color:#1b5fa6}
+.tag.pretty{background:#ffe6f2;color:#b3306c}
+
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.card{display:grid;grid-template-rows:56px auto auto 1fr;gap:4px;justify-items:center;min-height:170px;padding:12px 6px;background:#fff;border:3px solid var(--line);border-bottom-width:7px;border-radius:18px;text-align:center;transition:transform .12s,border-color .12s}
+.card:hover{transform:translateY(-2px)}
+.card:active{transform:translateY(2px)}
+.card .ico{font-size:44px;line-height:56px}
+.card b{font-size:16px;line-height:1.15}
+.card .cost{font-size:18px;letter-spacing:-2px;align-self:end}
+.card.on{border-color:var(--green);background:#eafaf1;transform:translateY(-3px)}
+.card{position:relative}
+.card.off{opacity:.45;filter:grayscale(.8)}
+.card.off::after{content:"🔒";position:absolute;top:6px;right:8px;font-size:18px}
+
+.fears{display:flex;gap:3px;justify-content:center;align-items:center;min-height:26px}
+.fear{font-style:normal;font-size:17px;line-height:1;padding:2px 4px;border-radius:8px;background:#eef2f6;filter:grayscale(.7);opacity:.7}
+.fear.hit{background:#ffd9d9;box-shadow:0 0 0 2px #e5484d;filter:none;opacity:1;animation:pulse 1s ease-in-out infinite}
+.fear.safe{background:#dcf5e5;filter:none;opacity:1}
+.forecast{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:14px;font-weight:800;color:#6a8aa3}
+.hz-chip{display:inline-flex;gap:4px;align-items:center;padding:3px 10px;border-radius:999px;background:#fff0d9;border:2px solid #ffc46b;color:#7a4b00}
+.hz-chip.now{background:#ffe3b0;border-color:var(--orange);animation:pulse .7s ease-in-out infinite}
+.hz-chip.ok{background:#dcf5e5;border-color:var(--green);color:#1a6b3e}
+.hz-chip.bad{background:#ffd9d9;border-color:#e5484d;color:#8b1d1d}
+.hz-list{display:grid;gap:8px}
+.hz{display:flex;gap:12px;align-items:center;padding:8px 12px;border-radius:16px;background:#fff0d9;border:3px solid #ffc46b}
+.hz.finale{background:#e3ecf7;border-color:#7d9ec9}
+.hz.finale small{color:#47607f}
+.hz-ico{font-size:38px;line-height:1}
+.hz b{display:block;font-size:19px}
+.hz small{color:#8a6a2a;font-weight:700;font-size:15px}
+.link{justify-self:center;background:none;border:0;padding:6px 10px;color:#6a8aa3;font-weight:800;text-decoration:underline}
+.world{position:absolute;inset:0}
+#fx .banner{position:absolute;left:50%;top:10%;padding:6px 20px;border-radius:999px;background:#fff;border:4px solid #ffc46b;font-size:26px;font-weight:900;white-space:nowrap;animation:banner 1.9s ease-out forwards}
+.rows{display:grid;gap:6px}
+.row{display:flex;gap:8px;align-items:center;padding:6px 10px;border-radius:12px;background:#e6f9ee;font-size:16px;line-height:1.25}
+.row.bad{background:#ffeede}
+.row span{font-size:24px;line-height:1}
+.big{width:100%;min-height:60px;padding:10px 18px;border:0;border-radius:18px;font-size:22px;font-weight:900;color:#fff;letter-spacing:.01em}
+.big.go{background:var(--green);box-shadow:0 6px 0 var(--green-d)}
+.big.hammer{background:var(--orange);box-shadow:0 6px 0 var(--orange-d);min-height:84px;font-size:28px;animation:pulse 1s ease-in-out infinite}
+.big.hammer span{display:inline-block;font-size:36px;vertical-align:-4px}
+.big:active:not(:disabled){transform:translateY(5px);box-shadow:none}
+.big:disabled{background:#c5d3de;box-shadow:0 6px 0 #a3b4c2;color:#fff;cursor:not-allowed}
+
+.swatches{display:flex;gap:10px;flex-wrap:wrap}
+.swatch{width:46px;height:46px;border-radius:50%;background:var(--c);border:4px solid #fff;box-shadow:0 0 0 3px var(--line),0 4px 0 #0002;padding:0}
+.swatch[aria-pressed="true"]{box-shadow:0 0 0 4px var(--ink),0 4px 0 #0002;transform:scale(1.12)}
+
+.bricks{display:flex;gap:6px}
+.bricks i{flex:1;height:26px;border-radius:6px;background:#e3ecf3;border:3px solid #c7d6e2;transition:background .1s,transform .1s}
+.bricks i.on{background:#e0654a;border-color:#b84430;transform:scale(1.05)}
+.fact{background:#fff8dc;border:3px solid var(--gold);border-radius:16px;padding:10px 14px}
+.fact b{font-size:19px}
+.fact p{margin:4px 0 0;font-size:18px}
+
+.result{display:grid;gap:12px}
+.title-card{display:flex;gap:14px;align-items:center;padding:12px 14px;border-radius:18px;background:#e6f9ee}
+.result.bad .title-card{background:#ffeede}
+.title-card small{color:#6a8aa3;font-weight:800}
+.title-card h2{margin:0;font-size:28px;line-height:1.1}
+.big-ico{font-size:58px;line-height:1}
+.new{justify-self:start;padding:4px 14px;border-radius:999px;background:var(--gold);font-weight:900;animation:pulse 1s ease-in-out infinite}
+.lead{margin:0;font-size:18px}
+.fails{margin:0;padding-left:22px;color:#b8431f}
+.stars{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.star{display:grid;justify-items:center;gap:2px;padding:8px 4px;border-radius:14px;background:#f0f5f9;font-size:14px;text-align:center;color:#7b96ab;font-weight:800}
+.star span{font-size:34px;line-height:1;filter:grayscale(1);opacity:.5}
+.star.on{background:#fff6cc;color:var(--ink)}
+.star.on span{filter:none;opacity:1;animation:pop .5s ease-out}
+.tip{margin:0;color:#6a8aa3;font-size:16px}
+.titles{display:grid;gap:6px;padding-top:10px;border-top:3px dashed var(--line);font-size:15px}
+.titles>div{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.titles span{display:grid;justify-items:center;font-size:28px;line-height:1.1;text-align:center}
+.titles small{font-size:10.5px;font-weight:800;color:#6a8aa3}
+.titles .nope{opacity:.4}
+
+/* House animations */
+.fg .part.ghost{opacity:.55;animation:ghost 1.1s ease-in-out infinite alternate}
+.fg .part.pop{transform-box:fill-box;transform-origin:50% 100%;animation:pop .55s ease-out}
+.fg .house,.fg .tilt{transform-origin:300px 330px}
+.fg .top,.fg .roofx{transform-origin:300px 190px}
+.fg .crane .swing{transform-origin:510px 132px;animation:swing 3s ease-in-out infinite alternate}
+.fg .smoke{fill:#f4f6f8;opacity:0;transform-box:fill-box;transform-origin:center;animation:smoke 2.8s ease-out infinite}
+.fg .smoke.s2{animation-delay:.9s}.fg .smoke.s3{animation-delay:1.8s}
+.fg .wave{transform-origin:300px 62px;animation:wave 1.2s ease-in-out infinite alternate}
+.fg .flicker{animation:flicker 1.4s ease-in-out infinite alternate}
+.fg .jet{animation:jet .6s linear infinite}
+.fg .tree{transform-origin:0 0;animation:sway 5s ease-in-out infinite alternate}
+.bg .sun{transform-origin:80px 64px;animation:spin 40s linear infinite}
+.bg .c1{animation:drift 26s ease-in-out infinite alternate}
+.bg .c2{animation:drift 34s ease-in-out infinite alternate-reverse}
+
+/* Weather of the trials */
+.fg .tint{opacity:0;animation:tint .8s ease-out forwards}
+.fg .rain line{stroke:#d3ecff;stroke-width:2;animation:rain .55s linear infinite}
+.fg .rain.heavy line{stroke:#bcd6ee;stroke-width:2.5;animation:rainh .42s linear infinite}
+.fg .clouds{animation:drift2 5s ease-in-out infinite alternate}
+.fg .flash{fill:#fff;opacity:0;animation:flash 2.4s 1s infinite}
+.fg .bolt{fill:#fff7b0;opacity:0}
+.fg .bolt.b1{animation:bolt1 2.4s 1s infinite}
+.fg .bolt.b2{animation:bolt2 2.4s 1s infinite}
+.fg .gust{fill:none;stroke:#fff;stroke-opacity:.45;stroke-width:2;stroke-linecap:round;animation:gust .6s linear infinite}
+.fg .leaf{transform-box:fill-box;transform-origin:center;animation:leaf 1.4s linear infinite}
+.fg .crack{fill:none;stroke:#4a3320;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:240;stroke-dashoffset:240;animation:draw 1s .3s ease-out forwards}
+.fg .dust{fill:#cdb48a;opacity:0;transform-box:fill-box;transform-origin:center;animation:dust 1.4s ease-out infinite}
+.fg .pebble{opacity:0;animation:pebble .9s var(--d,1.4s) ease-in forwards}
+.fg .flame{transform-box:fill-box;transform-origin:50% 100%;animation:flame .35s ease-in-out infinite alternate}
+.fg .flame.onfire{opacity:0;animation:flame .35s ease-in-out infinite alternate,appear .3s .9s forwards}
+.fg .spark{fill:#ffb347;opacity:0;animation:emberup 1.4s ease-out infinite}
+.fg .smokeb{fill:#3b3b3b;opacity:0;transform-box:fill-box;transform-origin:center;animation:smokeb 2.2s ease-out infinite}
+.fg .water{transform:translateY(130px);animation:rise 1.4s ease-out forwards}
+.fg .swell{animation:swell 2s linear infinite}
+.fg .swell.w2{animation-duration:3s;animation-direction:reverse}
+.fg .swell.w3{animation-duration:2.4s}
+.fg .float{animation:float 2s ease-in-out infinite alternate}
+.fg .flake{fill:#fff;animation:flake 3s linear infinite}
+.fg .snowfloor{opacity:0;--o:.4;animation:fadein 3s ease-out forwards}
+.fg .snowcap{opacity:0;animation:fadein 2s ease-out forwards}
+.fg.hz-wind .tree{animation:bend .45s ease-in-out infinite alternate}
+.fg.hz-quake .tree{animation:jitter .1s linear infinite alternate}
+.fg.hz-wind .house{animation:shake .1s linear infinite alternate}
+.fg.hz-quake .house{animation:quake .09s linear infinite alternate}
+.scene.hz-quake .world{animation:quake .09s linear infinite alternate}
+.scene.hz-wind .world{animation:gale .16s linear infinite alternate}
+
+/* A part that breaks: .fail animates to its end pose (or falls apart into .chunk pieces), .dead stays there. */
+.fg .sink{--end:translateY(14px) rotate(5deg)}
+.fg .wash{--end:translate(46px,12px) rotate(-6deg)}
+.fg .drop{--end:translateY(70px) rotate(-5deg)}
+.fg .cave{--end:translateY(22px) scaleY(.78) rotate(1.5deg)}
+.fg .tilt.fail.sink{animation:jolt 1.4s 1.3s ease-in-out forwards}
+.fg .tilt.fail.wash{animation:go 1.5s 1.5s ease-in-out forwards}
+.fg .top.fail.drop{animation:slump .9s 1.7s cubic-bezier(.4,0,.8,.6) forwards}
+.fg .top.fail.drop.late{animation-delay:2.4s}
+.fg .roofx.fail.cave{animation:go 1s 1.4s ease-in forwards}
+.fg .dead.sink,.fg .dead.wash,.fg .dead.drop,.fg .dead.cave{transform:var(--end)}
+.fg .body.crumble,.fg .roofx.fly{--base:1.3s}
+.fg .body.burn{--base:1.9s}
+.fg .fail .chunk{animation:topple .8s calc(var(--base,1.3s) + var(--t,0s)) cubic-bezier(.5,0,.9,.55) forwards}
+.fg .roofx.fly .chunk{animation-duration:1.2s}
+.fg .dead .chunk{transform:translate(var(--dx),var(--dy)) rotate(var(--r));opacity:var(--op,1)}
+.fg .soot{fill:#1a1410;opacity:0}
+.fg .fail .soot{animation:soot 1s .8s forwards}
+.fg .roofx.fail .soot{animation-delay:1s}
+.fg .dead .soot{opacity:.85}
+.fg .rafters{fill:none;stroke:#6a4a2a;stroke-width:5;stroke-linecap:round}
+.fg .roofx.burn.fail .rafters{animation:charr 1s 1.2s forwards}
+.fg .roofx.burn.dead .rafters{stroke:#17100b}
+.fg .roofx.burn.fail .burnable{animation:burnaway .8s 2s forwards}
+.fg .roofx.burn.dead .burnable{opacity:0}
+.fg .hole{opacity:0}
+.fg .roofx.fail .hole{animation:fadein .5s 1.6s forwards}
+.fg .roofx.dead .hole{opacity:1}
+.fg .rubble{transform-origin:300px 304px}
+.fg .rubble.fail{animation:heap .5s 1.95s ease-out both}
+.fg .rubble.fail.burn{animation-delay:2.55s}
+.fg .puff{fill:#e5d8c0;opacity:0;transform-box:fill-box;transform-origin:center;animation:puff 1.3s calc(1.9s + var(--t,0s)) ease-out forwards}
+.fg .puffs.burn .puff{animation-delay:calc(2.5s + var(--t,0s))}
+.fg .puff.ash{fill:#6b6b6b}
+.fg .ember{fill:#ff8a2a;animation:ember .7s ease-in-out infinite alternate}
+.fg .smolder circle{fill:#555;opacity:0;transform-box:fill-box;transform-origin:center;animation:smokeb 3.4s ease-out infinite}
+.fg .cracks path{fill:none;stroke:#2a1a10;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:160;stroke-dashoffset:160}
+.fg .cracks .hl path{stroke:#fff;stroke-opacity:.4;stroke-width:1.4}
+.fg .tilt.fail .cracks path{animation:draw .6s 1.2s ease-out forwards}
+.fg .tilt.dead .cracks path{stroke-dashoffset:0}
+.fg .fissure{fill:#2a1a10;transform-box:fill-box;transform-origin:center;transform:scaleY(0)}
+.fg .fissure.fail{animation:open .5s 1.2s ease-out forwards}
+.fg .fissure.dead{transform:none}
+.fg .stain{fill:#6b4a2b;opacity:.38}
+.fg .mud ellipse{fill:#7a5a3a;opacity:.55}
+
+@keyframes bump{50%{transform:scale(.985)}}
+@keyframes bob{50%{transform:translateY(-4px)}}
+@keyframes pulse{50%{transform:scale(1.03)}}
+@keyframes pop{0%{transform:scale(.88)}60%{transform:scale(1.08)}100%{transform:scale(1)}}
+@keyframes spark{to{transform:translateY(-60px) scale(1.5);opacity:0}}
+@keyframes fall{to{transform:translateY(520px) rotate(300deg)}}
+@keyframes ghost{from{opacity:.4}to{opacity:.7}}
+@keyframes banner{0%{opacity:0;transform:translate(-50%,-20px) scale(.7)}15%{opacity:1;transform:translate(-50%,0) scale(1.08)}25%{transform:translate(-50%,0) scale(1)}80%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,0)}}
+@keyframes tint{to{opacity:var(--o,.3)}}
+@keyframes fadein{to{opacity:var(--o,1)}}
+@keyframes rain{to{transform:translate(-40px,460px)}}
+@keyframes rainh{to{transform:translate(130px,470px)}}
+@keyframes gust{from{transform:translateX(-120px)}to{transform:translateX(700px)}}
+@keyframes leaf{to{transform:translate(680px,80px) rotate(720deg)}}
+@keyframes drift2{to{transform:translateX(-50px)}}
+@keyframes flash{0%,100%{opacity:0}3%{opacity:.34}6%{opacity:0}40%{opacity:0}43%{opacity:.4}47%{opacity:.08}50%{opacity:.3}54%{opacity:0}}
+@keyframes bolt1{0%,2%{opacity:0}3%,9%{opacity:1}12%,100%{opacity:0}}
+@keyframes bolt2{0%,41%{opacity:0}42%,52%{opacity:1}55%,100%{opacity:0}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes dust{0%{opacity:.7;transform:translateY(0) scale(.5)}100%{opacity:0;transform:translateY(-40px) scale(2)}}
+@keyframes pebble{0%{opacity:1;transform:translateY(0) rotate(0)}100%{opacity:1;transform:translateY(var(--dy)) rotate(200deg)}}
+@keyframes flame{from{transform:scale(.9,.85)}to{transform:scale(1.08,1.15)}}
+@keyframes appear{to{opacity:1}}
+@keyframes emberup{0%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(var(--x,10px),-130px)}}
+@keyframes smokeb{0%{opacity:.5;transform:translateY(0) scale(.6)}100%{opacity:0;transform:translateY(-140px) scale(2.2)}}
+@keyframes rise{to{transform:translateY(0)}}
+@keyframes swell{to{transform:translateX(-120px)}}
+@keyframes float{from{transform:translate(0,-2px) rotate(-3deg)}to{transform:translate(-24px,3px) rotate(3deg)}}
+@keyframes flake{to{transform:translate(40px,440px)}}
+@keyframes sway{from{transform:rotate(-.8deg)}to{transform:rotate(.8deg)}}
+@keyframes bend{from{transform:rotate(2deg)}to{transform:rotate(10deg)}}
+@keyframes jitter{from{transform:rotate(-1.5deg)}to{transform:rotate(1.5deg)}}
+@keyframes go{to{transform:var(--end);opacity:var(--op,1)}}
+@keyframes jolt{0%{transform:none}25%{transform:translateY(5px) rotate(1.2deg)}45%{transform:translateY(4px) rotate(.4deg)}72%{transform:translateY(11px) rotate(3.8deg)}100%{transform:var(--end)}}
+@keyframes slump{0%{transform:none}70%{transform:translateY(76px) rotate(-6.5deg)}85%{transform:translateY(68px) rotate(-4.5deg)}100%{transform:var(--end)}}
+@keyframes topple{to{transform:translate(var(--dx),var(--dy)) rotate(var(--r));opacity:var(--op,1)}}
+@keyframes soot{to{opacity:.85}}
+@keyframes charr{to{stroke:#17100b}}
+@keyframes burnaway{to{opacity:0}}
+@keyframes heap{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:none}}
+@keyframes puff{0%{opacity:0;transform:scale(.3)}25%{opacity:.85}100%{opacity:0;transform:translateY(-26px) scale(2.1)}}
+@keyframes ember{from{opacity:.35}to{opacity:1}}
+@keyframes open{to{transform:none}}
+@keyframes quake{from{transform:translate(-4px,1px) rotate(-.5deg)}to{transform:translate(4px,-1px) rotate(.5deg)}}
+@keyframes gale{from{transform:translateX(-1px)}to{transform:translateX(1px)}}
+@keyframes swing{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}
+@keyframes smoke{0%{opacity:.85;transform:translate(0,0) scale(.6)}100%{opacity:0;transform:translate(24px,-46px) scale(1.7)}}
+@keyframes wave{from{transform:skewY(-5deg)}to{transform:skewY(5deg)}}
+@keyframes flicker{from{opacity:.75}to{opacity:1}}
+@keyframes jet{to{stroke-dashoffset:-24}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes drift{to{transform:translateX(40px)}}
+@keyframes shake{from{transform:translateX(-2px)}to{transform:translateX(2px)}}
+
+@media(max-width:860px){
+ .stage{grid-template-columns:1fr}
+ .panel>.big{position:sticky;bottom:8px;z-index:2}
+ .logo b{display:none}
+}
+@media(max-width:480px){
+ body{font-size:16px}
+ #app{padding:8px 8px 20px}
+ .hud{gap:6px}
+ .logo{display:none}
+ .dot{width:24px;height:24px;font-size:12px;border-width:2px}
+ .steps{gap:3px;justify-content:flex-start}
+ .coins{min-width:0;padding:3px 10px;font-size:18px}
+ .coins b{font-size:20px}
+ .icon{width:40px;height:40px;font-size:19px}
+ .panel{padding:12px;gap:10px}
+ .hz-chip{padding:2px 8px;font-size:13px}
+ .bubble{font-size:17px}
+ .card{min-height:156px;grid-template-rows:48px auto auto 1fr}
+ .card .ico{font-size:38px;line-height:48px}
+ .titles small{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){
+ .decor,.avatar,.big.hammer,.new,.hz-chip,.fear,.fg .crane .swing,.fg .smoke,.fg .rain line,.fg .gust,.fg .leaf,.fg .flake,.fg .house,.fg .tree,.fg .clouds,.fg .flash,.fg .bolt,.fg .float,.fg .flame,.fg .spark,.fg .ember,.scene .world{animation:none!important}
+ .fg .flash,.fg .bolt{display:none}
+ .fg .part.ghost{animation:none}
 }
