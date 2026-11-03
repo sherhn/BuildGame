@@ -144,7 +144,7 @@ function select(i){
  const k=game.picks.length,o=G.stages[k].options[i],hits=G.fearsOf(k,i).filter(h=>game.forecast.includes(h));
  document.querySelectorAll('.card').forEach((c,n)=>{c.classList.toggle('on',n===i);c.setAttribute('aria-pressed',n===i);});
  const ok=document.getElementById('ok');ok.disabled=false;ok.textContent='Строить! 🔨';
- say(hits.length?`⚠️ ${o.name}: красный значок — ${hits.map(h=>lower(G.hazards[h].name)).join(', ')}!`:`${o.name}! ${['Дёшево и сердито.','Хороший выбор.','Вот это класс!'][i]}`);
+ say(hits.length?`⚠️ Не выдержит: ${hits.map(h=>lower(G.hazards[h].name)).join(', ')}!`:`${o.name}! ${['Дёшево и сердито.','Хороший выбор.','Вот это класс!'][i]}`);
  drawScene();drawHud();
 }
 function spark(stage){
