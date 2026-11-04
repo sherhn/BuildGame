@@ -385,6 +385,38 @@ button:focus-visible{outline:.25rem solid #1d6fd6;outline-offset:.2rem}
  .card .cost{max-width:100%;overflow-wrap:anywhere;letter-spacing:normal}
  .panel>.big{position:static;margin-top:auto}
 }
+/* A little more room around the game controls on phones; the scene keeps its size. */
+@media(max-width:600px), (max-height:520px) and (pointer:coarse){
+ .hud{font-size:.9rem}
+ .dot{width:1.5rem;height:1.5rem;font-size:.72rem}
+ .coins{font-size:1rem;padding:.1rem .6rem}
+ .coins b{font-size:1.15rem}
+ .coins small{font-size:.9rem}
+ .icon{width:2.6rem;height:2.6rem;font-size:1.1rem}
+ .panel,.talk{padding:.6rem;gap:.45rem;font-size:.95rem}
+ .avatar{width:2.4rem;height:2.4rem;font-size:1.5rem}
+ .bubble{min-height:2.4rem;padding:.35rem .6rem;font-size:.95rem}
+ .stage-head{font-size:1.1rem}
+ .label{font-size:1rem}
+ .cards{gap:.4rem}
+ .card{padding:.4rem .2rem;gap:.2rem}
+ .card .ico{font-size:2.1rem;line-height:2.4rem}
+ .card b,.card .cost{font-size:.95rem}
+ .fear{font-size:.9rem;padding:.1rem .2rem}
+ .big{min-height:3rem;font-size:1.15rem}
+ .big.hammer{min-height:4rem;font-size:1.35rem}
+ .big.hammer span{font-size:1.8rem}
+ .hz{padding:.3rem .55rem;gap:.5rem}
+ .hz-ico{font-size:1.7rem}
+ .hz b{font-size:.95rem}
+ .hz small,.tip,.row{font-size:.8rem}
+ .title-card h2{font-size:1.25rem}
+ .big-ico{font-size:2rem}
+ .star span{font-size:1.4rem}
+ .fact{padding:.5rem .7rem}
+ .fact b,.fact p{font-size:1rem}
+ .swatch{width:2.6rem;height:2.6rem}
+}
 @media(prefers-reduced-motion:reduce){
  .decor,.avatar,.big.hammer,.new,.hz-chip,.hz.now,.fear,.fg .crane .swing,.fg .smoke,.fg .rain line,.fg .gust,.fg .leaf,.fg .flake,.fg .house,.fg .tree,.fg .clouds,.fg .flash,.fg .bolt,.fg .float,.fg .flame,.fg .spark,.fg .ember,.scene .world{animation:none!important}
  .fg .flash,.fg .bolt{display:none}
