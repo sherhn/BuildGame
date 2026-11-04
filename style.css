@@ -374,6 +374,17 @@ button:focus-visible{outline:.25rem solid #1d6fd6;outline-offset:.2rem}
  .big-ico{font-size:2.2rem}
  .star{font-size:.8rem}
 }
+/* Keep mobile content in normal flow when labels or controls need more space. */
+@media(max-width:900px){
+ .hud{gap:.35rem}
+ .dot{flex:none}
+ .icon{flex:none}
+ .cards{flex:none;max-height:none;grid-auto-rows:minmax(min-content,auto)}
+ .card{min-width:0;grid-template-rows:auto auto auto auto;overflow-wrap:anywhere}
+ .card .fears{flex-wrap:wrap}
+ .card .cost{max-width:100%;overflow-wrap:anywhere;letter-spacing:normal}
+ .panel>.big{position:static;margin-top:auto}
+}
 @media(prefers-reduced-motion:reduce){
  .decor,.avatar,.big.hammer,.new,.hz-chip,.hz.now,.fear,.fg .crane .swing,.fg .smoke,.fg .rain line,.fg .gust,.fg .leaf,.fg .flake,.fg .house,.fg .tree,.fg .clouds,.fg .flash,.fg .bolt,.fg .float,.fg .flame,.fg .spark,.fg .ember,.scene .world{animation:none!important}
  .fg .flash,.fg .bolt{display:none}
