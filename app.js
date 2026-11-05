@@ -16,6 +16,7 @@ const persist=()=>{try{localStorage.setItem(KEY,JSON.stringify(save));}catch{}};
 const hex=()=>S.colors.find(c=>c.id===save.color).hex;
 const later=(ms,fn)=>{timers.push(setTimeout(fn,ms));};
 const stopTimers=()=>{timers.forEach(clearTimeout);timers=[];};
+const track=(name,data)=>{try{window.umami?.track(name,data)?.catch?.(()=>{});}catch{}};
 
 function tone(freq,len=.12,type='square',vol=.06,at=0){
  if(save.muted)return;
@@ -180,7 +181,7 @@ function hit(){
  document.querySelectorAll('#bricks i').forEach((b,i)=>b.classList.toggle('on',i<taps));
  scene.classList.remove('bump');void scene.offsetWidth;scene.classList.add('bump');
  if(taps<need){say(CHEER[Math.min(taps-1,CHEER.length-1)]);return;}
- G.pick(game,sel);sel=null;phase='built';sfx.done();draw();
+ G.pick(game,sel);track('stage_completed',{stage:k+1,choice:sel+1});sel=null;phase='built';sfx.done();draw();
 }
 
 // The trials run one after another; every broken part stays broken for the next one.
@@ -202,6 +203,7 @@ function trialEnd(i){
 function finish(){
  stopTimers();
  const r=G.result(game);
+ track('game_completed',{title:r.title,tough:r.stars.tough,pretty:r.stars.pretty});
  phase='result';fresh=!save.titles.includes(r.title);
  if(fresh){save.titles.push(r.title);persist();}
  draw();
@@ -210,22 +212,23 @@ function finish(){
 
 const act={
  color:b=>{save.color=b.dataset.id;persist();draw();},
- go:()=>{game=G.create();sel=null;phase='brief';draw();},
+ go:()=>{game=G.create();sel=null;phase='brief';track('game_started');draw();},
  brief:()=>{phase='choose';draw();},
  card:b=>select(+b.dataset.i),
- ok:()=>{if(sel===null)return;taps=0;phase='build';draw();},
+ ok:()=>{if(sel===null)return;track('choice_confirmed',{stage:game.picks.length+1,choice:sel+1});taps=0;phase='build';draw();},
  hit,
  next:()=>{
   if(!G.finished(game)){sel=null;phase='choose';draw();return;}
   phase='trials';run={list:G.trials(game),i:0,stage:'hit',dead:[],text:''};
+  track('trials_started');
   trialStart(0);
  },
- skip:finish,
- again:()=>{stopTimers();phase='start';game=G.create();draw();},
+ skip:()=>{track('trials_skipped');finish();},
+ again:()=>{track('play_again');stopTimers();phase='start';game=G.create();draw();},
  sound:()=>{save.muted=!save.muted;persist();drawHud();sfx.select();},
  restart:()=>{
   if(phase==='start'||(phase!=='result'&&!confirm('Начать заново? Дом пропадёт.')))return;
-  stopTimers();phase='start';game=G.create();sel=null;draw();
+  track('game_restarted',{phase,stage:game.picks.length});stopTimers();phase='start';game=G.create();sel=null;draw();
  }
 };
 app.innerHTML=`<header class="hud">
